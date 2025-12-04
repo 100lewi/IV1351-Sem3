@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+.vscode/*.code-snippets
+.vscode/*.code-workspace
+.history/
+
+.DS_Store
+Thumbs.db
+
+.env
+secrets.py

@@ -1,0 +1,15 @@
+{
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/*.pyc": true
+    },
+    "[python]": {
+		"editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.insertSpaces": false,
+        "editor.detectIndentation": false,
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true,
+
+    },
+    "python.analysis.typeCheckingMode": "basic"
+}
