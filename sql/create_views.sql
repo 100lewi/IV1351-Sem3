@@ -185,7 +185,7 @@ ORDER BY "Number of Courses" DESC;
 
 DROP VIEW IF EXISTS v_5_course_costs;
 
-CREATE OR REPLACE VIEW v_task3_course_costs AS
+CREATE OR REPLACE VIEW v_5_course_costs AS
 WITH 
     latest_salaries AS (
         SELECT DISTINCT ON (employee_id) 
