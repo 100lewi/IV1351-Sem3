@@ -18,6 +18,7 @@ class ConsoleUI:
             ["2", "Modify a Course Instance"],
             ["3", "Modify Activity Allocation"],
             ["4", "Add New Teaching Activity"],
+            ["9", "RESET DATABASE"],
             ["0", "Exit"],
         ]
 
@@ -43,6 +44,14 @@ class ConsoleUI:
 
                     case "4":
                         print("not implemented")
+
+                    case "9":
+                        confirm = input(
+                            "Are you sure you want to Reset the Database? (y/n): "
+                        )
+                        if confirm.lower() == "y":
+                            self.controller.reset_db()
+                            input("Press Enter to continue...")
 
                     case "0":
                         sys.exit()

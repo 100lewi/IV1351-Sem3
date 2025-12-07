@@ -1,9 +1,10 @@
 import psycopg
 from src.controller.controller import Controller
 from src.view.console_ui import ConsoleUI
+from src.utils.db_setup import connect_with_bootstrap
 
 DB_CONFIG = {
-    "dbname": "project_database",
+    "dbname": "group35_database",
     "user": "postgres",
     "password": "postgres",
     "host": "localhost",
@@ -11,14 +12,18 @@ DB_CONFIG = {
 
 
 def main():
+    # create_db(DB_CONFIG)
+    # reset_db_schema(DB_CONFIG)
+    # reset_db_data(DB_CONFIG)
+
     connection = None
 
     try:
-        connection = psycopg.connect(**DB_CONFIG)  # type: ignore
+        connection = connect_with_bootstrap(DB_CONFIG)  # type: ignore
 
         connection.autocommit = False
 
-        controller = Controller(connection)
+        controller = Controller(connection, DB_CONFIG)
         view = ConsoleUI(controller)
 
         view.start()
