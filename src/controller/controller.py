@@ -13,6 +13,15 @@ class Controller:
     def get_course_cost(self, course_instance_id):
         return self.dao.read_course_cost(course_instance_id)
 
+    def read_student_count_and_price(self, course_instance_id):
+        return self.dao.read_student_count(course_instance_id)
+
+    def update_student_count(self, course_instance_id): 
+        return self.dao.write_student_update(course_instance_id)
+    
+    def increase_students_cost(self, course_instance_id):
+        return self.dao.write_new_actual_cost(course_instance_id)
+   
     def reset_db(self):
         print("\nInitializing database reset")
         self.connection.close()

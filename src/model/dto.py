@@ -15,6 +15,11 @@ class CourseCostDTO:
     num_students: int
     planned_cost: Decimal
     actual_cost: Decimal
+    
+@dataclass
+class StudentsActualCostDTO:
+    num_students: int
+    actual_cost: int
 
 
 # Report mappings (view DTOs) (These are only for reading)

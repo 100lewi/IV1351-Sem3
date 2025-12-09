@@ -23,8 +23,6 @@ class ConsoleUI:
         ]
 
         while True:
-            self._clear_screen()
-
             print(
                 "\n" + tabulate(menu, headers=["Opt", "Action"], tablefmt="fancy_grid")
             )
@@ -37,8 +35,7 @@ class ConsoleUI:
                         self.show_course_costs()
 
                     case "2":
-                        print("not implemented")
-
+                        self.show_students_beforeafter_update()
                     case "3":
                         print("not implemented")
 
@@ -63,8 +60,49 @@ class ConsoleUI:
             except Exception as e:
                 print(f"[ERROR] {e}")
 
+
+    def show_students_beforeafter_update(self):
+        print("--- Students Before Update ---")
+        course_instance_id = input("Enter course instance ID: ")
+        dto = self.controller.read_student_count_and_price(course_instance_id)
+        if dto:
+            data = [
+                [
+                f"{dto.num_students:,.2f}",
+                f"{dto.actual_cost:,.2f}",
+			    ]
+			]
+            headers = [
+                "Number of Students",
+                "Cost"
+			]
+            print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
+        else:
+            print("Course Instance not found.")
+            input("\nPress Enter to continue...")
+        print("--- Students After Update ---")
+        
+        self.controller.increase_students_cost(course_instance_id)
+        self.controller.update_student_count(course_instance_id)
+        new_dto = self.controller.read_student_count_and_price(course_instance_id)
+        if new_dto:
+            data = [
+                [
+                    f"{new_dto.num_students:,.2f}",
+                    f"{new_dto.actual_cost:,.2f}",
+				]
+			]
+            headers = [
+                "Number of students",
+                "Actual cost",
+			]
+            print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
+        else:
+            print("Course Instance not found.")
+            input("\nPress Enter to continue...")   
+        input("\nPress any key to return to menu...")
+
     def show_course_costs(self):
-        self._clear_screen()
         print("--- View Course Costs ---")
 
         course_instance_id = input("Enter course instance ID: ")
