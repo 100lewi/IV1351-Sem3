@@ -35,6 +35,7 @@ class ConsoleUI:
 
                     case "2":
                         self.show_students_beforeafter_update()
+
                     case "3":
                         print("not implemented")
 
@@ -131,33 +132,36 @@ class ConsoleUI:
 
     def show_course_costs(self):
         print("--- View Course Costs ---")
-
         course_instance_id = input("Enter course instance ID: ")
 
-        dto = self.controller.get_course_cost(course_instance_id)
+        try:
+            dto = self.controller.get_course_cost(course_instance_id)
 
-        if dto:
-            data = [
-                [
-                    dto.course_code,
-                    dto.course_instance_id,
-                    dto.period,
-                    dto.num_students,
-                    f"{dto.planned_cost:,.2f}",
-                    f"{dto.actual_cost:,.2f}",
+            if dto:
+                data = [
+                    [
+                        dto.course_code,
+                        dto.course_instance_id,
+                        dto.period,
+                        dto.num_students,
+                        f"{dto.planned_cost:,.2f}",
+                        f"{dto.actual_cost:,.2f}",
+                    ]
                 ]
-            ]
-            headers = [
-                "Course Code",
-                "Instance ID",
-                "Period",
-                "Students",
-                "Planned Cost",
-                "Actual Cost",
-            ]
-            print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
-        else:
-            print("Course Instance not found.")
-            input("\nPress Enter to continue...")
+                headers = [
+                    "Course Code",
+                    "Instance ID",
+                    "Period",
+                    "Students",
+                    "Planned Cost",
+                    "Actual Cost",
+                ]
+                print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
+            else:
+                print("Course Instance not found.")
+                input("\nPress Enter to continue...")
+
+        except Exception as e:
+            print(f"Error fetching data: {e}")
 
         input("\nPress any key to return to menu...")

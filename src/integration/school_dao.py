@@ -31,6 +31,8 @@ class SchoolDAO:
                 actual_cost=row[5],
             )
 
+        return None
+
     def read_student_count(self, course_instance_id):
         cursor = self.connection.cursor()
         try:

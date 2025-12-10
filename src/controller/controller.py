@@ -11,20 +11,24 @@ class Controller:
         self.dao = SchoolDAO(connection)
 
     def get_course_cost(self, course_instance_id):
-        return self.dao.read_course_cost(course_instance_id)
+        try:
+            return self.dao.read_course_cost(course_instance_id)
+
+        except Exception as e:
+            raise e
 
     def read_student_count_and_price(self, course_instance_id):
         return self.dao.read_student_count(course_instance_id)
 
-    def update_student_count(self, course_instance_id): 
+    def update_student_count(self, course_instance_id):
         return self.dao.write_student_update(course_instance_id)
 
     def deallocate_employee(self, planned_activity_id):
         return self.dao.deallocate_teacher_from_instance(planned_activity_id)
-   
+
     def allocate_employee(self, planned_activity_id, employee_id):
         return self.dao.allocate_teacher_to_activity(planned_activity_id, employee_id)
-   
+
     def reset_db(self):
         print("\nInitializing database reset")
         self.connection.close()
