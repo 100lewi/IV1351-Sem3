@@ -82,7 +82,6 @@ class ConsoleUI:
             input("\nPress Enter to continue...")
         print("--- Students After Update ---")
         
-        self.controller.increase_students_cost(course_instance_id)
         self.controller.update_student_count(course_instance_id)
         new_dto = self.controller.read_student_count_and_price(course_instance_id)
         if new_dto:
@@ -101,6 +100,41 @@ class ConsoleUI:
             print("Course Instance not found.")
             input("\nPress Enter to continue...")   
         input("\nPress any key to return to menu...")
+
+
+    def Deallocate_Allocate_teacher(self):
+        print("--- Allocate/Deallocate teachers ---")
+        menu = [
+            ["1", "Deallocate"],
+            ["2", "Allocate"],
+        ]
+
+        while True:
+            print(
+                "\n" + tabulate(menu, headers=["Opt", "Action"], tablefmt="fancy_grid")
+            )
+            option = input("Enter option: ")
+            try:
+                if option == "1":
+                    #self.allocate_teacher()
+                    input("Press Enter to continue...")
+                    break
+                elif option == "2":
+                    #self.deallocate_teacher()
+                    input("Press Enter to continue...")
+                    break
+                else:
+                    print("Invalid choice")
+                    input("Press Enter to try again...")
+            except Exception as e:
+                print(f"[ERROR] {e}")
+                input("Press Enter to continue...")
+
+    def allocate_teacher(planned_activity_id, employee_id):
+        print("--- Allocate Teacher ---")
+        planned_activity_id = input("Enter activity id: ")
+        employee_id = input("Enter employee id: ")
+        
 
     def show_course_costs(self):
         print("--- View Course Costs ---")

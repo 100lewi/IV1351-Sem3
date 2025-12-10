@@ -18,9 +18,12 @@ class Controller:
 
     def update_student_count(self, course_instance_id): 
         return self.dao.write_student_update(course_instance_id)
-    
-    def increase_students_cost(self, course_instance_id):
-        return self.dao.write_new_actual_cost(course_instance_id)
+
+    def deallocate_employee(self, planned_activity_id):
+        return self.dao.deallocate_teacher_from_instance(planned_activity_id)
+   
+    def allocate_employee(self, planned_activity_id, employee_id):
+        return self.dao.allocate_teacher_to_activity(planned_activity_id, employee_id)
    
     def reset_db(self):
         print("\nInitializing database reset")
