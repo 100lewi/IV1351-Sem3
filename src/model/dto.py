@@ -18,6 +18,13 @@ class CourseCostDTO:
 
 
 @dataclass
+class StudentCountDTO:
+    id: int
+    current_students: int
+    max_students: int
+
+
+@dataclass
 class StudentsActualCostDTO:
     num_students: int
     actual_cost: int

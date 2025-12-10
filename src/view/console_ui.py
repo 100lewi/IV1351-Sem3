@@ -61,41 +61,45 @@ class ConsoleUI:
                 print(f"[ERROR] {e}")
 
     def show_students_beforeafter_update(self):
-        print("--- Students Before Update ---")
+        print("--- Modify Course Instance ---")
         course_instance_id = input("Enter course instance ID: ")
-        dto = self.controller.read_student_count_and_price(course_instance_id)
-        if dto:
-            data = [
-                [
-                    f"{dto.num_students:,.2f}",
-                    f"{dto.actual_cost:,.2f}",
-                ]
-            ]
-            headers = ["Number of Students", "Cost"]
-            print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
-        else:
-            print("Course Instance not found.")
-            input("\nPress Enter to continue...")
-        print("--- Students After Update ---")
 
-        self.controller.update_student_count(course_instance_id)
-        new_dto = self.controller.read_student_count_and_price(course_instance_id)
-        if new_dto:
+        try:
+            dto_before = self.controller.get_course_cost(course_instance_id)
+
+            if not dto_before:
+                print(f"Course with id {course_instance_id} not found")
+                return
+
+            increase = int(input("Number of students to add (default: 10): ") or 10)
+            self.controller.update_student_count(course_instance_id, increase)
+            dto_after = self.controller.get_course_cost(course_instance_id)
+
+            headers = ["Metric", "Before", " ", "After"]
             data = [
+                ["Students", dto_before.num_students, "->", dto_after.num_students],
                 [
-                    f"{new_dto.num_students:,.2f}",
-                    f"{new_dto.actual_cost:,.2f}",
-                ]
+                    "Planned Cost",
+                    f"{dto_before.planned_cost:,.2f}",
+                    "->",
+                    f"{dto_after.planned_cost:,.2f}",
+                ],
+                [
+                    "Actual Cost",
+                    f"{dto_before.actual_cost:,.2f}",
+                    "->",
+                    f"{dto_after.actual_cost:,.2f}",
+                ],
             ]
-            headers = [
-                "Number of students",
-                "Actual cost",
-            ]
+
             print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
-        else:
-            print("Course Instance not found.")
-            input("\nPress Enter to continue...")
-        input("\nPress any key to return to menu...")
+            print(
+                "(Note: Looks weird but actual cost only counts for activities so there should be no change)"
+            )
+
+        except Exception as e:
+            print(f"\nUpdate Failed: {e}")
+            input("Press Enter to continue...")
 
     def Deallocate_Allocate_teacher(self):
         print("--- Allocate/Deallocate teachers ---")

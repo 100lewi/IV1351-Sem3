@@ -1,8 +1,10 @@
 #
 #   Read-only queries (we can use views)
 #
+
 GET_COURSE_COST = """
-	SELECT course_code, 
+	SELECT 
+		course_code, 
 		course_instance_id, 
 		periods, 
 		num_students,
@@ -29,10 +31,36 @@ INSERT INTO planned_activity (id, teaching_activity_id, course_instance_id, plan
 OVERRIDING SYSTEM VALUE 
 VALUES (%s, %s, %s, %s);
 """
+
 INSERT_ALLOCATED_ACTIVITY = """
 INSERT INTO allocated_activity (planned_activity_id, employee_id, allocated_hours) 
 OVERRIDING SYSTEM VALUE
 VALUES (%s, %s, %s);
+"""
+
+#
+# Locking read queries
+#
+
+GET_COURSE_INSTANCE_FOR_UPDATE = """
+	SELECT 
+		ci.id, 
+		ci.num_students, 
+		cl.max_students
+	FROM course_instance ci
+	join course_layout cl on ci.course_layout_id = cl.id
+	where ci.id = %s
+	FOR UPDATE OF ci
+"""
+
+#
+# Write queries
+#
+
+UPDATE_STUDENT_COUNT = """
+	UPDATE course_instance 
+	SET num_students = %s 
+	WHERE id = %s
 """
 
 #
@@ -61,12 +89,6 @@ FROM course_instance ci
 JOIN course_layout cl
      ON ci.course_layout_id = cl.id
 WHERE ci.id = %s;
-"""
-
-UPDATE_STUDENT_COUNT = """
-	UPDATE course_instance 
-	SET num_students = num_students + %s 
-	WHERE id = %s
 """
 
 GET_PLANNED_ACTIVITY_ROWS = """

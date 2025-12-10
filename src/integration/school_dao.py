@@ -1,6 +1,7 @@
 from src.integration import queries
 from src.model.dto import (
     CourseCostDTO,
+    StudentCountDTO,
     StudentsActualCostDTO,
 )  # Might need more later, we'll see
 import random
@@ -33,45 +34,25 @@ class SchoolDAO:
 
         return None
 
-    def read_student_count(self, course_instance_id):
+    def read_course_details_for_update(self, course_instance_id):
         cursor = self.connection.cursor()
-        try:
-            cursor.execute(queries.SHOW_STUDENTS_AND_PRICE, [course_instance_id])
-        except Exception as e:
-            print("🔥 SQL ERROR OCCURRED:")
-            print(e)
-            traceback.print_exc()
-            raise
+
+        cursor.execute(queries.GET_COURSE_INSTANCE_FOR_UPDATE, [course_instance_id])
         row = cursor.fetchone()
         cursor.close()
+
         if row:
-            return StudentsActualCostDTO(
-                num_students=row[0],
-                actual_cost=row[1],
+            return StudentCountDTO(
+                id=row[0], current_students=row[1], max_students=row[2]
             )
-        else:
-            print("Some error")
+
+        return None
 
     # UPDATE
-    def write_student_update(self, course_instance_id, increment=20):
+    def update_student_count(self, course_instance_id, new_count):
         cursor = self.connection.cursor()
-        cursor.execute(queries.SHOW_STUDENTS, [course_instance_id])
-        current_students = cursor.fetchone()[0]
 
-        # Get max allowed students
-        cursor.execute(queries.GET_MAX_STUDENTS, [course_instance_id])
-        max_students = cursor.fetchone()[0]
-
-        if current_students + increment <= max_students:
-            cursor.execute(
-                queries.UPDATE_STUDENT_COUNT, [increment, course_instance_id]
-            )
-            self.write_new_actual_cost(course_instance_id)
-        else:
-            raise Exception(
-                f"Cannot add {increment} students to course instance {course_instance_id}. "
-                f"Limit is {max_students}, currently {current_students}."
-            )
+        cursor.execute(queries.UPDATE_STUDENT_COUNT, [new_count, course_instance_id])
         cursor.close()
 
     def get_available_employees(self):

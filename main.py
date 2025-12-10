@@ -1,4 +1,3 @@
-import psycopg
 from src.controller.controller import Controller
 from src.view.console_ui import ConsoleUI
 from src.utils.db_setup import connect_with_bootstrap
@@ -18,7 +17,7 @@ def main():
     try:
         connection = connect_with_bootstrap(DB_CONFIG)  # type: ignore
 
-        connection.autocommit = False
+        connection.autocommit = False  # type: ignore
 
         controller = Controller(connection, DB_CONFIG)
         view = ConsoleUI(controller)
