@@ -12,9 +12,6 @@ DB_CONFIG = {
 
 
 def main():
-    # create_db(DB_CONFIG)
-    # reset_db_schema(DB_CONFIG)
-    # reset_db_data(DB_CONFIG)
 
     connection = None
 

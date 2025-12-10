@@ -15,17 +15,21 @@ class CourseCostDTO:
     num_students: int
     planned_cost: Decimal
     actual_cost: Decimal
-    
+
+
 @dataclass
 class StudentsActualCostDTO:
     num_students: int
     actual_cost: int
+
 
 @dataclass
 class EmployeeActivityDTO:
     employee_id: int
     planned_activity_id: int
     teaching_activity_id: int
+
+
 # Report mappings (view DTOs) (These are only for reading)
 @dataclass
 class PlannedHoursDTO:

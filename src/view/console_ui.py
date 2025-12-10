@@ -11,7 +11,6 @@ class ConsoleUI:
         os.system("cls" if os.name == "nt" else "clear")
 
     def start(self):
-        print("Hello World!")
 
         menu = [
             ["1", "View Course Costs"],
@@ -60,7 +59,6 @@ class ConsoleUI:
             except Exception as e:
                 print(f"[ERROR] {e}")
 
-
     def show_students_beforeafter_update(self):
         print("--- Students Before Update ---")
         course_instance_id = input("Enter course instance ID: ")
@@ -68,20 +66,17 @@ class ConsoleUI:
         if dto:
             data = [
                 [
-                f"{dto.num_students:,.2f}",
-                f"{dto.actual_cost:,.2f}",
-			    ]
-			]
-            headers = [
-                "Number of Students",
-                "Cost"
-			]
+                    f"{dto.num_students:,.2f}",
+                    f"{dto.actual_cost:,.2f}",
+                ]
+            ]
+            headers = ["Number of Students", "Cost"]
             print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
         else:
             print("Course Instance not found.")
             input("\nPress Enter to continue...")
         print("--- Students After Update ---")
-        
+
         self.controller.update_student_count(course_instance_id)
         new_dto = self.controller.read_student_count_and_price(course_instance_id)
         if new_dto:
@@ -89,18 +84,17 @@ class ConsoleUI:
                 [
                     f"{new_dto.num_students:,.2f}",
                     f"{new_dto.actual_cost:,.2f}",
-				]
-			]
+                ]
+            ]
             headers = [
                 "Number of students",
                 "Actual cost",
-			]
+            ]
             print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
         else:
             print("Course Instance not found.")
-            input("\nPress Enter to continue...")   
+            input("\nPress Enter to continue...")
         input("\nPress any key to return to menu...")
-
 
     def Deallocate_Allocate_teacher(self):
         print("--- Allocate/Deallocate teachers ---")
@@ -116,11 +110,11 @@ class ConsoleUI:
             option = input("Enter option: ")
             try:
                 if option == "1":
-                    #self.allocate_teacher()
+                    # self.allocate_teacher()
                     input("Press Enter to continue...")
                     break
                 elif option == "2":
-                    #self.deallocate_teacher()
+                    # self.deallocate_teacher()
                     input("Press Enter to continue...")
                     break
                 else:
@@ -134,7 +128,6 @@ class ConsoleUI:
         print("--- Allocate Teacher ---")
         planned_activity_id = input("Enter activity id: ")
         employee_id = input("Enter employee id: ")
-        
 
     def show_course_costs(self):
         print("--- View Course Costs ---")
