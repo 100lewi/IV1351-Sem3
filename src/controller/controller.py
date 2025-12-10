@@ -12,9 +12,13 @@ class Controller:
 
     def get_course_cost(self, course_instance_id):
         try:
-            return self.dao.read_course_cost(course_instance_id)
+            result = self.dao.read_course_cost(course_instance_id)
+            self.connection.commit()
+
+            return result
 
         except Exception as e:
+            self.connection.rollback()
             raise e
 
     def read_student_count_and_price(self, course_instance_id):
