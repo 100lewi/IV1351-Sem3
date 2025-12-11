@@ -84,62 +84,74 @@ class SchoolDAO:
         self.connection.commit()
 
     def allocate_teacher_to_activity(self, course_instance_id, employee_id):
-        cursor = self.connection.cursor()
+        try:
+            # Start transaction (atomic block)
+            self.connection.autocommit = False
+            cursor = self.connection.cursor()
 
-        hours = random.randint(15, 25)
+            hours = random.randint(15, 25)
 
-		# get latest planned_activity id
-        cursor.execute(queries.GET_PLANNED_ACTIVITY_ROWS)
-        last_row = cursor.fetchone()
-        last_id = last_row[0]
+            # Get latest planned_activity id
+            cursor.execute(queries.GET_PLANNED_ACTIVITY_ROWS)
+            last_row = cursor.fetchone()
+            last_id = last_row[0]
+            new_id = last_id + 1
 
-        new_id = last_id + 1
+            # Insert planned activity
+            cursor.execute(
+                queries.INSERT_PLANNED_ACTIVITY,
+                [new_id, random.randint(1, 7), course_instance_id, hours]
+            )
 
-		# insert planned activity
-        cursor.execute(
-			queries.INSERT_PLANNED_ACTIVITY,
-			[new_id, random.randint(1, 7), course_instance_id, hours]
-		)
+            # Insert allocated activity
+            cursor.execute(
+                queries.INSERT_ALLOCATED_ACTIVITY,
+                [new_id, employee_id, hours]
+            )
 
-		# insert allocated activity
-        cursor.execute(
-			queries.INSERT_ALLOCATED_ACTIVITY,
-			[new_id, employee_id, hours]
-		)
+            # Fetch inserted row
+            cursor.execute(queries.GRAB_ACTIVITY_ROW, [new_id])
+            row = cursor.fetchone()
 
-		# fetch the inserted row
-        cursor.execute(queries.GRAB_ACTIVITY_ROW, [new_id])
-        row = cursor.fetchone()
-        cursor.close()
-        self.connection.commit()
+            # Commit entire transaction
+            self.connection.commit()
 
-        if row:
-            return EmployeeActivityDTO(
-				planned_activity_id=row[0],
-				employee_id=row[1],
-				allocated_hours=row[2]
-			)
+            if row:
+                return EmployeeActivityDTO(
+                    planned_activity_id=row[0],
+                    employee_id=row[1],
+                    allocated_hours=row[2]
+                )
+        except Exception as e:
+            # Undo everything if anything fails
+            self.connection.rollback()
+            raise e
+        finally:
+            cursor.close()
+            # Restore default behavior
+            self.connection.autocommit = True
+
 
     def add_excercise(self, course_instance_id, employee_id):
         cursor = self.connection.cursor()
-        hours = random.randint(20,25)
+        hours = random.randint(20, 25)
         cursor.execute(queries.INSERT_EXCERCISE)
         
-		#Create id for planned activity
+        #Create id for planned activity
         cursor.execute(queries.GET_PLANNED_ACTIVITY_ROWS)
         last_row = cursor.fetchone()
         last_id = last_row[0]
 
         new_id = last_id + 1
 
-		#make a planned activity with excercise
+        #make a planned activity with excercise
         cursor.execute(
             queries.INSERT_EXCERCISE_INTO_PLANNED_ACTIVITY, 
             [
                 new_id,
-				course_instance_id, 
+                course_instance_id, 
                 hours
-			])
+            ])
         #Allocate the planned activity
         cursor.execute(
             queries.INSERT_EXCERCISE_INTO_ALLOCATED_ACTIVITY,
@@ -147,23 +159,23 @@ class SchoolDAO:
                 new_id,
                 employee_id,
                 hours
-			]
-		)
+            ]
+        )
         # Create the table with excercise
         cursor.execute(
             queries.CREATE_EXCERCISE_VIEW, 
             [
                 new_id
-			])
+            ])
         row = cursor.fetchone()
         if row:
             return ExcerciseViewDTO(
-				course_instance_id=row[0],
-				study_period=row[1],
-				teaching_activity=row[2],
-				employee_id=row[3],
-				allocated_hours=row[4]
-    		)
+                course_instance_id=row[0],
+                study_period=row[1],
+                teaching_activity=row[2],
+                employee_id=row[3],
+                allocated_hours=row[4]
+            )
 
         
         
