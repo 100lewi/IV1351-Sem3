@@ -14,17 +14,10 @@ GET_COURSE_COST = """
 	WHERE course_instance_id = %s
 """
 
-GET_PERIOD_FROM_PLANNED_ACTIVITY = """
-	SELECT cip.study_period
-	FROM planned_activity pa
-	JOIN course_instance_period cip ON pa.course_instance_id = cip.course_instance_id
-	WHERE pa.id = %s
-"""
-
-GET_SYSTEM_VARIABLE = """
-	SELECT config_value
-	FROM system_config
-	WHERE description = %s
+GET_EMPLOYEE_ACTIVITY = """
+	SELECT * 
+	FROM allocated_activity
+	WHERE planned_activity_id = %s
 """
 
 GET_EMPLOYEE_LOAD_IN_PERIOD = """
@@ -36,77 +29,24 @@ GET_EMPLOYEE_LOAD_IN_PERIOD = """
 		AND cip.study_period = %s
 """
 
-SHOW_STUDENTS = """
-	SELECT num_students
-	FROM v_5_course_costs
-	WHERE course_instance_id = %s
+GET_MAX_STUDENTS = """
+SELECT cl.max_students
+FROM course_instance ci
+JOIN course_layout cl
+     ON ci.course_layout_id = cl.id
+WHERE ci.id = %s;
 """
 
-SHOW_STUDENTS_AND_PRICE = """
-	SELECT num_students, actual_cost
-	FROM v_5_course_costs
-	WHERE course_instance_id = %s
+GET_PERIOD_FROM_PLANNED_ACTIVITY = """
+	SELECT cip.study_period
+	FROM planned_activity pa
+	JOIN course_instance_period cip ON pa.course_instance_id = cip.course_instance_id
+	WHERE pa.id = %s
 """
 
-INSERT_PLANNED_ACTIVITY = """
-INSERT INTO planned_activity (id, teaching_activity_id, course_instance_id, planned_hours)
-OVERRIDING SYSTEM VALUE
-VALUES (%s, %s, %s, %s);
+GET_PLANNED_ACTIVITY_ROWS = """
+	SELECT COUNT(*) FROM planned_activity;
 """
-
-GRAB_ACTIVITY_ROW = """
-SELECT *
-FROM allocated_activity
-WHERE planned_activity_id = %s
-"""
-
-GRAB_LATEST_ID = """
-SELECT id
-FROM planned_activity
-ORDER BY id DESC
-LIMIT 1;
-"""
-
-GET_EMPLOYEE_ACTIVITY = """
-	SELECT * 
-	FROM allocated_activity
-	WHERE planned_activity_id = %s
-"""
-
-#
-# Locking read queries
-#
-
-GET_COURSE_INSTANCE_FOR_UPDATE = """
-	SELECT 
-		ci.id, 
-		ci.num_students, 
-		cl.max_students
-	FROM course_instance ci
-	join course_layout cl on ci.course_layout_id = cl.id
-	where ci.id = %s
-	FOR UPDATE OF ci
-"""
-
-#
-# Write queries
-#
-
-UPDATE_STUDENT_COUNT = """
-	UPDATE course_instance 
-	SET num_students = %s 
-	WHERE id = %s
-"""
-
-INSERT_ALLOCATED_ACTIVITY = """
-INSERT INTO allocated_activity (planned_activity_id, employee_id, allocated_hours)
-VALUES (%s, %s, %s)
-RETURNING planned_activity_id, employee_id, allocated_hours
-"""
-
-#
-#   Transactional queries (these need locking so we gotta do joins I me thinks)
-#
 
 GET_SUITABLE_EMPLOYEES = """
 SELECT 
@@ -124,26 +64,61 @@ GROUP BY e.id
 HAVING COUNT(DISTINCT pa.course_instance_id) < 4;
 """
 
-GET_MAX_STUDENTS = """
-SELECT cl.max_students
-FROM course_instance ci
-JOIN course_layout cl
-     ON ci.course_layout_id = cl.id
-WHERE ci.id = %s;
+GET_SYSTEM_VARIABLE = """
+	SELECT config_value
+	FROM system_config
+	WHERE description = %s
 """
 
-GET_PLANNED_ACTIVITY_ROWS = """
-	SELECT COUNT(*) FROM planned_activity;
+GRAB_ACTIVITY_ROW = """
+SELECT *
+FROM allocated_activity
+WHERE planned_activity_id = %s
 """
+
+INSERT_PLANNED_ACTIVITY = """
+INSERT INTO planned_activity (id, teaching_activity_id, course_instance_id, planned_hours)
+OVERRIDING SYSTEM VALUE
+VALUES (%s, %s, %s, %s);
+"""
+
+#
+# 	Locking read queries
+#
+
+GET_COURSE_INSTANCE_FOR_UPDATE = """
+	SELECT 
+		ci.id, 
+		ci.num_students, 
+		cl.max_students
+	FROM course_instance ci
+	join course_layout cl on ci.course_layout_id = cl.id
+	where ci.id = %s
+	FOR UPDATE OF ci
+"""
+
+#
+# 	Write queries
+#
+
+INSERT_ALLOCATED_ACTIVITY = """
+INSERT INTO allocated_activity (planned_activity_id, employee_id, allocated_hours)
+VALUES (%s, %s, %s)
+RETURNING planned_activity_id, employee_id, allocated_hours
+"""
+
+UPDATE_STUDENT_COUNT = """
+	UPDATE course_instance 
+	SET num_students = %s 
+	WHERE id = %s
+"""
+
+#
+# 	DELETE queries
+#
 
 DEALLOCATE_EMPLOYEE = """
 DELETE FROM allocated_activity
-WHERE planned_activity_id = %s;
-"""
-
-ALLOCATE_EMPLOYEE = """
-UPDATE allocated_activity
-SET employee_id = %s
 WHERE planned_activity_id = %s;
 """
 
