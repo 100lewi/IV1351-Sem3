@@ -29,6 +29,7 @@ class StudentsActualCostDTO:
     num_students: int
     actual_cost: int
 
+
 @dataclass
 class ExcerciseViewDTO:
     course_instance_id: int
@@ -36,6 +37,7 @@ class ExcerciseViewDTO:
     teaching_activity: int
     employee_id: int
     allocated_hours: int
+
 
 @dataclass
 class EmployeeActivityDTO:

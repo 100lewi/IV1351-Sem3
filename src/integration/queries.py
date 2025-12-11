@@ -124,7 +124,7 @@ SET employee_id = %s
 WHERE planned_activity_id = %s;
 """
 
-#Method 4
+# Method 4
 INSERT_EXCERCISE = """
 INSERT INTO teaching_activity (id, activity_name, factor)
 OVERRIDING SYSTEM VALUE
@@ -161,4 +161,3 @@ LEFT JOIN course_instance_period cip
 WHERE pa.id = %s
 ORDER BY ci.id, cip.study_period;
 """
-
