@@ -3,7 +3,6 @@ from src.model.dto import (
     CourseCostDTO,
     StudentCountDTO,
     EmployeeActivityDTO,
-    ExcerciseViewDTO,
     TeachingActivityDTO,
     PlannedActivityDTO,
 )
