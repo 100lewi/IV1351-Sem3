@@ -133,24 +133,6 @@ class SchoolDAO:
         cursor.execute(queries.UPDATE_STUDENT_COUNT, [new_count, course_instance_id])
         cursor.close()
 
-    def get_available_employees(self):
-        cursor = self.connection.cursor()
-        cursor.execute(queries.GET_SUITABLE_EMPLOYEES, ["P1"])
-        rows_1 = cursor.fetchall()
-
-        cursor.execute(queries.GET_SUITABLE_EMPLOYEES, ["P2"])
-        rows_2 = cursor.fetchall()
-
-        cursor.execute(queries.GET_SUITABLE_EMPLOYEES, ["P3"])
-        rows_3 = cursor.fetchall()
-
-        cursor.execute(queries.GET_SUITABLE_EMPLOYEES, ["P4"])
-        rows_4 = cursor.fetchall()
-
-        all_rows = rows_1 + rows_2 + rows_3 + rows_4
-        cursor.close()
-        return all_rows
-
     # DELETE
     def deallocate_teacher_from_instance(self, planned_activity_id, employee_id):
         cursor = self.connection.cursor()
@@ -173,38 +155,3 @@ class SchoolDAO:
             )
 
         return None
-
-    def add_excercise(self, course_instance_id, employee_id):
-        cursor = self.connection.cursor()
-        hours = random.randint(20, 25)
-        hours = random.randint(20, 25)
-        cursor.execute(queries.INSERT_EXCERCISE)
-
-        # Create id for planned activity
-        cursor.execute(queries.GET_PLANNED_ACTIVITY_ROWS)
-        last_row = cursor.fetchone()
-        last_id = last_row[0]
-
-        new_id = last_id + 1
-
-        # make a planned activity with excercise
-        cursor.execute(
-            queries.INSERT_EXCERCISE_INTO_PLANNED_ACTIVITY,
-            [new_id, course_instance_id, hours],
-        )
-        # Allocate the planned activity
-        cursor.execute(
-            queries.INSERT_EXCERCISE_INTO_ALLOCATED_ACTIVITY,
-            [new_id, employee_id, hours],
-        )
-        # Create the table with excercise
-        cursor.execute(queries.CREATE_EXCERCISE_VIEW, [new_id])
-        row = cursor.fetchone()
-        if row:
-            return ExcerciseViewDTO(
-                course_instance_id=row[0],
-                study_period=row[1],
-                teaching_activity=row[2],
-                employee_id=row[3],
-                allocated_hours=row[4],
-            )
