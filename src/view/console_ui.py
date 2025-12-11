@@ -130,21 +130,21 @@ class ConsoleUI:
 
     def allocate_teacher(self):
         print("--- Allocate Teacher ---")
-        planned_activity_id = input("Enter activity id: ")
+        course_instance_id = input("Enter course instance id: ")
         employee_id = input("Enter employee id: ")
-        dto = self.controller.allocate_employee(planned_activity_id, employee_id)
+        dto = self.controller.allocate_employee(course_instance_id, employee_id)
         if dto:
             data = [
                 [
                     f"{dto.employee_id:,.2f}",
                     f"{dto.planned_activity_id:,.2f}",
-                    f"{dto.teaching_activity_id:,.2f}",
+                    f"{dto.allocated_hours:,.2f}",
                 ]
             ]
             headers = [
                 "Employee Id",
                 "Planned Activity Id",
-                "Teaching Activity Id",
+                "Allocated Hours",
             ]
             print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
         else:

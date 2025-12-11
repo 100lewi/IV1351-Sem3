@@ -46,8 +46,8 @@ class Controller:
     def deallocate_employee(self, planned_activity_id):
         return self.dao.deallocate_teacher_from_instance(planned_activity_id)
 
-    def allocate_employee(self, planned_activity_id, employee_id):
-        return self.dao.allocate_teacher_to_activity(planned_activity_id, employee_id)
+    def allocate_employee(self, course_instance_id, employee_id):
+        return self.dao.allocate_teacher_to_activity(course_instance_id, employee_id)
 
     def reset_db(self):
         print("\nInitializing database reset")

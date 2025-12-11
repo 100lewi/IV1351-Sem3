@@ -74,34 +74,7 @@ class SchoolDAO:
         cursor.close()
         return all_rows
 
-    def write_new_actual_cost(self, course_instance_id):
-        cursor = self.connection.cursor()
-        cursor.execute(queries.GET_PLANNED_ACTIVITY_ROWS)
-
-        planned_activity_rows = cursor.fetchall()
-        for i in range(7):
-            cursor.execute(
-                queries.INSERT_PLANNED_ACTIVITY,
-                [
-                    planned_activity_rows[0][0] + 1 + i,
-                    random.randint(1, 7),
-                    course_instance_id,
-                    random.randint(10, 20),
-                ],
-            )
-
-        all_rows = self.get_available_employees()
-
-        for i in range(7):
-            cursor.execute(
-                queries.INSERT_ALLOCATED_ACTIVITY,
-                [
-                    planned_activity_rows[0][0] + 1 + i,
-                    all_rows[random.randint(1, len(all_rows) - 1)][0],
-                    random.randint(10, 20),
-                ],
-            )
-        cursor.close()
+    
 
     # DELETE
     def deallocate_teacher_from_instance(self, planned_activity_id):
@@ -110,26 +83,39 @@ class SchoolDAO:
         cursor.close()
         self.connection.commit()
 
-    def allocate_teacher_to_activity(self, employee_id, planned_activity_id):
+    def allocate_teacher_to_activity(self, course_instance_id, employee_id):
         cursor = self.connection.cursor()
-        available = False
-        available_employees = self.get_available_employees()
-        for id in available_employees:
-            if employee_id == int(id[0]):
-                available = True
-        if available == True:
-            cursor.execute(
-                queries.ALLOCATE_EMPLOYEE, [employee_id, planned_activity_id]
-            )
-            cursor.execute(
-                queries.GET_EMPLOYEE_ACTIVITY[planned_activity_id]
-			)
-            row = cursor.fetchone()
-        else:
-            raise Exception(
-                f"Cannot add Employee with id {employee_id} to activity {planned_activity_id}. "
-            )
+
+        hours = random.randint(15, 25)
+
+		# get latest planned_activity id
+        cursor.execute(queries.GET_PLANNED_ACTIVITY_ROWS)
+        last_row = cursor.fetchone()
+        last_id = last_row[0]
+
+        new_id = last_id + 1
+
+		# insert planned activity
+        cursor.execute(
+			queries.INSERT_PLANNED_ACTIVITY,
+			[new_id, random.randint(1, 7), course_instance_id, hours]
+		)
+
+		# insert allocated activity
+        cursor.execute(
+			queries.INSERT_ALLOCATED_ACTIVITY,
+			[new_id, employee_id, hours]
+		)
+
+		# fetch the inserted row
+        cursor.execute(queries.GRAB_ACTIVITY_ROW, [new_id])
+        row = cursor.fetchone()
         cursor.close()
-        return EmployeeActivityDTO(
-            	planned_activity_id=row[0], employee_id=row[1], allocated_hours=row[2]
-            )
+        self.connection.commit()
+
+        if row:
+            return EmployeeActivityDTO(
+				planned_activity_id=row[0],
+				employee_id=row[1],
+				allocated_hours=row[2]
+			)

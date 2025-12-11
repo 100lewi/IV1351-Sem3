@@ -28,14 +28,26 @@ SHOW_STUDENTS_AND_PRICE = """
 
 INSERT_PLANNED_ACTIVITY = """
 INSERT INTO planned_activity (id, teaching_activity_id, course_instance_id, planned_hours)
-OVERRIDING SYSTEM VALUE 
+OVERRIDING SYSTEM VALUE
 VALUES (%s, %s, %s, %s);
 """
 
+GRAB_ACTIVITY_ROW = """
+SELECT *
+FROM allocated_activity
+WHERE planned_activity_id = %s
+"""
+
+GRAB_LATEST_ID = """
+SELECT id
+FROM planned_activity
+ORDER BY id DESC
+LIMIT 1;
+"""
+
 INSERT_ALLOCATED_ACTIVITY = """
-INSERT INTO allocated_activity (planned_activity_id, employee_id, allocated_hours) 
-OVERRIDING SYSTEM VALUE
-VALUES (%s, %s, %s);
+INSERT INTO allocated_activity (planned_activity_id, employee_id, allocated_hours)
+VALUES (%s, %s, %s)
 """
 
 GET_EMPLOYEE_ACTIVITY = """
