@@ -5,6 +5,7 @@ from src.model.dto import (
     EmployeeActivityDTO,
     TeachingActivityDTO,
     PlannedActivityDTO,
+    AllocationDetailsDTO,
 )
 import random
 
@@ -92,6 +93,25 @@ class SchoolDAO:
                 id=row[0], current_students=row[1], max_students=row[2]
             )
 
+        return None
+
+    def get_allocation_details(self, planned_activity_id, employee_id):
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            queries.GET_ALLOCATION_DETAILS, [planned_activity_id, employee_id]
+        )
+        row = cursor.fetchone()
+        cursor.close()
+
+        if row:
+            return AllocationDetailsDTO(
+                employee_name=row[0],
+                course_code=row[1],
+                period=row[2],
+                activity_name=row[3],
+                hours=row[4],
+            )
         return None
 
     def get_employee_load_in_period(self, employee_id, period):

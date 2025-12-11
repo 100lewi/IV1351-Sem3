@@ -3,6 +3,15 @@ from decimal import Decimal
 
 
 @dataclass
+class AllocationDetailsDTO:
+    employee_name: str
+    course_code: str
+    period: str
+    activity_name: str
+    hours: Decimal
+
+
+@dataclass
 class CourseCostDTO:
     course_code: str
     course_instance_id: str

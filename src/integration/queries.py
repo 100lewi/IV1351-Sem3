@@ -2,6 +2,22 @@
 #   Read-only queries (we can use views)
 #
 
+GET_ALLOCATION_DETAILS = """
+    SELECT 
+        p.first_name || ' ' || p.last_name as teacher_name,
+        cd.course_code,
+        cd.periods,
+        ta.activity_name,
+        aa.allocated_hours
+    FROM allocated_activity aa
+    JOIN employee e ON aa.employee_id = e.id
+    JOIN person p ON e.person_id = p.id
+    JOIN planned_activity pa ON aa.planned_activity_id = pa.id
+    JOIN teaching_activity ta ON pa.teaching_activity_id = ta.id
+    JOIN v_course_details cd ON pa.course_instance_id = cd.course_instance_id
+    WHERE aa.planned_activity_id = %s AND aa.employee_id = %s
+"""
+
 GET_COURSE_COST = """
 	SELECT 
 		course_code, 

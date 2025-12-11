@@ -34,6 +34,19 @@ class Controller:
             self.connection.rollback()
             raise e
 
+    def get_allocation_details(self, planned_activity_id, employee_id):
+        try:
+            allocation_details = self.dao.get_allocation_details(
+                planned_activity_id, employee_id
+            )
+            self.connection.commit()
+
+            return allocation_details
+
+        except Exception as e:
+            self.connection.rollback()
+            raise e
+
     def get_course_cost(self, course_instance_id):
         try:
             result = self.dao.read_course_cost(course_instance_id)

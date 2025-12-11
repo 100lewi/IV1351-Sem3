@@ -194,21 +194,28 @@ class ConsoleUI:
         )
 
         if dto:
-            data = [
-                [
-                    f"{dto.employee_id:,.2f}",
-                    f"{dto.planned_activity_id:,.2f}",
-                    f"{dto.allocated_hours:,.2f}",
+            details = self.controller.get_allocation_details(
+                planned_activity_id, employee_id
+            )
+
+            if details:
+                headers = ["Teacher", "Course", "Period", "Activity", "Allocated Hours"]
+                data = [
+                    [
+                        details.employee_name,
+                        details.course_code,
+                        details.period,
+                        details.activity_name,
+                        details.hours,
+                    ]
                 ]
-            ]
-            headers = [
-                "Employee Id",
-                "Planned Activity Id",
-                "Allocated Hours",
-            ]
-            print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
+                print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
+            else:
+                print("Allocation saved, but could not retrieve details.")
+                input("\nPress Enter to continue...")
+
         else:
-            print("Course Instance not found.")
+            print("Allocation failed.")
             input("\nPress Enter to continue...")
 
     def deallocate_teacher(self):
