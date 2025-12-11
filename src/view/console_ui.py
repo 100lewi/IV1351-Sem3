@@ -129,9 +129,14 @@ class ConsoleUI:
 
     def allocate_teacher(self):
         print("--- Allocate Teacher ---")
-        course_instance_id = input("Enter course instance id: ")
+        planned_activity_id = input("Enter the Planned activity id: ")
         employee_id = input("Enter employee id: ")
-        dto = self.controller.allocate_employee(course_instance_id, employee_id)
+        hours = input("Enter the amount of hours to allocate: ")
+
+        dto = self.controller.allocate_employee_to_activity(
+            employee_id, planned_activity_id, hours
+        )
+
         if dto:
             data = [
                 [

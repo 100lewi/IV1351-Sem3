@@ -45,11 +45,6 @@ ORDER BY id DESC
 LIMIT 1;
 """
 
-INSERT_ALLOCATED_ACTIVITY = """
-INSERT INTO allocated_activity (planned_activity_id, employee_id, allocated_hours)
-VALUES (%s, %s, %s)
-"""
-
 GET_EMPLOYEE_ACTIVITY = """
 	SELECT * 
 	FROM allocated_activity
@@ -79,6 +74,12 @@ UPDATE_STUDENT_COUNT = """
 	UPDATE course_instance 
 	SET num_students = %s 
 	WHERE id = %s
+"""
+
+INSERT_ALLOCATED_ACTIVITY = """
+INSERT INTO allocated_activity (planned_activity_id, employee_id, allocated_hours)
+VALUES (%s, %s, %s)
+RETURNING planned_activity_id, employee_id, allocated_hours
 """
 
 #

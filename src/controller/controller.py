@@ -46,14 +46,25 @@ class Controller:
     def deallocate_employee(self, planned_activity_id):
         try:
             self.dao.deallocate_teacher_from_instance(planned_activity_id)
-            self.connection.commit
+            self.connection.commit()
 
         except Exception as e:
             self.connection.rollback()
             raise e
 
-    def allocate_employee(self, course_instance_id, employee_id):
-        return self.dao.allocate_teacher_to_activity(course_instance_id, employee_id)
+    def allocate_employee_to_activity(self, employee_id, planned_activity_id, hours):
+        try:
+            new_activity_id = self.dao.allocate_employee_to_activity(
+                planned_activity_id, employee_id, hours
+            )
+
+            self.connection.commit()
+
+            return new_activity_id
+
+        except Exception as e:
+            self.connection.rollback()
+            raise e
 
     def allocate_excercise(self, course_instance_id, employee_id):
         return self.dao.add_excercise(course_instance_id, employee_id)
