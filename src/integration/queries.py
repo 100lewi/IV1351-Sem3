@@ -14,6 +14,28 @@ GET_COURSE_COST = """
 	WHERE course_instance_id = %s
 """
 
+GET_PERIOD_FROM_PLANNED_ACTIVITY = """
+	SELECT cip.study_period
+	FROM planned_activity pa
+	JOIN course_instance_period cip ON pa.course_instance_id = cip.course_instance_id
+	WHERE pa.id = %s
+"""
+
+GET_SYSTEM_VARIABLE = """
+	SELECT config_value
+	FROM system_config
+	WHERE description = %s
+"""
+
+GET_EMPLOYEE_LOAD_IN_PERIOD = """
+	SELECT COUNT(DISTINCT pa.course_instance_id)
+	FROM allocated_activity aa
+	JOIN planned_activity pa ON aa.planned_activity_id = pa.id
+	JOIN course_instance_period cip ON pa.course_instance_id = cip.course_instance_id
+	WHERE aa.employee_id = %s 
+		AND cip.study_period = %s
+"""
+
 SHOW_STUDENTS = """
 	SELECT num_students
 	FROM v_5_course_costs

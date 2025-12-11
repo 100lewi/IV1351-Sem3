@@ -174,7 +174,6 @@ SELECT
     COUNT(DISTINCT ah.course_instance_id) AS "Number of Courses"
 FROM v_allocated_hours_breakdown ah
 JOIN course_instance_period cip ON ah.course_instance_id = cip.course_instance_id
-WHERE cip.study_period = 'P1' 
 GROUP BY ah.employment_id, ah.teacher_name, cip.study_period
 HAVING COUNT(DISTINCT ah.course_instance_id) > 1 
 ORDER BY "Number of Courses" DESC;

@@ -54,13 +54,26 @@ class Controller:
 
     def allocate_employee_to_activity(self, employee_id, planned_activity_id, hours):
         try:
-            new_activity_id = self.dao.allocate_employee_to_activity(
+            period = self.dao.get_period_from_planned_activity(planned_activity_id)
+
+            current_employee_load = self.dao.get_employee_load_in_period(
+                employee_id, period
+            )
+
+            max_load_per_period = self.dao.get_max_load()
+
+            if current_employee_load >= max_load_per_period:
+                raise Exception(
+                    f"Teacher {employee_id} is already in {current_employee_load} courses for this period. Limit is {max_load_per_period}."
+                )
+
+            new_activity = self.dao.allocate_employee_to_activity(
                 planned_activity_id, employee_id, hours
             )
 
             self.connection.commit()
 
-            return new_activity_id
+            return new_activity
 
         except Exception as e:
             self.connection.rollback()

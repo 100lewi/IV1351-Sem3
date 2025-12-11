@@ -4,9 +4,8 @@ from src.model.dto import (
     StudentCountDTO,
     EmployeeActivityDTO,
     ExcerciseViewDTO,
-)  # Might need more later, we'll see
+)
 import random
-import traceback
 
 
 class SchoolDAO:
@@ -62,6 +61,37 @@ class SchoolDAO:
             )
 
         return None
+
+    def get_employee_load_in_period(self, employee_id, period):
+        cursor = self.connection.cursor()
+
+        cursor.execute(queries.GET_EMPLOYEE_LOAD_IN_PERIOD, [employee_id, period])
+        current_load = int(cursor.fetchone()[0])
+
+        return current_load
+
+    def get_max_load(self):
+        cursor = self.connection.cursor()
+
+        cursor.execute(queries.GET_SYSTEM_VARIABLE, ["employee_max_courses"])
+
+        # Feel lke a DTO would be overkill since we're only passing 1 value
+        max_load = int(cursor.fetchone()[0])
+        cursor.close()
+
+        return max_load
+
+    def get_period_from_planned_activity(self, planned_activity_id):
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            queries.GET_PERIOD_FROM_PLANNED_ACTIVITY,
+            [planned_activity_id],
+        )
+        period = cursor.fetchone()[0]
+        cursor.close()
+
+        return period
 
     # UPDATE
     def update_student_count(self, course_instance_id, new_count):
