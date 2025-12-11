@@ -76,12 +76,6 @@ FROM allocated_activity
 WHERE planned_activity_id = %s
 """
 
-INSERT_PLANNED_ACTIVITY = """
-INSERT INTO planned_activity (id, teaching_activity_id, course_instance_id, planned_hours)
-OVERRIDING SYSTEM VALUE
-VALUES (%s, %s, %s, %s);
-"""
-
 #
 # 	Locking read queries
 #
