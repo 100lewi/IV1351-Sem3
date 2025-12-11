@@ -4,6 +4,8 @@ from src.model.dto import (
     StudentCountDTO,
     EmployeeActivityDTO,
     ExcerciseViewDTO,
+    TeachingActivityDTO,
+    PlannedActivityDTO,
 )
 import random
 
@@ -13,6 +15,37 @@ class SchoolDAO:
         self.connection = connection
 
     # CREATE
+    def create_activity_type(self, name, factor):
+        cursor = self.connection.cursor()
+
+        cursor.execute(queries.CREATE_ACTIVITY_TYPE, [name, factor])
+        row = cursor.fetchone()
+        cursor.close()
+
+        if row:
+            return TeachingActivityDTO(
+                teaching_activity_id=row[0], activity_name=row[1], factor=row[2]
+            )
+
+    def create_planned_activity(self, teaching_activity_id, course_instance_id, hours):
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            queries.INSERT_PLANNED_ACTIVITY,
+            [teaching_activity_id, course_instance_id, hours],
+        )
+        row = cursor.fetchone()
+
+        cursor.close()
+
+        if row:
+            return PlannedActivityDTO(
+                planned_activity_id=row[0],
+                teaching_activity_id=row[1],
+                course_instance_id=row[2],
+                planned_hours=row[3],
+            )
+
     def allocate_employee_to_activity(self, planned_activity_id, employee_id, hours):
         cursor = self.connection.cursor()
 

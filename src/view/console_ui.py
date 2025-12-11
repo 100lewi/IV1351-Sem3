@@ -17,6 +17,7 @@ class ConsoleUI:
             ["2", "Modify a Course Instance"],
             ["3", "Modify Activity Allocation"],
             ["4", "Add New Teaching Activity"],
+            ["5", "Add New Planned Activity"],
             ["9", "RESET DATABASE"],
             ["0", "Exit"],
         ]
@@ -38,8 +39,13 @@ class ConsoleUI:
 
                     case "3":
                         self.Deallocate_Allocate_teacher()
+
                     case "4":
-                        self.allocate_excercise()
+                        self.add_new_teaching_activity()
+
+                    case "5":
+                        self.create_planned_activity()
+
                     case "9":
                         confirm = input(
                             "Are you sure you want to Reset the Database? (y/n): "
@@ -57,6 +63,56 @@ class ConsoleUI:
 
             except Exception as e:
                 print(f"[ERROR] {e}")
+
+    def add_new_teaching_activity(self):
+        print("--- Add New Teaching Activity ---")
+        name = input("Enter activity name: ")
+        factor = input("Enter activity factor: ")
+
+        try:
+            dto = self.controller.create_teaching_activity(name, factor)
+
+            headers = ["Activity Name", "Factor"]
+            data = [[dto.activity_name, dto.factor]]
+
+            print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
+            input("Press enter to return to menu...")
+
+        except Exception as e:
+            print(f"\nSomething went wrong: {e}")
+            input("Press Enter to continue...")
+
+    def create_planned_activity(self):
+        print("--- Add Planned Activity ---")
+        teaching_activity_id = input("Enter teaching activity id: ")
+        course_instance_id = input("Enter Course instance id: ")
+        hours = input("Enter hours: ")
+
+        try:
+            dto = self.controller.create_planned_activity(
+                teaching_activity_id, course_instance_id, hours
+            )
+
+            headers = [
+                "Planned activity id",
+                "Teaching activity id",
+                "Course instance id",
+                "Hours",
+            ]
+            data = [
+                [
+                    dto.planned_activity_id,
+                    dto.teaching_activity_id,
+                    dto.course_instance_id,
+                    dto.planned_hours,
+                ],
+            ]
+
+            print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
+
+        except Exception as e:
+            print(f"\nSomething went wrong: {e}")
+            input("Press Enter to continue...")
 
     def show_students_beforeafter_update(self):
         print("--- Modify Course Instance ---")

@@ -101,10 +101,23 @@ GET_COURSE_INSTANCE_FOR_UPDATE = """
 # 	Write queries
 #
 
+CREATE_ACTIVITY_TYPE = """
+	INSERT INTO teaching_activity (activity_name, factor)
+	VALUES (%s, %s)
+	ON CONFLICT (activity_name) DO NOTHING
+	RETURNING id, activity_name, factor
+"""
+
 INSERT_ALLOCATED_ACTIVITY = """
 INSERT INTO allocated_activity (planned_activity_id, employee_id, allocated_hours)
 VALUES (%s, %s, %s)
 RETURNING planned_activity_id, employee_id, allocated_hours
+"""
+
+INSERT_PLANNED_ACTIVITY = """
+	INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours)
+	VALUES (%s, %s, %s)
+	RETURNING id, teaching_activity_id, course_instance_id, planned_hours
 """
 
 UPDATE_STUDENT_COUNT = """

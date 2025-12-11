@@ -46,6 +46,21 @@ class EmployeeActivityDTO:
     allocated_hours: Decimal
 
 
+@dataclass
+class PlannedActivityDTO:
+    planned_activity_id: int
+    course_instance_id: int
+    teaching_activity_id: int
+    planned_hours: Decimal
+
+
+@dataclass
+class TeachingActivityDTO:
+    teaching_activity_id: int
+    activity_name: str
+    factor: Decimal
+
+
 # Report mappings (view DTOs) (These are only for reading)
 @dataclass
 class PlannedHoursDTO:

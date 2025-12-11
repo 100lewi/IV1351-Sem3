@@ -10,6 +10,30 @@ class Controller:
         self.db_config = db_config
         self.dao = SchoolDAO(connection)
 
+    def create_teaching_activity(self, name, factor):
+        try:
+            new_activity = self.dao.create_activity_type(name, factor)
+            self.connection.commit()
+
+            return new_activity
+
+        except Exception as e:
+            self.connection.rollback()
+            raise e
+
+    def create_planned_activity(self, teaching_activity_id, course_instance_id, hours):
+        try:
+            new_planned = self.dao.create_planned_activity(
+                teaching_activity_id, course_instance_id, hours
+            )
+            self.connection.commit()
+
+            return new_planned
+
+        except Exception as e:
+            self.connection.rollback()
+            raise e
+
     def get_course_cost(self, course_instance_id):
         try:
             result = self.dao.read_course_cost(course_instance_id)
