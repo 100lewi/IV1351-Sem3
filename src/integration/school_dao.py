@@ -119,11 +119,10 @@ class SchoolDAO:
         return all_rows
 
     # DELETE
-    def deallocate_teacher_from_instance(self, planned_activity_id):
+    def deallocate_teacher_from_instance(self, planned_activity_id, employee_id):
         cursor = self.connection.cursor()
-        cursor.execute(queries.DEALLOCATE_EMPLOYEE, [planned_activity_id])
+        cursor.execute(queries.DEALLOCATE_EMPLOYEE, [planned_activity_id, employee_id])
         cursor.close()
-        self.connection.commit()
 
     def allocate_teacher_to_activity(self, planned_activity_id, employee_id, hours):
         cursor = self.connection.cursor()

@@ -118,8 +118,9 @@ UPDATE_STUDENT_COUNT = """
 #
 
 DEALLOCATE_EMPLOYEE = """
-DELETE FROM allocated_activity
-WHERE planned_activity_id = %s;
+	DELETE FROM allocated_activity
+	WHERE planned_activity_id = %s
+		AND employee_id = %s
 """
 
 # Method 4

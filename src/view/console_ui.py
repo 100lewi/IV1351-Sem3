@@ -157,8 +157,10 @@ class ConsoleUI:
 
     def deallocate_teacher(self):
         print("--- Deallocate Activity ---")
+        employee_id = input("Enter employee id: ")
         planned_activity_id = int(input("Enter activity id: "))
-        self.controller.deallocate_employee(planned_activity_id)
+
+        self.controller.deallocate_employee(planned_activity_id, employee_id)
         print("Activity deallocated.")
 
     def allocate_excercise(self):

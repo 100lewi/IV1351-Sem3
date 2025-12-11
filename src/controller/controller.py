@@ -43,9 +43,9 @@ class Controller:
             self.connection.rollback()
             raise e
 
-    def deallocate_employee(self, planned_activity_id):
+    def deallocate_employee(self, planned_activity_id, employee_id):
         try:
-            self.dao.deallocate_teacher_from_instance(planned_activity_id)
+            self.dao.deallocate_teacher_from_instance(planned_activity_id, employee_id)
             self.connection.commit()
 
         except Exception as e:
