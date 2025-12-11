@@ -49,6 +49,9 @@ class Controller:
     def allocate_employee(self, course_instance_id, employee_id):
         return self.dao.allocate_teacher_to_activity(course_instance_id, employee_id)
 
+    def allocate_excercise(self, course_instance_id, employee_id): 
+        return self.dao.add_excercise(course_instance_id, employee_id)   
+
     def reset_db(self):
         print("\nInitializing database reset")
         self.connection.close()

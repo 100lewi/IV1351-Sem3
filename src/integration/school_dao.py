@@ -2,8 +2,8 @@ from src.integration import queries
 from src.model.dto import (
     CourseCostDTO,
     StudentCountDTO,
-    StudentsActualCostDTO,
     EmployeeActivityDTO,
+    ExcerciseViewDTO
 )  # Might need more later, we'll see
 import random
 import traceback
@@ -119,3 +119,54 @@ class SchoolDAO:
 				employee_id=row[1],
 				allocated_hours=row[2]
 			)
+
+    def add_excercise(self, course_instance_id, employee_id):
+        cursor = self.connection.cursor()
+        hours = random.randint(20,25)
+        cursor.execute(queries.INSERT_EXCERCISE)
+        
+		#Create id for planned activity
+        cursor.execute(queries.GET_PLANNED_ACTIVITY_ROWS)
+        last_row = cursor.fetchone()
+        last_id = last_row[0]
+
+        new_id = last_id + 1
+
+		#make a planned activity with excercise
+        cursor.execute(
+            queries.INSERT_EXCERCISE_INTO_PLANNED_ACTIVITY, 
+            [
+                new_id,
+				course_instance_id, 
+                hours
+			])
+        #Allocate the planned activity
+        cursor.execute(
+            queries.INSERT_EXCERCISE_INTO_ALLOCATED_ACTIVITY,
+            [
+                new_id,
+                employee_id,
+                hours
+			]
+		)
+        # Create the table with excercise
+        cursor.execute(
+            queries.CREATE_EXCERCISE_VIEW, 
+            [
+                new_id
+			])
+        row = cursor.fetchone()
+        if row:
+            return ExcerciseViewDTO(
+				course_instance_id=row[0],
+				study_period=row[1],
+				teaching_activity=row[2],
+				employee_id=row[3],
+				allocated_hours=row[4]
+    		)
+
+        
+        
+        
+        
+		

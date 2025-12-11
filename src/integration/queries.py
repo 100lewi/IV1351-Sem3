@@ -123,3 +123,42 @@ UPDATE allocated_activity
 SET employee_id = %s
 WHERE planned_activity_id = %s;
 """
+
+#Method 4
+INSERT_EXCERCISE = """
+INSERT INTO teaching_activity (id, activity_name, factor)
+OVERRIDING SYSTEM VALUE
+VALUES (8, 'Exercise', 1)
+"""
+
+INSERT_EXCERCISE_INTO_PLANNED_ACTIVITY = """
+INSERT INTO planned_activity (id, teaching_activity_id, course_instance_id, planned_hours)
+OVERRIDING SYSTEM VALUE
+VALUES (%s, 8, %s, %s);
+"""
+
+INSERT_EXCERCISE_INTO_ALLOCATED_ACTIVITY = """
+INSERT INTO allocated_activity (planned_activity_id, employee_id, allocated_hours)
+VALUES (%s, %s, %s);
+"""
+
+CREATE_EXCERCISE_VIEW = """
+SELECT 
+    ci.id AS course_instance_id,
+    cip.study_period,
+    ta.activity_name AS teaching_activity,
+    aa.employee_id,
+    aa.allocated_hours
+FROM allocated_activity aa
+JOIN planned_activity pa 
+    ON aa.planned_activity_id = pa.id
+JOIN teaching_activity ta
+    ON pa.teaching_activity_id = ta.id
+JOIN course_instance ci
+    ON pa.course_instance_id = ci.id
+LEFT JOIN course_instance_period cip
+    ON ci.id = cip.course_instance_id
+WHERE pa.id = %s
+ORDER BY ci.id, cip.study_period;
+"""
+

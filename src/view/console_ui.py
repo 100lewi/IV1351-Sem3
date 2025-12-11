@@ -39,8 +39,7 @@ class ConsoleUI:
                     case "3":
                         self.Deallocate_Allocate_teacher()
                     case "4":
-                        print("not implemented")
-
+                        self.allocate_excercise()
                     case "9":
                         confirm = input(
                             "Are you sure you want to Reset the Database? (y/n): "
@@ -155,6 +154,34 @@ class ConsoleUI:
         planned_activity_id = int(input("Enter activity id: "))
         self.controller.deallocate_employee(planned_activity_id)
         print("Activity deallocated.")
+        
+    def allocate_excercise(self):
+        print("--- Allocate Excercise ---")
+        course_instance_id = input("Enter course instance id: ")
+        employee_id = input("Enter employee id: ")
+        dto = self.controller.allocate_excercise(course_instance_id, employee_id)
+        if dto:
+            data = [
+                [
+                f"{dto.course_instance_id:,.2f}",
+                dto.study_period,
+                dto.teaching_activity,
+                f"{dto.employee_id:,.2f}",
+                f"{dto.allocated_hours:,.2f}",
+
+				]
+        	]
+            headers = [
+                "Instance ID",
+                "Period",
+                "Activity name",
+                "Employee ID",
+                "Allocated Hours",
+                ]
+            print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
+        else:
+            print("Course Instance not found.")
+            input("\nPress Enter to continue...")
     def show_course_costs(self):
         print("--- View Course Costs ---")
         course_instance_id = input("Enter course instance ID: ")
