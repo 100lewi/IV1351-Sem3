@@ -38,6 +38,12 @@ OVERRIDING SYSTEM VALUE
 VALUES (%s, %s, %s);
 """
 
+GET_EMPLOYEE_ACTIVITY = """
+	SELECT * 
+	FROM allocated_activity
+	WHERE planned_activity_id = %s
+"""
+
 #
 # Locking read queries
 #
@@ -94,9 +100,9 @@ WHERE ci.id = %s;
 GET_PLANNED_ACTIVITY_ROWS = """
 	SELECT COUNT(*) FROM planned_activity;
 """
+
 DEALLOCATE_EMPLOYEE = """
-UPDATE allocated_activity
-SET employee_id = NULL
+DELETE FROM allocated_activity
 WHERE planned_activity_id = %s;
 """
 

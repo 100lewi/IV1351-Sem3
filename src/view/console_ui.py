@@ -37,8 +37,7 @@ class ConsoleUI:
                         self.show_students_beforeafter_update()
 
                     case "3":
-                        print("not implemented")
-
+                        self.Deallocate_Allocate_teacher()
                     case "4":
                         print("not implemented")
 
@@ -104,8 +103,8 @@ class ConsoleUI:
     def Deallocate_Allocate_teacher(self):
         print("--- Allocate/Deallocate teachers ---")
         menu = [
-            ["1", "Deallocate"],
-            ["2", "Allocate"],
+            ["1", "Allocate"],
+            ["2", "Deallocate"],
         ]
 
         while True:
@@ -115,11 +114,11 @@ class ConsoleUI:
             option = input("Enter option: ")
             try:
                 if option == "1":
-                    # self.allocate_teacher()
+                    self.allocate_teacher()
                     input("Press Enter to continue...")
                     break
                 elif option == "2":
-                    # self.deallocate_teacher()
+                    self.deallocate_teacher()
                     input("Press Enter to continue...")
                     break
                 else:
@@ -129,11 +128,33 @@ class ConsoleUI:
                 print(f"[ERROR] {e}")
                 input("Press Enter to continue...")
 
-    def allocate_teacher(planned_activity_id, employee_id):
+    def allocate_teacher(self):
         print("--- Allocate Teacher ---")
         planned_activity_id = input("Enter activity id: ")
         employee_id = input("Enter employee id: ")
-
+        dto = self.controller.allocate_employee(planned_activity_id, employee_id)
+        if dto:
+            data = [
+                [
+                    f"{dto.employee_id:,.2f}",
+                    f"{dto.planned_activity_id:,.2f}",
+                    f"{dto.teaching_activity_id:,.2f}",
+                ]
+            ]
+            headers = [
+                "Employee Id",
+                "Planned Activity Id",
+                "Teaching Activity Id",
+            ]
+            print("\n" + tabulate(data, headers=headers, tablefmt="fancy_grid"))
+        else:
+            print("Course Instance not found.")
+            input("\nPress Enter to continue...")
+    def deallocate_teacher(self):
+        print("--- Deallocate Activity ---")
+        planned_activity_id = int(input("Enter activity id: "))
+        self.controller.deallocate_employee(planned_activity_id)
+        print("Activity deallocated.")
     def show_course_costs(self):
         print("--- View Course Costs ---")
         course_instance_id = input("Enter course instance ID: ")

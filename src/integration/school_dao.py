@@ -3,6 +3,7 @@ from src.model.dto import (
     CourseCostDTO,
     StudentCountDTO,
     StudentsActualCostDTO,
+    EmployeeActivityDTO,
 )  # Might need more later, we'll see
 import random
 import traceback
@@ -107,20 +108,28 @@ class SchoolDAO:
         cursor = self.connection.cursor()
         cursor.execute(queries.DEALLOCATE_EMPLOYEE, [planned_activity_id])
         cursor.close()
+        self.connection.commit()
 
     def allocate_teacher_to_activity(self, employee_id, planned_activity_id):
         cursor = self.connection.cursor()
         available = False
         available_employees = self.get_available_employees()
         for id in available_employees:
-            if employee_id == id[0]:
+            if employee_id == int(id[0]):
                 available = True
         if available == True:
             cursor.execute(
                 queries.ALLOCATE_EMPLOYEE, [employee_id, planned_activity_id]
             )
+            cursor.execute(
+                queries.GET_EMPLOYEE_ACTIVITY[planned_activity_id]
+			)
+            row = cursor.fetchone()
         else:
             raise Exception(
-                f"Cannot add Employee with id{employee_id} to activity {planned_activity_id}. "
+                f"Cannot add Employee with id {employee_id} to activity {planned_activity_id}. "
             )
         cursor.close()
+        return EmployeeActivityDTO(
+            	planned_activity_id=row[0], employee_id=row[1], allocated_hours=row[2]
+            )

@@ -34,7 +34,7 @@ class StudentsActualCostDTO:
 class EmployeeActivityDTO:
     employee_id: int
     planned_activity_id: int
-    teaching_activity_id: int
+    allocated_hours: Decimal
 
 
 # Report mappings (view DTOs) (These are only for reading)
