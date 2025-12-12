@@ -7,7 +7,6 @@ from src.model.dto import (
     PlannedActivityDTO,
     AllocationDetailsDTO,
 )
-import random
 
 
 class SchoolDAO:
