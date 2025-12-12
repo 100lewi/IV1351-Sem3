@@ -45,7 +45,7 @@ class SchoolDAO:
                 planned_hours=row[3],
             )
 
-    def allocate_employee_to_activity(self, planned_activity_id, employee_id, hours):
+    def create_allocated_activity(self, planned_activity_id, employee_id, hours):
         cursor = self.connection.cursor()
 
         cursor.execute(
@@ -94,7 +94,7 @@ class SchoolDAO:
 
         return None
 
-    def get_allocation_details(self, planned_activity_id, employee_id):
+    def read_allocation_details(self, planned_activity_id, employee_id):
         cursor = self.connection.cursor()
 
         cursor.execute(
@@ -113,7 +113,7 @@ class SchoolDAO:
             )
         return None
 
-    def get_employee_load_in_period(self, employee_id, period):
+    def read_employee_load_in_period(self, employee_id, period):
         cursor = self.connection.cursor()
 
         cursor.execute(queries.GET_EMPLOYEE_LOAD_IN_PERIOD, [employee_id, period])
@@ -121,7 +121,7 @@ class SchoolDAO:
 
         return current_load
 
-    def get_max_load(self):
+    def read_max_load(self):
         cursor = self.connection.cursor()
 
         cursor.execute(queries.GET_SYSTEM_VARIABLE, ["employee_max_courses"])
@@ -132,7 +132,7 @@ class SchoolDAO:
 
         return max_load
 
-    def get_period_from_planned_activity(self, planned_activity_id):
+    def read_period_from_planned_activity(self, planned_activity_id):
         cursor = self.connection.cursor()
 
         cursor.execute(
@@ -152,24 +152,7 @@ class SchoolDAO:
         cursor.close()
 
     # DELETE
-    def deallocate_teacher_from_instance(self, planned_activity_id, employee_id):
+    def delete_teacher_from_instance(self, planned_activity_id, employee_id):
         cursor = self.connection.cursor()
         cursor.execute(queries.DEALLOCATE_EMPLOYEE, [planned_activity_id, employee_id])
         cursor.close()
-
-    def allocate_teacher_to_activity(self, planned_activity_id, employee_id, hours):
-        cursor = self.connection.cursor()
-
-        cursor.execute(
-            queries.INSERT_ALLOCATED_ACTIVITY, [planned_activity_id, employee_id, hours]
-        )
-
-        row = cursor.fetchone()
-        cursor.close()
-
-        if row:
-            return EmployeeActivityDTO(
-                planned_activity_id=row[0], employee_id=row[1], allocated_hours=row[2]
-            )
-
-        return None

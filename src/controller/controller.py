@@ -36,7 +36,7 @@ class Controller:
 
     def get_allocation_details(self, planned_activity_id, employee_id):
         try:
-            allocation_details = self.dao.get_allocation_details(
+            allocation_details = self.dao.read_allocation_details(
                 planned_activity_id, employee_id
             )
             self.connection.commit()
@@ -82,7 +82,7 @@ class Controller:
 
     def deallocate_employee(self, planned_activity_id, employee_id):
         try:
-            self.dao.deallocate_teacher_from_instance(planned_activity_id, employee_id)
+            self.dao.delete_teacher_from_instance(planned_activity_id, employee_id)
             self.connection.commit()
 
         except Exception as e:
@@ -91,20 +91,20 @@ class Controller:
 
     def allocate_employee_to_activity(self, employee_id, planned_activity_id, hours):
         try:
-            period = self.dao.get_period_from_planned_activity(planned_activity_id)
+            period = self.dao.read_period_from_planned_activity(planned_activity_id)
 
-            current_employee_load = self.dao.get_employee_load_in_period(
+            current_employee_load = self.dao.read_employee_load_in_period(
                 employee_id, period
             )
 
-            max_load_per_period = self.dao.get_max_load()
+            max_load_per_period = self.dao.read_max_load()
 
             if current_employee_load >= max_load_per_period:
                 raise Exception(
                     f"Teacher {employee_id} is already in {current_employee_load} courses for this period. Limit is {max_load_per_period}."
                 )
 
-            new_activity = self.dao.allocate_employee_to_activity(
+            new_activity = self.dao.create_allocated_activity(
                 planned_activity_id, employee_id, hours
             )
 
