@@ -17,17 +17,9 @@ class Controller:
         return self.model.create_teaching_activity(name, factor)
 
     def create_planned_activity(self, teaching_activity_id, course_instance_id, hours):
-        try:
-            new_planned = self.dao.create_planned_activity(
-                teaching_activity_id, course_instance_id, hours
-            )
-            self.connection.commit()
-
-            return new_planned
-
-        except Exception as e:
-            self.connection.rollback()
-            raise e
+        return self.model.create_planned_activity(
+            teaching_activity_id, course_instance_id, hours
+        )
 
     def get_allocation_details(self, planned_activity_id, employee_id):
         try:

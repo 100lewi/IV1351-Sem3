@@ -10,6 +10,13 @@ class SchoolModel:
             lambda: self.dao.create_activity_type(activity_name, factor)
         )
 
+    def create_planned_activity(self, teaching_activity_id, course_instance_id, hours):
+        return self.dao.execute_operation(
+            lambda: self.dao.create_planned_activity(
+                teaching_activity_id, course_instance_id, hours
+            )
+        )
+
     def get_course_cost(self, course_instance_id):
         return self.dao.execute_operation(
             lambda: self.dao.read_course_cost(course_instance_id)
