@@ -1,5 +1,7 @@
 import psycopg
+
 from src.integration.school_dao import SchoolDAO
+from src.model.school_model import SchoolModel
 from src.utils.db_setup import reset_db_data, reset_db_schema
 
 
@@ -9,6 +11,7 @@ class Controller:
         self.connection = connection
         self.db_config = db_config
         self.dao = SchoolDAO(connection)
+        self.model = SchoolModel(connection)
 
     def create_teaching_activity(self, name, factor):
         try:
@@ -48,15 +51,7 @@ class Controller:
             raise e
 
     def get_course_cost(self, course_instance_id):
-        try:
-            result = self.dao.read_course_cost(course_instance_id)
-            self.connection.commit()
-
-            return result
-
-        except Exception as e:
-            self.connection.rollback()
-            raise e
+        return self.model.get_course_cost(course_instance_id)
 
     def update_student_count(self, course_instance_id, increment):
         try:

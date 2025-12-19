@@ -1,17 +1,31 @@
+from ast import Try
+
 from src.integration import queries
 from src.model.dto import (
-    CourseCostDTO,
-    StudentCountDTO,
-    EmployeeActivityDTO,
-    TeachingActivityDTO,
-    PlannedActivityDTO,
     AllocationDetailsDTO,
+    CourseCostDTO,
+    EmployeeActivityDTO,
+    PlannedActivityDTO,
+    StudentCountDTO,
+    TeachingActivityDTO,
 )
 
 
 class SchoolDAO:
     def __init__(self, connection):
         self.connection = connection
+
+    def execute_operation(self, operation_funciton):
+        try:
+            result = operation_funciton()
+            self.connection.commit()
+
+            return result
+
+        except Exception as e:
+            self.connection.rollback()
+
+            raise e
 
     # CREATE
     def create_activity_type(self, name, factor):
