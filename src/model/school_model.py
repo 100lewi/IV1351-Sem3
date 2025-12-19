@@ -17,6 +17,11 @@ class SchoolModel:
             )
         )
 
+    def get_allocation_details(self, planned_activity_id, employee_id):
+        return self.dao.execute_operation(
+            lambda: self.dao.read_allocation_details(planned_activity_id, employee_id)
+        )
+
     def get_course_cost(self, course_instance_id):
         return self.dao.execute_operation(
             lambda: self.dao.read_course_cost(course_instance_id)
