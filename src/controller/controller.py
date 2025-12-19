@@ -14,15 +14,7 @@ class Controller:
         self.model = SchoolModel(connection)
 
     def create_teaching_activity(self, name, factor):
-        try:
-            new_activity = self.dao.create_activity_type(name, factor)
-            self.connection.commit()
-
-            return new_activity
-
-        except Exception as e:
-            self.connection.rollback()
-            raise e
+        return self.model.create_teaching_activity(name, factor)
 
     def create_planned_activity(self, teaching_activity_id, course_instance_id, hours):
         try:
