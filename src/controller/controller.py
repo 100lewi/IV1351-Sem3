@@ -28,26 +28,7 @@ class Controller:
         return self.model.get_course_cost(course_instance_id)
 
     def update_student_count(self, course_instance_id, increment):
-        try:
-            course_data = self.dao.read_course_details_for_update(course_instance_id)
-
-            if not course_data:
-                raise Exception(f"Course instance {course_instance_id} not found")
-
-            limit = course_data.max_students
-            new_total = course_data.current_students + increment
-
-            if new_total > limit:
-                raise Exception(
-                    f"Cannot add {increment} students. Result {new_total} exceeds limit of {limit} students"
-                )
-
-            self.dao.update_student_count(course_instance_id, new_total)
-            self.connection.commit()
-
-        except Exception as e:
-            self.connection.rollback()
-            raise e
+        return self.model.update_student_count(course_instance_id, increment)
 
     def deallocate_employee(self, planned_activity_id, employee_id):
         return self.model.deallocate_employee(planned_activity_id, employee_id)

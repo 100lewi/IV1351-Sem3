@@ -33,3 +33,24 @@ class SchoolModel:
         return self.dao.execute_operation(
             lambda: self.dao.read_course_cost(course_instance_id)
         )
+
+    def update_student_count(self, course_instance_id, increment):
+        def transaction_logic():
+            course_data = self.dao.read_course_details_for_update(course_instance_id)
+
+            if not course_data:
+                raise Exception(f"Course instance {course_instance_id} not found")
+
+            limit = course_data.max_students
+            new_total = course_data.current_students + increment
+
+            if new_total > limit:
+                raise Exception(
+                    f"Cannot add {increment} students. Result {new_total} exceeds limit of {limit} students"
+                )
+
+            self.dao.update_student_count(course_instance_id, new_total)
+
+            return new_total
+
+        return self.dao.execute_operation(transaction_logic)
