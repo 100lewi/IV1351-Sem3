@@ -1,16 +1,13 @@
 import psycopg
 
-from src.integration.school_dao import SchoolDAO
 from src.model.school_model import SchoolModel
 from src.utils.db_setup import reset_db_data, reset_db_schema
 
 
-# Handles Transactions (Commit/Rollback) and Rules.
 class Controller:
     def __init__(self, connection, db_config):
         self.connection = connection
         self.db_config = db_config
-        self.dao = SchoolDAO(connection)
         self.model = SchoolModel(connection)
 
     def create_teaching_activity(self, name, factor):
@@ -34,31 +31,9 @@ class Controller:
         return self.model.deallocate_employee(planned_activity_id, employee_id)
 
     def allocate_employee_to_activity(self, employee_id, planned_activity_id, hours):
-        try:
-            period = self.dao.read_period_from_planned_activity(planned_activity_id)
-
-            current_employee_load = self.dao.read_employee_load_in_period(
-                employee_id, period
-            )
-
-            max_load_per_period = self.dao.read_max_load()
-
-            if current_employee_load >= max_load_per_period:
-                raise Exception(
-                    f"Teacher {employee_id} is already in {current_employee_load} courses for this period. Limit is {max_load_per_period}."
-                )
-
-            new_activity = self.dao.create_allocated_activity(
-                planned_activity_id, employee_id, hours
-            )
-
-            self.connection.commit()
-
-            return new_activity
-
-        except Exception as e:
-            self.connection.rollback()
-            raise e
+        return self.model.allocate_employee_to_activity(
+            employee_id, planned_activity_id, hours
+        )
 
     def reset_db(self):
         print("\nInitializing database reset")
@@ -71,7 +46,7 @@ class Controller:
             self.connection = psycopg.connect(**self.db_config)
             self.connection.autocommit = False
 
-            self.dao.connection = self.connection
+            self.model.dao.connection = self.connection
 
         except Exception as e:
             print(f"Fatal Error during reset: {e}")
