@@ -50,13 +50,7 @@ class Controller:
             raise e
 
     def deallocate_employee(self, planned_activity_id, employee_id):
-        try:
-            self.dao.delete_teacher_from_instance(planned_activity_id, employee_id)
-            self.connection.commit()
-
-        except Exception as e:
-            self.connection.rollback()
-            raise e
+        return self.model.deallocate_employee(planned_activity_id, employee_id)
 
     def allocate_employee_to_activity(self, employee_id, planned_activity_id, hours):
         try:

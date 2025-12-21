@@ -1,5 +1,3 @@
-from ast import Try
-
 from src.integration import queries
 from src.model.dto import (
     AllocationDetailsDTO,

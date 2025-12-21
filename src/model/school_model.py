@@ -17,6 +17,13 @@ class SchoolModel:
             )
         )
 
+    def deallocate_employee(self, planned_activity_id, employee_id):
+        return self.dao.execute_operation(
+            lambda: self.dao.delete_teacher_from_instance(
+                planned_activity_id, employee_id
+            )
+        )
+
     def get_allocation_details(self, planned_activity_id, employee_id):
         return self.dao.execute_operation(
             lambda: self.dao.read_allocation_details(planned_activity_id, employee_id)
