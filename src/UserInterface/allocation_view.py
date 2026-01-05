@@ -13,13 +13,13 @@ class AllocationView(tk.Toplevel):
 		self.title("Allocate/Deallocate teachers")
 		self.configure(bg="black")
 		self.geometry("700x500")
-		utilsGuI.build_inputs(self)
-
+		#build inputs
+		
 	def build_table(self):
-		self.table = ttk.Treeview(self, columns=("id", "code", "period"), show="headings")
-		self.table.heading("id", text="Instance ID")
-		self.table.heading("code", text="Course Code")
-		self.table.heading("period", text="Period")
+		self.table = ttk.Treeview(self, columns=("pa_id", "emp_id", "alloc_hours"), show="headings")
+		self.table.heading("pa_id", text="PA ID")
+		self.table.heading("emp_id", text="Employee Id")
+		self.table.heading("alloc_hours", text="Allocated Hours")
 		self.table.pack(fill="x", padx=20, pady=10)
 
 		tk.Button(

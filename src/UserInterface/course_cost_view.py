@@ -20,7 +20,7 @@ class CourseCostView(tk.Toplevel):
         self.configure(bg="black")
         self.geometry("700x500")
 
-        utilsGuI.build_inputs(self)
+        utilsGuI.build_year_inputs(self)
         self.build_table()
 
     # ttk.treeview is a table widget which looks really nice and presents the user
