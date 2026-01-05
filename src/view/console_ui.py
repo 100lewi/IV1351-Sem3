@@ -36,7 +36,7 @@ class ConsoleUI:
                         self.show_course_costs()
 
                     case "2":
-                        self.show_students_beforeafter_update()
+                        self.modify_course_instance()
 
                     case "3":
                         self.Deallocate_Allocate_teacher()
@@ -115,7 +115,7 @@ class ConsoleUI:
             print(f"\nSomething went wrong: {e}")
             input("Press Enter to continue...")
 
-    def show_students_beforeafter_update(self):
+    def modify_course_instance(self):
         print("--- Modify Course Instance ---")
         current_year = strftime("%Y")
         year = input(f"Enter the year (default: {current_year}): ") or current_year
