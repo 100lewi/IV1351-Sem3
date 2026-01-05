@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox, ttk
 from time import strftime
 from src.UserInterface.modify_course_instance import EditStudentsView
-
+from src.UserInterface.GUIutils import utilsGuI
 
 
 class CourseCostView(tk.Toplevel):
@@ -20,31 +20,8 @@ class CourseCostView(tk.Toplevel):
         self.configure(bg="black")
         self.geometry("700x500")
 
-        self.build_inputs()
+        utilsGuI.build_inputs(self)
         self.build_table()
-
-    # User selects a year and we fetch the courses for that year,
-    # load_courses is defined later. We use a frame which is a container for widgets
-    # that looks really cool
-
-    def build_inputs(self):
-        frame = tk.Frame(self, bg="black")
-        frame.pack(pady=10)
-
-        tk.Label(frame, text="Year:", bg="black", fg="red").grid(row=0, column=0, padx=5)
-
-        self.year_entry = tk.Entry(frame)
-        self.year_entry.insert(0, strftime("%Y"))
-        self.year_entry.grid(row=0, column=1, padx=5)
-
-        tk.Button(
-            frame,
-            text="Load Courses",
-            command=self.load_courses,
-            bg="black",
-            fg="red",
-            highlightbackground="red",
-        ).grid(row=0, column=2, padx=10)
 
     # ttk.treeview is a table widget which looks really nice and presents the user
     # with relevant information, columns are set to course id, code and period
@@ -73,28 +50,6 @@ class CourseCostView(tk.Toplevel):
             fg="red",
             highlightbackground="red",
         ).pack(pady=5)
-
-    # first we get the year that the user entered, then we use the controller to get
-    # the course instances for that year, we delete the old courses from the table
-    # before rendering in the new ones
-
-    def load_courses(self):
-        year = self.year_entry.get()
-        try:
-            courses = self.controller.get_course_instances(year)
-            self.table.delete(*self.table.get_children())
-
-            for course in courses:
-                # Access DTO attributes instead of indexing
-                instance_id = int(course.course_instance_id)
-                self.table.insert(
-                    "", "end", values=(instance_id, course.course_code, course.periods)
-                )
-
-        except ValueError:
-            messagebox.showerror("Invalid Input", "Year or course ID must be a number.")
-        except Exception as e:
-            messagebox.showerror("Error", str(e))
 
     # Here we first get the selected instance using focus(), then we call get course cost
     # to get the details so we can display them in a message box
