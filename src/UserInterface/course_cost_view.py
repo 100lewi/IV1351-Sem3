@@ -1,13 +1,18 @@
 import tkinter as tk
 from tkinter import messagebox, ttk
 from time import strftime
+from src.UserInterface.modify_course_instance import EditStudentsView
+
 
 
 class CourseCostView(tk.Toplevel):
-    #initialize, self explanatory
+
+    # ========================= FIRST METHOD ==========================
+
+    # initialize, self explanatory
     def __init__(self, controller, parent, editable=False):
         super().__init__(parent)
-        
+
         self.controller = controller
         self.editable = editable
 
@@ -18,10 +23,10 @@ class CourseCostView(tk.Toplevel):
         self._build_inputs()
         self._build_table()
 
-	#User selects a year and we fetch the courses for that year,
-	#load_courses is defined later. We use a frame which is a container for widgets
-    #that looks really cool
-    
+    # User selects a year and we fetch the courses for that year,
+    # load_courses is defined later. We use a frame which is a container for widgets
+    # that looks really cool
+
     def _build_inputs(self):
         frame = tk.Frame(self, bg="black")
         frame.pack(pady=10)
@@ -40,9 +45,9 @@ class CourseCostView(tk.Toplevel):
             fg="red",
             highlightbackground="red",
         ).grid(row=0, column=2, padx=10)
-        
-	#ttk.treeview is a table widget which looks really nice and presents the user
-    #with relevant information, columns are set to course id, code and period
+
+    # ttk.treeview is a table widget which looks really nice and presents the user
+    # with relevant information, columns are set to course id, code and period
 
     def _build_table(self):
         self.table = ttk.Treeview(self, columns=("id", "code", "period"), show="headings")
@@ -60,10 +65,19 @@ class CourseCostView(tk.Toplevel):
             highlightbackground="red",
         ).pack(pady=10)
 
-	#first we get the year that the user entered, then we use the controller to get
-    #the course instances for that year, we delete the old courses from the table
-    #before rendering in the new ones
-    
+        tk.Button(
+            self,
+            text="Modify Student Numbers",
+            command=self.open_edit_students_window,
+            bg="black",
+            fg="red",
+            highlightbackground="red",
+        ).pack(pady=5)
+
+    # first we get the year that the user entered, then we use the controller to get
+    # the course instances for that year, we delete the old courses from the table
+    # before rendering in the new ones
+
     def load_courses(self):
         year = self.year_entry.get()
         try:
@@ -81,10 +95,10 @@ class CourseCostView(tk.Toplevel):
             messagebox.showerror("Invalid Input", "Year or course ID must be a number.")
         except Exception as e:
             messagebox.showerror("Error", str(e))
-            
-	#Here we first get the selected instance using focus(), then we call get course cost
-    #to get the details so we can display them in a message box
-    
+
+    # Here we first get the selected instance using focus(), then we call get course cost
+    # to get the details so we can display them in a message box
+
     def show_course_cost(self):
         selected = self.table.focus()
         if not selected:
@@ -105,16 +119,29 @@ class CourseCostView(tk.Toplevel):
 
             messagebox.showinfo(
                 "Course Cost",
-                
-                f"""
-				Course: {dto.course_code}
-				Period: {dto.period}
-				Students: {dto.num_students}
 
-				Planned Cost: {dto.planned_cost:,.2f}
-				Actual Cost: {dto.actual_cost:,.2f}
-				""",
+                f"""
+                Course: {dto.course_code}
+                Period: {dto.period}
+                Students: {dto.num_students}
+
+                Planned Cost: {dto.planned_cost:,.2f}
+                Actual Cost: {dto.actual_cost:,.2f}
+                """,
             )
 
         except Exception as e:
             messagebox.showerror("Error", str(e))
+
+    # ==================== SECOND METHOD =========================
+
+    def open_edit_students_window(self):
+        selected = self.table.focus()
+        if not selected:
+            messagebox.showwarning("Select Course", "Please select a course instance.")
+            return
+
+        instance_id = int(self.table.item(selected)["values"][0])
+
+        # Open the separate edit window
+        EditStudentsView(self.controller, self, instance_id)
