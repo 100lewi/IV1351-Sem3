@@ -3,7 +3,7 @@ from tkinter import ttk, messagebox
 from time import strftime
 from src.UserInterface.modify_course_instance import EditStudentsView
 
-def build_inputs(window):
+def build_year_inputs(window):
     frame = tk.Frame(window, bg="black")
     frame.pack(pady=10)
 
@@ -22,6 +22,29 @@ def build_inputs(window):
 		highlightbackground="red",
 	).grid(row=0, column=2, padx=10)
 
+def build_activity_inputs(window):
+    frame = tk.Frame(window, bg="black")
+    frame.pack(pady=10)
+
+    tk.Label(frame, text="Acitivity id:", bg="black", fg="red").grid(row=0, column=0, padx=5)
+
+    window.activity_entry = tk.Entry(frame)
+    window.activity_entry.insert(0, strftime("%Y"))
+    window.activity_entry.grid(row=0, column=1, padx=5)
+
+    tk.Button(
+		frame,
+		text="Load activities",
+		command=lambda: load_allocated_activities(window),  
+		bg="black",
+		fg="red",
+		highlightbackground="red",
+	).grid(row=0, column=2, padx=10)
+    
+
+def load_allocated_activities(window):
+    period = window.activity_entry.get()
+    #TODO
 
 def load_courses(window):
     year = window.year_entry.get()
