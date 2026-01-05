@@ -1,6 +1,9 @@
+import argparse
+
 from src.controller.controller import Controller
-from src.view.console_ui import ConsoleUI
+from src.UserInterface.main_window import MainWindow
 from src.utils.db_setup import connect_with_bootstrap
+from src.view.console_ui import ConsoleUI
 
 DB_CONFIG = {
     "dbname": "group35_database",
@@ -10,8 +13,7 @@ DB_CONFIG = {
 }
 
 
-def main():
-
+def main(mode):
     connection = None
 
     try:
@@ -20,9 +22,15 @@ def main():
         connection.autocommit = False  # type: ignore
 
         controller = Controller(connection, DB_CONFIG)
-        view = ConsoleUI(controller)
 
-        view.start()
+        if mode == "gui":
+            print("Launching Graphical Interface...")
+            app = MainWindow(controller)
+            app.run()
+        else:
+            print("Launching Console Interface...")
+            view = ConsoleUI(controller)
+            view.start()
 
     except Exception as e:
         print(e)
@@ -33,4 +41,13 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Run Group 35 Application")
+    parser.add_argument("--gui", action="store_true", help="Launch the GUI version")
+    parser.add_argument("--cli", action="store_true", help="Launch the Console version")
+
+    args = parser.parse_args()
+
+    if args.cli:
+        main(mode="cli")
+    else:
+        main(mode="gui")
