@@ -57,6 +57,9 @@ class SchoolModel:
             lambda: self.dao.read_course_cost(course_instance_id)
         )
 
+    def get_course_instances(self, year):
+        return self.dao.execute_operation(lambda: self.dao.read_course_instances(year))
+
     def update_student_count(self, course_instance_id, increment):
         def transaction_logic():
             course_data = self.dao.read_course_details_for_update(course_instance_id)

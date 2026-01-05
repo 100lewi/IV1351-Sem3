@@ -1,5 +1,6 @@
 import os
 import sys
+from time import strftime
 
 from tabulate import tabulate
 
@@ -228,6 +229,9 @@ class ConsoleUI:
 
     def show_course_costs(self):
         print("--- View Course Costs ---")
+        current_year = strftime("%Y")
+        year = input(f"Enter the year (default: {current_year}): ") or current_year
+        self.display_course_instances(year)
         course_instance_id = input("Enter course instance ID: ")
 
         try:
@@ -261,3 +265,15 @@ class ConsoleUI:
             print(f"Error fetching data: {e}")
 
         input("\nPress any key to return to menu...")
+
+    def display_course_instances(self, year):
+        courses = self.controller.get_course_instances(year)
+
+        print(
+            "\n"
+            + tabulate(
+                courses,
+                headers=["Instance ID", "Course Code", "Period"],
+                tablefmt="fancy_grid",
+            )
+        )

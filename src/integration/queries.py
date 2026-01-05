@@ -3,7 +3,7 @@
 #
 
 GET_ALLOCATION_DETAILS = """
-    SELECT 
+    SELECT
         p.first_name || ' ' || p.last_name as teacher_name,
         cd.course_code,
         cd.periods,
@@ -19,19 +19,29 @@ GET_ALLOCATION_DETAILS = """
 """
 
 GET_COURSE_COST = """
-	SELECT 
-		course_code, 
-		course_instance_id, 
-		periods, 
+	SELECT
+		course_code,
+		course_instance_id,
+		periods,
 		num_students,
-		planned_cost, 
-		actual_cost 
-	FROM v_5_course_costs 
+		planned_cost,
+		actual_cost
+	FROM v_5_course_costs
 	WHERE course_instance_id = %s
 """
 
+GET_COURSE_INSTANCES_BY_YEAR = """
+	SELECT
+		course_instance_id,
+		course_code,
+		periods
+	FROM v_5_course_costs
+	WHERE periods LIKE %s
+	ORDER BY periods, course_instance_id
+"""
+
 GET_EMPLOYEE_ACTIVITY = """
-	SELECT * 
+	SELECT *
 	FROM allocated_activity
 	WHERE planned_activity_id = %s
 """
@@ -41,7 +51,7 @@ GET_EMPLOYEE_LOAD_IN_PERIOD = """
 	FROM allocated_activity aa
 	JOIN planned_activity pa ON aa.planned_activity_id = pa.id
 	JOIN course_instance_period cip ON pa.course_instance_id = cip.course_instance_id
-	WHERE aa.employee_id = %s 
+	WHERE aa.employee_id = %s
 		AND cip.study_period = %s
 """
 
@@ -65,13 +75,13 @@ GET_PLANNED_ACTIVITY_ROWS = """
 """
 
 GET_SUITABLE_EMPLOYEES = """
-SELECT 
+SELECT
     e.id AS employee_id,
     COUNT(DISTINCT pa.course_instance_id) AS course_count
 FROM employee e
-LEFT JOIN allocated_activity aa 
+LEFT JOIN allocated_activity aa
        ON e.id = aa.employee_id
-LEFT JOIN planned_activity pa 
+LEFT JOIN planned_activity pa
        ON aa.planned_activity_id = pa.id
 LEFT JOIN course_instance_period cip
        ON pa.course_instance_id = cip.course_instance_id
@@ -97,9 +107,9 @@ WHERE planned_activity_id = %s
 #
 
 GET_COURSE_INSTANCE_FOR_UPDATE = """
-	SELECT 
-		ci.id, 
-		ci.num_students, 
+	SELECT
+		ci.id,
+		ci.num_students,
 		cl.max_students
 	FROM course_instance ci
 	join course_layout cl on ci.course_layout_id = cl.id
@@ -131,8 +141,8 @@ INSERT_PLANNED_ACTIVITY = """
 """
 
 UPDATE_STUDENT_COUNT = """
-	UPDATE course_instance 
-	SET num_students = %s 
+	UPDATE course_instance
+	SET num_students = %s
 	WHERE id = %s
 """
 

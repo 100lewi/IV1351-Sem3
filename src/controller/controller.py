@@ -24,6 +24,9 @@ class Controller:
     def get_course_cost(self, course_instance_id):
         return self.model.get_course_cost(course_instance_id)
 
+    def get_course_instances(self, year):
+        return self.model.get_course_instances(year)
+
     def update_student_count(self, course_instance_id, increment):
         return self.model.update_student_count(course_instance_id, increment)
 

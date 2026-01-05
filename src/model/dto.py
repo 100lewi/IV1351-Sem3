@@ -22,6 +22,13 @@ class CourseCostDTO:
 
 
 @dataclass
+class CourseInstanceDTO:
+    course_instance_id: int
+    course_code: str
+    periods: str
+
+
+@dataclass
 class StudentCountDTO:
     id: int
     current_students: int

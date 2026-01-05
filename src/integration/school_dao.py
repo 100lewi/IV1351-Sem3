@@ -2,6 +2,7 @@ from src.integration import queries
 from src.model.dto import (
     AllocationDetailsDTO,
     CourseCostDTO,
+    CourseInstanceDTO,
     EmployeeActivityDTO,
     PlannedActivityDTO,
     StudentCountDTO,
@@ -124,6 +125,23 @@ class SchoolDAO:
                 hours=row[4],
             )
         return None
+
+    def read_course_instances(self, year):
+        cursor = self.connection.cursor()
+
+        cursor.execute(queries.GET_COURSE_INSTANCES_BY_YEAR, [f"{year} (%"])
+        rows = cursor.fetchall()
+        cursor.close()
+
+        courses = []
+        for row in rows:
+            courses.append(
+                CourseInstanceDTO(
+                    course_instance_id=row[0], course_code=row[1], periods=row[2]
+                )
+            )
+
+        return courses
 
     def read_employee_load_in_period(self, employee_id, period):
         cursor = self.connection.cursor()
