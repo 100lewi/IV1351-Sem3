@@ -117,6 +117,9 @@ class ConsoleUI:
 
     def show_students_beforeafter_update(self):
         print("--- Modify Course Instance ---")
+        current_year = strftime("%Y")
+        year = input(f"Enter the year (default: {current_year}): ") or current_year
+        self.display_course_instances(year)
         course_instance_id = input("Enter course instance ID: ")
 
         try:

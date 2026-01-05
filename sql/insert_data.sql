@@ -1,2925 +1,3000 @@
 TRUNCATE allocated_activity, planned_activity, employee_skill_set, employee_interest, salary_history, employee, course_instance_period, course_instance, course_layout, course, person_email, person_phone, person, teaching_activity, skill_set, interest, job_title, department, phone, email, system_config RESTART IDENTITY CASCADE;
-INSERT INTO system_config (config_value, description) VALUES ('4', 'employee_max_courses');
-INSERT INTO department (department_name, manager_id) VALUES ('Computer Science', NULL);
-INSERT INTO department (department_name, manager_id) VALUES ('Mathematics', NULL);
-INSERT INTO department (department_name, manager_id) VALUES ('Applied Physics', NULL);
-INSERT INTO department (department_name, manager_id) VALUES ('Industrial Management', NULL);
-INSERT INTO department (department_name, manager_id) VALUES ('Electrical Engineering', NULL);
-INSERT INTO job_title (job_title) VALUES ('Professor');
-INSERT INTO job_title (job_title) VALUES ('Associate Professor');
-INSERT INTO job_title (job_title) VALUES ('Lecturer');
-INSERT INTO job_title (job_title) VALUES ('PhD Student');
-INSERT INTO job_title (job_title) VALUES ('Course Admin');
-INSERT INTO job_title (job_title) VALUES ('Teaching Assistant');
-INSERT INTO skill_set (skill_set) VALUES ('Python');
-INSERT INTO skill_set (skill_set) VALUES ('Java');
-INSERT INTO skill_set (skill_set) VALUES ('C++');
-INSERT INTO skill_set (skill_set) VALUES ('Matlab');
-INSERT INTO skill_set (skill_set) VALUES ('Statistics');
-INSERT INTO skill_set (skill_set) VALUES ('Machine Learning');
-INSERT INTO skill_set (skill_set) VALUES ('Pedagogy');
-INSERT INTO skill_set (skill_set) VALUES ('Academic Writing');
-INSERT INTO interest (interest) VALUES ('AI');
-INSERT INTO interest (interest) VALUES ('Robotics');
-INSERT INTO interest (interest) VALUES ('Game Design');
-INSERT INTO interest (interest) VALUES ('Network Security');
-INSERT INTO interest (interest) VALUES ('Bioinformatics');
-INSERT INTO interest (interest) VALUES ('Sustainable Tech');
-INSERT INTO teaching_activity (activity_name, factor) VALUES ('Lecture', 1.8);
-INSERT INTO teaching_activity (activity_name, factor) VALUES ('Lab', 1.5);
-INSERT INTO teaching_activity (activity_name, factor) VALUES ('Seminar', 1.3);
-INSERT INTO teaching_activity (activity_name, factor) VALUES ('Tutorial', 1.25);
-INSERT INTO teaching_activity (activity_name, factor) VALUES ('Other', 1.0);
-INSERT INTO teaching_activity (activity_name, factor) VALUES ('Exam', 1.0);
-INSERT INTO teaching_activity (activity_name, factor) VALUES ('Admin', 1.0);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5005279095', 'Henrik', 'Dahlberg', 'Villagatan 2', '59616', 'Karlstad');
-INSERT INTO phone (phone) VALUES ('000-491 61 17');
-INSERT INTO email (email) VALUES ('henrik.dahlberg_1@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (1, 1);
-INSERT INTO person_email (person_id, email_id) VALUES (1, 1);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (1, 5, NULL, 'kth-0001', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (1, 79775, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (1, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (1, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5012159702', 'Daniel', 'Landström', 'Ekstigen 5', '63382', 'Mölndal');
-INSERT INTO phone (phone) VALUES ('08-524 51 25');
-INSERT INTO email (email) VALUES ('daniel.landström_2@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (2, 2);
-INSERT INTO person_email (person_id, email_id) VALUES (2, 2);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (2, 2, 1, 'kth-0002', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (2, 75020, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (2, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (2, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('0207033127', 'Alvin', 'Johnsson', 'Kvarnvägen 87', '41905', 'Lund');
-INSERT INTO phone (phone) VALUES ('046-452 93 56');
-INSERT INTO email (email) VALUES ('alvin.johnsson_3@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (3, 3);
-INSERT INTO person_email (person_id, email_id) VALUES (3, 3);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (3, 2, 2, 'kth-0003', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (3, 69044, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (3, 1);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (3, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4110015700', 'Melwin', 'Karlsson', 'Industrivägen 506', '15478', 'Sandviken');
-INSERT INTO phone (phone) VALUES ('057-23 58 96');
-INSERT INTO email (email) VALUES ('melwin.karlsson_4@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (4, 4);
-INSERT INTO person_email (person_id, email_id) VALUES (4, 4);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (4, 6, 1, 'kth-0004', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (4, 76895, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (4, 5);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (4, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5207028183', 'Henrik', 'Hedberg', 'Kyrkotorget 63', '32206', 'Lund');
-INSERT INTO phone (phone) VALUES ('039-18 47 30');
-INSERT INTO email (email) VALUES ('henrik.hedberg_5@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (5, 5);
-INSERT INTO person_email (person_id, email_id) VALUES (5, 5);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (5, 2, 3, 'kth-0005', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (5, 59188, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (5, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (5, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('9302098125', 'Sandra', 'Henriksson', 'Ängstorget 741', '50824', 'Halmstad');
-INSERT INTO phone (phone) VALUES ('+46 (0)72 20 87');
-INSERT INTO email (email) VALUES ('sandra.henriksson_6@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (6, 6);
-INSERT INTO person_email (person_id, email_id) VALUES (6, 6);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (6, 2, 3, 'kth-0006', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (6, 64593, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (6, 2);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (6, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6309117759', 'Linnéa', 'Berglund', 'Bäcktorget 070', '48254', 'Växjö');
-INSERT INTO phone (phone) VALUES ('08-03 83 97');
-INSERT INTO email (email) VALUES ('linnéa.berglund_7@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (7, 7);
-INSERT INTO person_email (person_id, email_id) VALUES (7, 7);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (7, 6, 4, 'kth-0007', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (7, 40168, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (7, 2);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (7, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('7605036479', 'Olof', 'Edström', 'Villavägen 587', '65482', 'Nyköping');
-INSERT INTO phone (phone) VALUES ('+46 (0)42 54 98');
-INSERT INTO email (email) VALUES ('olof.edström_8@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (8, 8);
-INSERT INTO person_email (person_id, email_id) VALUES (8, 8);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (8, 4, 5, 'kth-0008', 4);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (8, 49667, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (8, 4);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (8, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6207143550', 'Linnéa', 'Bengtsson', 'Furuvägen 159', '69553', 'Södertälje');
-INSERT INTO phone (phone) VALUES ('0718-303 82');
-INSERT INTO email (email) VALUES ('linnéa.bengtsson_9@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (9, 9);
-INSERT INTO person_email (person_id, email_id) VALUES (9, 9);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (9, 6, 5, 'kth-0009', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (9, 53845, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (9, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (9, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6912022867', 'Christian', 'Andersson', 'Gentorget 14', '89014', 'Stockholm');
-INSERT INTO phone (phone) VALUES ('08-124 85 82');
-INSERT INTO email (email) VALUES ('christian.andersson_10@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (10, 10);
-INSERT INTO person_email (person_id, email_id) VALUES (10, 10);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (10, 5, 4, 'kth-0010', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (10, 72512, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (10, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (10, 5);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4108309354', 'Marcus', 'Lundh', 'Ängsgatan 578', '41780', 'Östersund');
-INSERT INTO phone (phone) VALUES ('+46 (0)894 137 ');
-INSERT INTO email (email) VALUES ('marcus.lundh_11@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (11, 11);
-INSERT INTO person_email (person_id, email_id) VALUES (11, 11);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (11, 3, 2, 'kth-0011', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (11, 72228, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (11, 8);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (11, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6201178917', 'Erik', 'Eriksson', 'Parktorget 222', '82072', 'Gävle');
-INSERT INTO phone (phone) VALUES ('0636-141 18');
-INSERT INTO email (email) VALUES ('erik.eriksson_12@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (12, 12);
-INSERT INTO person_email (person_id, email_id) VALUES (12, 12);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (12, 2, 2, 'kth-0012', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (12, 71280, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (12, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (12, 1);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4406157232', 'Patrik', 'Palm', 'Grangränd 9', '34982', 'Lidköping');
-INSERT INTO phone (phone) VALUES ('08-78 62 89');
-INSERT INTO email (email) VALUES ('patrik.palm_13@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (13, 13);
-INSERT INTO person_email (person_id, email_id) VALUES (13, 13);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (13, 5, 3, 'kth-0013', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (13, 65029, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (13, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (13, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6802283736', 'Stina', 'Strandberg', 'Villavägen 679', '50238', 'Lidingö');
-INSERT INTO phone (phone) VALUES ('0539-12 45 17');
-INSERT INTO email (email) VALUES ('stina.strandberg_14@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (14, 14);
-INSERT INTO person_email (person_id, email_id) VALUES (14, 14);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (14, 4, 5, 'kth-0014', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (14, 36579, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (14, 2);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (14, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('9206043425', 'Anders', 'Englund', 'Stationsstigen 863', '97210', 'Karlskoga');
-INSERT INTO phone (phone) VALUES ('+46 (0)8 686 56');
-INSERT INTO email (email) VALUES ('anders.englund_15@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (15, 15);
-INSERT INTO person_email (person_id, email_id) VALUES (15, 15);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (15, 6, 8, 'kth-0015', 4);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (15, 65615, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (15, 2);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (15, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('0302026323', 'Colin', 'Lindquist', 'Parkgatan 1', '26103', 'Örebro');
-INSERT INTO phone (phone) VALUES ('+46 (0)8 152 33');
-INSERT INTO email (email) VALUES ('colin.lindquist_16@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (16, 16);
-INSERT INTO person_email (person_id, email_id) VALUES (16, 16);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (16, 2, 12, 'kth-0016', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (16, 36785, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (16, 6);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (16, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6407132528', 'Olof', 'Sjöholm', 'Ektorget 601', '63886', 'Lidköping');
-INSERT INTO phone (phone) VALUES ('+46 (0)355 409 ');
-INSERT INTO email (email) VALUES ('olof.sjöholm_17@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (17, 17);
-INSERT INTO person_email (person_id, email_id) VALUES (17, 17);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (17, 4, 5, 'kth-0017', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (17, 81488, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (17, 8);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (17, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5707091855', 'Maria', 'Karlsson', 'Järnvägsgatan 56', '11558', 'Norrköping');
-INSERT INTO phone (phone) VALUES ('090-279 36 43');
-INSERT INTO email (email) VALUES ('maria.karlsson_18@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (18, 18);
-INSERT INTO person_email (person_id, email_id) VALUES (18, 18);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (18, 3, 14, 'kth-0018', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (18, 79135, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (18, 2);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (18, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('3602188769', 'Lars', 'Andersson', 'Strandgatan 25', '29646', 'Halmstad');
-INSERT INTO phone (phone) VALUES ('009-777 91 09');
-INSERT INTO email (email) VALUES ('lars.andersson_19@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (19, 19);
-INSERT INTO person_email (person_id, email_id) VALUES (19, 19);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (19, 1, 10, 'kth-0019', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (19, 79316, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (19, 1);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (19, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4907304820', 'Tage', 'Mattsson', 'Stortorget 0', '98141', 'Karlskrona');
-INSERT INTO phone (phone) VALUES ('+46 (0)54 53 59');
-INSERT INTO email (email) VALUES ('tage.mattsson_20@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (20, 20);
-INSERT INTO person_email (person_id, email_id) VALUES (20, 20);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (20, 3, 17, 'kth-0020', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (20, 45780, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (20, 4);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (20, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('3907213494', 'Eleonor', 'Pettersson', 'Parkgränd 7', '83373', 'Södertälje');
-INSERT INTO phone (phone) VALUES ('+46 (0)94 90 85');
-INSERT INTO email (email) VALUES ('eleonor.pettersson_21@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (21, 21);
-INSERT INTO person_email (person_id, email_id) VALUES (21, 21);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (21, 5, 20, 'kth-0021', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (21, 57310, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (21, 4);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (21, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6404305507', 'Michaela', 'Johansson', 'Åkergatan 41', '40384', 'Eskilstuna');
-INSERT INTO phone (phone) VALUES ('08-277 866 52');
-INSERT INTO email (email) VALUES ('michaela.johansson_22@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (22, 22);
-INSERT INTO person_email (person_id, email_id) VALUES (22, 22);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (22, 5, 6, 'kth-0022', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (22, 52723, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (22, 2);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (22, 1);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('7010289952', 'Katrin', 'Andersson', 'Ringstigen 39', '76310', 'Södertälje');
-INSERT INTO phone (phone) VALUES ('0296-32 83 86');
-INSERT INTO email (email) VALUES ('katrin.andersson_23@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (23, 23);
-INSERT INTO person_email (person_id, email_id) VALUES (23, 23);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (23, 5, 22, 'kth-0023', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (23, 71198, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (23, 4);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (23, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('3701014155', 'Ines', 'Österberg', 'Kyrkotorget 23', '51522', 'Varberg');
-INSERT INTO phone (phone) VALUES ('+46 (0)67 93 85');
-INSERT INTO email (email) VALUES ('ines.österberg_24@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (24, 24);
-INSERT INTO person_email (person_id, email_id) VALUES (24, 24);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (24, 3, 7, 'kth-0024', 4);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (24, 54339, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (24, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (24, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('9602268139', 'Linnéa', 'Hägg', 'Järnvägsvägen 740', '65724', 'Alingsås');
-INSERT INTO phone (phone) VALUES ('+46 (0)870 879 ');
-INSERT INTO email (email) VALUES ('linnéa.hägg_25@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (25, 25);
-INSERT INTO person_email (person_id, email_id) VALUES (25, 25);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (25, 1, 15, 'kth-0025', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (25, 71747, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (25, 2);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (25, 1);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4406107575', 'Henrik', 'Jonsson', 'Nytorget 997', '57992', 'Piteå');
-INSERT INTO phone (phone) VALUES ('08-293 78 76');
-INSERT INTO email (email) VALUES ('henrik.jonsson_26@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (26, 26);
-INSERT INTO person_email (person_id, email_id) VALUES (26, 26);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (26, 4, 19, 'kth-0026', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (26, 42861, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (26, 1);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (26, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5206301110', 'Kristina', 'Edin', 'Skolgatan 81', '78880', 'Gävle');
-INSERT INTO phone (phone) VALUES ('08-795 59 68');
-INSERT INTO email (email) VALUES ('kristina.edin_27@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (27, 27);
-INSERT INTO person_email (person_id, email_id) VALUES (27, 27);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (27, 2, 15, 'kth-0027', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (27, 57115, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (27, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (27, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5006012719', 'Elias', 'Eriksson', 'Skolgränd 3', '60466', 'Sundsvall');
-INSERT INTO phone (phone) VALUES ('059-69 00 36');
-INSERT INTO email (email) VALUES ('elias.eriksson_28@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (28, 28);
-INSERT INTO person_email (person_id, email_id) VALUES (28, 28);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (28, 1, 11, 'kth-0028', 4);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (28, 75413, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (28, 4);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (28, 5);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('9007127328', 'Gunilla', 'Strandberg', 'Parkgatan 89', '62517', 'Lidköping');
-INSERT INTO phone (phone) VALUES ('0280-50 75 80');
-INSERT INTO email (email) VALUES ('gunilla.strandberg_29@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (29, 29);
-INSERT INTO person_email (person_id, email_id) VALUES (29, 29);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (29, 6, 21, 'kth-0029', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (29, 69747, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (29, 5);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (29, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('3611296751', 'Christina', 'Hanna', 'Strandvägen 202', '20633', 'Helsingborg');
-INSERT INTO phone (phone) VALUES ('0586-614 51');
-INSERT INTO email (email) VALUES ('christina.hanna_30@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (30, 30);
-INSERT INTO person_email (person_id, email_id) VALUES (30, 30);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (30, 3, 14, 'kth-0030', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (30, 61727, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (30, 8);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (30, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4712252305', 'Björn', 'Adolfsson', 'Backgatan 48', '78864', 'Karlskrona');
-INSERT INTO phone (phone) VALUES ('08-99 33 57');
-INSERT INTO email (email) VALUES ('björn.adolfsson_31@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (31, 31);
-INSERT INTO person_email (person_id, email_id) VALUES (31, 31);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (31, 1, 16, 'kth-0031', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (31, 68817, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (31, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (31, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('8112156529', 'Stig', 'Jonsson', 'Granvägen 376', '31352', 'Nyköping');
-INSERT INTO phone (phone) VALUES ('+46 (0)8 562 55');
-INSERT INTO email (email) VALUES ('stig.jonsson_32@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (32, 32);
-INSERT INTO person_email (person_id, email_id) VALUES (32, 32);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (32, 2, 11, 'kth-0032', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (32, 53323, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (32, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (32, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4804010462', 'Lars', 'Holmström', 'Parkgatan 9', '22317', 'Ängelholm');
-INSERT INTO phone (phone) VALUES ('007-04 12 09');
-INSERT INTO email (email) VALUES ('lars.holmström_33@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (33, 33);
-INSERT INTO person_email (person_id, email_id) VALUES (33, 33);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (33, 3, 13, 'kth-0033', 4);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (33, 49991, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (33, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (33, 5);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6002254412', 'Anneli', 'Saleh', 'Aspvägen 5', '78021', 'Skövde');
-INSERT INTO phone (phone) VALUES ('098-036 38 75');
-INSERT INTO email (email) VALUES ('anneli.saleh_34@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (34, 34);
-INSERT INTO person_email (person_id, email_id) VALUES (34, 34);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (34, 1, 33, 'kth-0034', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (34, 45235, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (34, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (34, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('3703031421', 'Sven', 'Borg', 'Stortorget 9', '69080', 'Mölndal');
-INSERT INTO phone (phone) VALUES ('+46 (0)199 570 ');
-INSERT INTO email (email) VALUES ('sven.borg_35@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (35, 35);
-INSERT INTO person_email (person_id, email_id) VALUES (35, 35);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (35, 6, 11, 'kth-0035', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (35, 54920, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (35, 5);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (35, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('8402173101', 'André', 'Ibrahim', 'Trädgårdsgatan 470', '10406', 'Alingsås');
-INSERT INTO phone (phone) VALUES ('0733-584 58');
-INSERT INTO email (email) VALUES ('andré.ibrahim_36@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (36, 36);
-INSERT INTO person_email (person_id, email_id) VALUES (36, 36);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (36, 2, 11, 'kth-0036', 4);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (36, 36450, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (36, 5);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (36, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5510295065', 'Ingvar', 'Forsman', 'Backgatan 0', '73747', 'Landskrona');
-INSERT INTO phone (phone) VALUES ('+46 (0)060 248 ');
-INSERT INTO email (email) VALUES ('ingvar.forsman_37@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (37, 37);
-INSERT INTO person_email (person_id, email_id) VALUES (37, 37);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (37, 2, 2, 'kth-0037', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (37, 66293, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (37, 1);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (37, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6610201052', 'Kristina', 'Lindgren', 'Bäckvägen 5', '32037', 'Uppsala');
-INSERT INTO phone (phone) VALUES ('+46 (0)507 850 ');
-INSERT INTO email (email) VALUES ('kristina.lindgren_38@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (38, 38);
-INSERT INTO person_email (person_id, email_id) VALUES (38, 38);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (38, 1, 1, 'kth-0038', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (38, 56563, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (38, 4);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (38, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5112209951', 'Nathalie', 'Liljegren', 'Ekgränd 6', '18543', 'Västerås');
-INSERT INTO phone (phone) VALUES ('+46 (0)8 267 50');
-INSERT INTO email (email) VALUES ('nathalie.liljegren_39@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (39, 39);
-INSERT INTO person_email (person_id, email_id) VALUES (39, 39);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (39, 4, 23, 'kth-0039', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (39, 55794, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (39, 5);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (39, 1);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6604123031', 'Kari', 'Jansson', 'Idrottsvägen 01', '42103', 'Alingsås');
-INSERT INTO phone (phone) VALUES ('088-36 24 19');
-INSERT INTO email (email) VALUES ('kari.jansson_40@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (40, 40);
-INSERT INTO person_email (person_id, email_id) VALUES (40, 40);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (40, 6, 23, 'kth-0040', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (40, 76984, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (40, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (40, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5509158712', 'Matilda', 'Torstensson', 'Skolvägen 66', '62493', 'Ängelholm');
-INSERT INTO phone (phone) VALUES ('051-768 84 03');
-INSERT INTO email (email) VALUES ('matilda.torstensson_41@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (41, 41);
-INSERT INTO person_email (person_id, email_id) VALUES (41, 41);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (41, 5, 38, 'kth-0041', 4);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (41, 61714, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (41, 8);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (41, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('0707071593', 'Karin', 'Persson', 'Backgränd 8', '32478', 'Falun');
-INSERT INTO phone (phone) VALUES ('08-120 47 19');
-INSERT INTO email (email) VALUES ('karin.persson_42@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (42, 42);
-INSERT INTO person_email (person_id, email_id) VALUES (42, 42);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (42, 5, 6, 'kth-0042', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (42, 54332, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (42, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (42, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('0211283072', 'Tomas', 'Jakobsson', 'Stationsvägen 762', '21152', 'Södertälje');
-INSERT INTO phone (phone) VALUES ('056-011 76 99');
-INSERT INTO email (email) VALUES ('tomas.jakobsson_43@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (43, 43);
-INSERT INTO person_email (person_id, email_id) VALUES (43, 43);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (43, 4, 19, 'kth-0043', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (43, 44172, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (43, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (43, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('8410268794', 'Kristina', 'Olofsson', 'Storgränd 86', '34187', 'Borås');
-INSERT INTO phone (phone) VALUES ('096-72 07 19');
-INSERT INTO email (email) VALUES ('kristina.olofsson_44@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (44, 44);
-INSERT INTO person_email (person_id, email_id) VALUES (44, 44);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (44, 6, 8, 'kth-0044', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (44, 46882, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (44, 8);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (44, 1);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('8012133347', 'Olof', 'Klasson', 'Aspvägen 3', '69092', 'Landskrona');
-INSERT INTO phone (phone) VALUES ('0155-809 86');
-INSERT INTO email (email) VALUES ('olof.klasson_45@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (45, 45);
-INSERT INTO person_email (person_id, email_id) VALUES (45, 45);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (45, 6, 1, 'kth-0045', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (45, 35596, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (45, 6);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (45, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('3707013508', 'Thomas', 'Nilsson', 'Industrivägen 99', '89832', 'Lund');
-INSERT INTO phone (phone) VALUES ('+46 (0)799 148 ');
-INSERT INTO email (email) VALUES ('thomas.nilsson_46@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (46, 46);
-INSERT INTO person_email (person_id, email_id) VALUES (46, 46);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (46, 4, 32, 'kth-0046', 4);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (46, 38218, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (46, 2);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (46, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4801262967', 'Isabell', 'Nilsson', 'Trädgårdsgatan 6', '96274', 'Kalmar');
-INSERT INTO phone (phone) VALUES ('08-272 297 25');
-INSERT INTO email (email) VALUES ('isabell.nilsson_47@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (47, 47);
-INSERT INTO person_email (person_id, email_id) VALUES (47, 47);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (47, 4, 26, 'kth-0047', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (47, 44092, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (47, 2);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (47, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('3910103864', 'Ian', 'Adolfsson', 'Nyvägen 102', '96260', 'Karlskoga');
-INSERT INTO phone (phone) VALUES ('001-50 16 95');
-INSERT INTO email (email) VALUES ('ian.adolfsson_48@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (48, 48);
-INSERT INTO person_email (person_id, email_id) VALUES (48, 48);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (48, 1, 38, 'kth-0048', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (48, 80362, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (48, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (48, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4503170476', 'Victoria', 'Forsberg', 'Skolgatan 4', '55792', 'Örnsköldsvik');
-INSERT INTO phone (phone) VALUES ('+46 (0)8 718 50');
-INSERT INTO email (email) VALUES ('victoria.forsberg_49@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (49, 49);
-INSERT INTO person_email (person_id, email_id) VALUES (49, 49);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (49, 5, 46, 'kth-0049', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (49, 60790, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (49, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (49, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('7404145471', 'Albin', 'Mohammed', 'Stationsgatan 3', '70166', 'Södertälje');
-INSERT INTO phone (phone) VALUES ('056-60 09 56');
-INSERT INTO email (email) VALUES ('albin.mohammed_50@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (50, 50);
-INSERT INTO person_email (person_id, email_id) VALUES (50, 50);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (50, 2, 19, 'kth-0050', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (50, 38305, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (50, 8);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (50, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4209098831', 'Henning', 'Lundström', 'Furuvägen 26', '24682', 'Karlskoga');
-INSERT INTO phone (phone) VALUES ('+46 (0)67 91 91');
-INSERT INTO email (email) VALUES ('henning.lundström_51@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (51, 51);
-INSERT INTO person_email (person_id, email_id) VALUES (51, 51);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (51, 3, 5, 'kth-0051', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (51, 83020, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (51, 2);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (51, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('7809175115', 'Jan', 'Bergqvist', 'Strandgatan 784', '32225', 'Östersund');
-INSERT INTO phone (phone) VALUES ('069-68 97 43');
-INSERT INTO email (email) VALUES ('jan.bergqvist_52@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (52, 52);
-INSERT INTO person_email (person_id, email_id) VALUES (52, 52);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (52, 6, 12, 'kth-0052', 4);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (52, 46309, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (52, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (52, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('0310147004', 'Axel', 'Jonsson', 'Skolstigen 7', '64020', 'Skellefteå');
-INSERT INTO phone (phone) VALUES ('+46 (0)8 370 64');
-INSERT INTO email (email) VALUES ('axel.jonsson_53@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (53, 53);
-INSERT INTO person_email (person_id, email_id) VALUES (53, 53);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (53, 5, 35, 'kth-0053', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (53, 82323, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (53, 5);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (53, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6410251174', 'Sören', 'Johansson', 'Genvägen 64', '57109', 'Landskrona');
-INSERT INTO phone (phone) VALUES ('025-88 91 05');
-INSERT INTO email (email) VALUES ('sören.johansson_54@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (54, 54);
-INSERT INTO person_email (person_id, email_id) VALUES (54, 54);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (54, 4, 53, 'kth-0054', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (54, 50770, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (54, 4);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (54, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4808217394', 'Knut', 'Johansson', 'Kyrkvägen 63', '82888', 'Uppsala');
-INSERT INTO phone (phone) VALUES ('0341-859 51');
-INSERT INTO email (email) VALUES ('knut.johansson_55@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (55, 55);
-INSERT INTO person_email (person_id, email_id) VALUES (55, 55);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (55, 4, 37, 'kth-0055', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (55, 53474, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (55, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (55, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('9301128063', 'Peter', 'Karlsson', 'Kyrkgatan 089', '82313', 'Örnsköldsvik');
-INSERT INTO phone (phone) VALUES ('08-933 286 00');
-INSERT INTO email (email) VALUES ('peter.karlsson_56@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (56, 56);
-INSERT INTO person_email (person_id, email_id) VALUES (56, 56);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (56, 4, 3, 'kth-0056', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (56, 75970, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (56, 4);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (56, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4302257607', 'Mikael', 'Nilsson', 'Furuvägen 1', '72935', 'Skellefteå');
-INSERT INTO phone (phone) VALUES ('+46 (0)45 44 82');
-INSERT INTO email (email) VALUES ('mikael.nilsson_57@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (57, 57);
-INSERT INTO person_email (person_id, email_id) VALUES (57, 57);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (57, 6, 43, 'kth-0057', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (57, 75716, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (57, 6);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (57, 1);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4402104832', 'Emelie', 'Alm', 'Järnvägsstigen 67', '37007', 'Kristianstad');
-INSERT INTO phone (phone) VALUES ('0543-662 15');
-INSERT INTO email (email) VALUES ('emelie.alm_58@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (58, 58);
-INSERT INTO person_email (person_id, email_id) VALUES (58, 58);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (58, 6, 1, 'kth-0058', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (58, 78758, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (58, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (58, 5);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('9706272730', 'Anders', 'Hellman', 'Nyvägen 8', '55875', 'Ängelholm');
-INSERT INTO phone (phone) VALUES ('075-33 78 31');
-INSERT INTO email (email) VALUES ('anders.hellman_59@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (59, 59);
-INSERT INTO person_email (person_id, email_id) VALUES (59, 59);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (59, 5, 24, 'kth-0059', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (59, 74065, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (59, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (59, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5203227763', 'Maria', 'Stenberg', 'Industrivägen 544', '53521', 'Trelleborg');
-INSERT INTO phone (phone) VALUES ('0486-278 88');
-INSERT INTO email (email) VALUES ('maria.stenberg_60@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (60, 60);
-INSERT INTO person_email (person_id, email_id) VALUES (60, 60);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (60, 5, 43, 'kth-0060', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (60, 73040, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (60, 6);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (60, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('0707127239', 'Sigfrid', 'Nilsson', 'Storvägen 7', '64622', 'Växjö');
-INSERT INTO phone (phone) VALUES ('08-315 207 94');
-INSERT INTO email (email) VALUES ('sigfrid.nilsson_61@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (61, 61);
-INSERT INTO person_email (person_id, email_id) VALUES (61, 61);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (61, 2, 12, 'kth-0061', 4);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (61, 64238, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (61, 4);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (61, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6401055741', 'Maria', 'Larsson', 'Skolvägen 38', '87638', 'Umeå');
-INSERT INTO phone (phone) VALUES ('+46 (0)660 382 ');
-INSERT INTO email (email) VALUES ('maria.larsson_62@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (62, 62);
-INSERT INTO person_email (person_id, email_id) VALUES (62, 62);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (62, 1, 5, 'kth-0062', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (62, 49583, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (62, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (62, 1);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5303292725', 'Hans', 'Andersson', 'Grangränd 699', '34690', 'Borås');
-INSERT INTO phone (phone) VALUES ('062-017 01 92');
-INSERT INTO email (email) VALUES ('hans.andersson_63@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (63, 63);
-INSERT INTO person_email (person_id, email_id) VALUES (63, 63);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (63, 5, 6, 'kth-0063', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (63, 83219, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (63, 8);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (63, 1);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('9301071784', 'Christian', 'Nilsson', 'Kyrkotorget 31', '11640', 'Skellefteå');
-INSERT INTO phone (phone) VALUES ('073-69 67 93');
-INSERT INTO email (email) VALUES ('christian.nilsson_64@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (64, 64);
-INSERT INTO person_email (person_id, email_id) VALUES (64, 64);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (64, 2, 58, 'kth-0064', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (64, 58577, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (64, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (64, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6201148407', 'Josefin', 'Blomqvist', 'Villagränd 4', '63021', 'Örebro');
-INSERT INTO phone (phone) VALUES ('08-26 40 92');
-INSERT INTO email (email) VALUES ('josefin.blomqvist_65@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (65, 65);
-INSERT INTO person_email (person_id, email_id) VALUES (65, 65);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (65, 5, 12, 'kth-0065', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (65, 42710, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (65, 4);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (65, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('0109275420', 'Maj-Britt', 'Pettersson', 'Storstigen 5', '40050', 'Halmstad');
-INSERT INTO phone (phone) VALUES ('08-393 34 11');
-INSERT INTO email (email) VALUES ('maj-britt.pettersson_66@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (66, 66);
-INSERT INTO person_email (person_id, email_id) VALUES (66, 66);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (66, 2, 55, 'kth-0066', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (66, 65737, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (66, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (66, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4905090942', 'Robin', 'Thorén', 'Stationsgatan 8', '60378', 'Borås');
-INSERT INTO phone (phone) VALUES ('+46 (0)793 006 ');
-INSERT INTO email (email) VALUES ('robin.thorén_67@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (67, 67);
-INSERT INTO person_email (person_id, email_id) VALUES (67, 67);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (67, 3, 3, 'kth-0067', 4);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (67, 47656, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (67, 5);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (67, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6707280340', 'Liv', 'Norén', 'Åkergatan 741', '34746', 'Halmstad');
-INSERT INTO phone (phone) VALUES ('+46 (0)914 386 ');
-INSERT INTO email (email) VALUES ('liv.norén_68@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (68, 68);
-INSERT INTO person_email (person_id, email_id) VALUES (68, 68);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (68, 3, 62, 'kth-0068', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (68, 37274, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (68, 2);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (68, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('0508043452', 'Anna', 'Öberg', 'Fabriksgatan 797', '73361', 'Piteå');
-INSERT INTO phone (phone) VALUES ('+46 (0)275 993 ');
-INSERT INTO email (email) VALUES ('anna.öberg_69@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (69, 69);
-INSERT INTO person_email (person_id, email_id) VALUES (69, 69);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (69, 1, 17, 'kth-0069', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (69, 84296, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (69, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (69, 1);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('3607088279', 'Cecilia', 'Håkansson', 'Furugatan 22', '15420', 'Lund');
-INSERT INTO phone (phone) VALUES ('+46 (0)79 19 01');
-INSERT INTO email (email) VALUES ('cecilia.håkansson_70@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (70, 70);
-INSERT INTO person_email (person_id, email_id) VALUES (70, 70);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (70, 6, 56, 'kth-0070', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (70, 54816, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (70, 1);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (70, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('9208263815', 'Yvonne', 'Karlsson', 'Stationsstigen 9', '77801', 'Sundsvall');
-INSERT INTO phone (phone) VALUES ('033-455 54 26');
-INSERT INTO email (email) VALUES ('yvonne.karlsson_71@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (71, 71);
-INSERT INTO person_email (person_id, email_id) VALUES (71, 71);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (71, 6, 60, 'kth-0071', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (71, 76422, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (71, 4);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (71, 1);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('7905030602', 'Lars', 'Mårtensson', 'Bäckgatan 639', '96886', 'Stockholm');
-INSERT INTO phone (phone) VALUES ('+46 (0)8 431 56');
-INSERT INTO email (email) VALUES ('lars.mårtensson_72@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (72, 72);
-INSERT INTO person_email (person_id, email_id) VALUES (72, 72);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (72, 5, 60, 'kth-0072', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (72, 83294, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (72, 5);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (72, 1);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('9006181722', 'Elisabeth', 'Lundell', 'Järnvägsgränd 8', '39846', 'Karlskoga');
-INSERT INTO phone (phone) VALUES ('0387-100 38');
-INSERT INTO email (email) VALUES ('elisabeth.lundell_73@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (73, 73);
-INSERT INTO person_email (person_id, email_id) VALUES (73, 73);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (73, 1, 6, 'kth-0073', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (73, 40440, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (73, 6);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (73, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('7405122750', 'Sven', 'Andersson', 'Strandstigen 61', '83693', 'Trelleborg');
-INSERT INTO phone (phone) VALUES ('08-04 37 68');
-INSERT INTO email (email) VALUES ('sven.andersson_74@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (74, 74);
-INSERT INTO person_email (person_id, email_id) VALUES (74, 74);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (74, 6, 7, 'kth-0074', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (74, 35588, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (74, 5);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (74, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4809224860', 'Margret', 'Gustavsson', 'Fabriksgatan 120', '58373', 'Södertälje');
-INSERT INTO phone (phone) VALUES ('+46 (0)556 525 ');
-INSERT INTO email (email) VALUES ('margret.gustavsson_75@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (75, 75);
-INSERT INTO person_email (person_id, email_id) VALUES (75, 75);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (75, 1, 70, 'kth-0075', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (75, 75174, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (75, 2);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (75, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5205039299', 'Jonathan', 'Berggren', 'Kyrkvägen 64', '67803', 'Örnsköldsvik');
-INSERT INTO phone (phone) VALUES ('073-994 38 44');
-INSERT INTO email (email) VALUES ('jonathan.berggren_76@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (76, 76);
-INSERT INTO person_email (person_id, email_id) VALUES (76, 76);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (76, 4, 32, 'kth-0076', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (76, 68504, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (76, 1);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (76, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4809081823', 'Maja', 'Andersson', 'Bäckgatan 886', '11792', 'Norrköping');
-INSERT INTO phone (phone) VALUES ('075-99 66 33');
-INSERT INTO email (email) VALUES ('maja.andersson_77@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (77, 77);
-INSERT INTO person_email (person_id, email_id) VALUES (77, 77);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (77, 6, 56, 'kth-0077', 4);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (77, 59454, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (77, 8);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (77, 1);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('7610143039', 'Elisabeth', 'Hägglund', 'Aspgatan 488', '16354', 'Södertälje');
-INSERT INTO phone (phone) VALUES ('08-412 44 41');
-INSERT INTO email (email) VALUES ('elisabeth.hägglund_78@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (78, 78);
-INSERT INTO person_email (person_id, email_id) VALUES (78, 78);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (78, 1, 31, 'kth-0078', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (78, 61907, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (78, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (78, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('8009057178', 'Viktor', 'Olsson', 'Fabriksvägen 73', '43055', 'Östersund');
-INSERT INTO phone (phone) VALUES ('08-25 87 36');
-INSERT INTO email (email) VALUES ('viktor.olsson_79@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (79, 79);
-INSERT INTO person_email (person_id, email_id) VALUES (79, 79);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (79, 2, 2, 'kth-0079', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (79, 47943, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (79, 5);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (79, 1);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('7207155032', 'Ronny', 'Larsson', 'Parkvägen 388', '74310', 'Örebro');
-INSERT INTO phone (phone) VALUES ('0256-752 61');
-INSERT INTO email (email) VALUES ('ronny.larsson_80@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (80, 80);
-INSERT INTO person_email (person_id, email_id) VALUES (80, 80);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (80, 5, 34, 'kth-0080', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (80, 78920, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (80, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (80, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('9705133073', 'Brita', 'Larsson', 'Parktorget 559', '17499', 'Karlskoga');
-INSERT INTO phone (phone) VALUES ('014-993 38 52');
-INSERT INTO email (email) VALUES ('brita.larsson_81@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (81, 81);
-INSERT INTO person_email (person_id, email_id) VALUES (81, 81);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (81, 2, 42, 'kth-0081', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (81, 61878, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (81, 5);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (81, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5907125701', 'Berit', 'Johansson', 'Aspstigen 5', '18304', 'Skövde');
-INSERT INTO phone (phone) VALUES ('+46 (0)14 14 14');
-INSERT INTO email (email) VALUES ('berit.johansson_82@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (82, 82);
-INSERT INTO person_email (person_id, email_id) VALUES (82, 82);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (82, 4, 69, 'kth-0082', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (82, 54806, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (82, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (82, 5);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6505026242', 'Astrid', 'Göransson', 'Ängsgatan 41', '10419', 'Landskrona');
-INSERT INTO phone (phone) VALUES ('+46 (0)633 534 ');
-INSERT INTO email (email) VALUES ('astrid.göransson_83@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (83, 83);
-INSERT INTO person_email (person_id, email_id) VALUES (83, 83);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (83, 5, 4, 'kth-0083', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (83, 81897, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (83, 8);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (83, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6105283607', 'Björn', 'Jafari', 'Industrivägen 33', '87064', 'Varberg');
-INSERT INTO phone (phone) VALUES ('0309-689 01');
-INSERT INTO email (email) VALUES ('björn.jafari_84@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (84, 84);
-INSERT INTO person_email (person_id, email_id) VALUES (84, 84);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (84, 5, 47, 'kth-0084', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (84, 44762, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (84, 8);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (84, 5);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('9009241432', 'Tommy', 'Ahlgren', 'Fabrikstorget 6', '73260', 'Västerås');
-INSERT INTO phone (phone) VALUES ('+46 (0)8 572 94');
-INSERT INTO email (email) VALUES ('tommy.ahlgren_85@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (85, 85);
-INSERT INTO person_email (person_id, email_id) VALUES (85, 85);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (85, 3, 75, 'kth-0085', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (85, 55435, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (85, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (85, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('0711245225', 'Linda', 'Olsson', 'Nystigen 2', '37024', 'Trelleborg');
-INSERT INTO phone (phone) VALUES ('+46 (0)8 927 06');
-INSERT INTO email (email) VALUES ('linda.olsson_86@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (86, 86);
-INSERT INTO person_email (person_id, email_id) VALUES (86, 86);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (86, 1, 30, 'kth-0086', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (86, 66180, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (86, 2);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (86, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4612319386', 'Elisabeth', 'Karlsson', 'Villagatan 9', '48567', 'Sundsvall');
-INSERT INTO phone (phone) VALUES ('006-25 90 03');
-INSERT INTO email (email) VALUES ('elisabeth.karlsson_87@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (87, 87);
-INSERT INTO person_email (person_id, email_id) VALUES (87, 87);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (87, 3, 48, 'kth-0087', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (87, 69638, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (87, 6);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (87, 1);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5204122039', 'Natalie', 'Christensen', 'Genstigen 005', '11430', 'Uppsala');
-INSERT INTO phone (phone) VALUES ('040-469 23 82');
-INSERT INTO email (email) VALUES ('natalie.christensen_88@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (88, 88);
-INSERT INTO person_email (person_id, email_id) VALUES (88, 88);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (88, 5, 84, 'kth-0088', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (88, 57589, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (88, 5);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (88, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('6912286033', 'Mikael', 'Lundqvist', 'Järnvägstorget 304', '23553', 'Ängelholm');
-INSERT INTO phone (phone) VALUES ('078-031 24 17');
-INSERT INTO email (email) VALUES ('mikael.lundqvist_89@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (89, 89);
-INSERT INTO person_email (person_id, email_id) VALUES (89, 89);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (89, 5, 63, 'kth-0089', 4);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (89, 47832, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (89, 6);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (89, 5);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('9605156000', 'Niclas', 'Persson', 'Granvägen 7', '23803', 'Eskilstuna');
-INSERT INTO phone (phone) VALUES ('08-958 357 70');
-INSERT INTO email (email) VALUES ('niclas.persson_90@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (90, 90);
-INSERT INTO person_email (person_id, email_id) VALUES (90, 90);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (90, 6, 84, 'kth-0090', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (90, 50225, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (90, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (90, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('7911102395', 'Göran', 'Svensson', 'Björkgatan 432', '27060', 'Örebro');
-INSERT INTO phone (phone) VALUES ('+46 (0)93 56 81');
-INSERT INTO email (email) VALUES ('göran.svensson_91@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (91, 91);
-INSERT INTO person_email (person_id, email_id) VALUES (91, 91);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (91, 3, 81, 'kth-0091', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (91, 83902, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (91, 4);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (91, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('8012069178', 'Kevin', 'Nilsson', 'Strandvägen 673', '35988', 'Jönköping');
-INSERT INTO phone (phone) VALUES ('+46 (0)82 49 84');
-INSERT INTO email (email) VALUES ('kevin.nilsson_92@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (92, 92);
-INSERT INTO person_email (person_id, email_id) VALUES (92, 92);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (92, 5, 14, 'kth-0092', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (92, 42404, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (92, 1);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (92, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4106309950', 'Björn', 'Nilsson', 'Ringstigen 266', '72026', 'Göteborg');
-INSERT INTO phone (phone) VALUES ('+46 (0)437 777 ');
-INSERT INTO email (email) VALUES ('björn.nilsson_93@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (93, 93);
-INSERT INTO person_email (person_id, email_id) VALUES (93, 93);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (93, 3, 3, 'kth-0093', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (93, 48191, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (93, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (93, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4805019330', 'Louise', 'Danielsson', 'Björktorget 400', '72945', 'Ängelholm');
-INSERT INTO phone (phone) VALUES ('080-72 35 50');
-INSERT INTO email (email) VALUES ('louise.danielsson_94@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (94, 94);
-INSERT INTO person_email (person_id, email_id) VALUES (94, 94);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (94, 6, 56, 'kth-0094', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (94, 61700, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (94, 3);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (94, 5);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('4810158149', 'Maria', 'Samuelsson', 'Skolgatan 57', '12087', 'Varberg');
-INSERT INTO phone (phone) VALUES ('077-91 29 21');
-INSERT INTO email (email) VALUES ('maria.samuelsson_95@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (95, 95);
-INSERT INTO person_email (person_id, email_id) VALUES (95, 95);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (95, 6, 91, 'kth-0095', 1);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (95, 81783, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (95, 7);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (95, 4);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('5509226675', 'Dan', 'Olausson', 'Kyrkgatan 297', '88407', 'Södertälje');
-INSERT INTO phone (phone) VALUES ('084-44 85 31');
-INSERT INTO email (email) VALUES ('dan.olausson_96@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (96, 96);
-INSERT INTO person_email (person_id, email_id) VALUES (96, 96);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (96, 2, 67, 'kth-0096', 2);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (96, 70009, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (96, 8);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (96, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('8504193163', 'Iris', 'Norén', 'Strandgatan 2', '55417', 'Karlstad');
-INSERT INTO phone (phone) VALUES ('0075-859 82');
-INSERT INTO email (email) VALUES ('iris.norén_97@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (97, 97);
-INSERT INTO person_email (person_id, email_id) VALUES (97, 97);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (97, 2, 67, 'kth-0097', 4);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (97, 45873, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (97, 1);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (97, 2);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('9006034608', 'Linus', 'Blom', 'Aspgatan 132', '27183', 'Malmö');
-INSERT INTO phone (phone) VALUES ('0608-92 06 58');
-INSERT INTO email (email) VALUES ('linus.blom_98@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (98, 98);
-INSERT INTO person_email (person_id, email_id) VALUES (98, 98);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (98, 3, 27, 'kth-0098', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (98, 76422, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (98, 6);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (98, 6);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('9606283043', 'Birger', 'Eriksson', 'Kvarnvägen 65', '27224', 'Lidköping');
-INSERT INTO phone (phone) VALUES ('054-16 06 69');
-INSERT INTO email (email) VALUES ('birger.eriksson_99@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (99, 99);
-INSERT INTO person_email (person_id, email_id) VALUES (99, 99);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (99, 2, 12, 'kth-0099', 3);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (99, 66710, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (99, 2);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (99, 3);
-INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES ('7008220308', 'Kristina', 'Fredriksson', 'Björkgränd 9', '88835', 'Varberg');
-INSERT INTO phone (phone) VALUES ('+46 (0)765 477 ');
-INSERT INTO email (email) VALUES ('kristina.fredriksson_100@kth.se');
-INSERT INTO person_phone (person_id, phone_id) VALUES (100, 100);
-INSERT INTO person_email (person_id, email_id) VALUES (100, 100);
-INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES (100, 4, 56, 'kth-0100', 5);
-INSERT INTO salary_history (employee_id, amount, valid_from) VALUES (100, 75439, '2020-01-01');
-INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES (100, 8);
-INSERT INTO employee_interest (employee_id, interest_id) VALUES (100, 2);
+INSERT INTO system_config (config_value, description) VALUES
+('4', 'employee_max_courses');
+INSERT INTO department (department_name, manager_id) VALUES
+('Computer Science', NULL),
+('Mathematics', NULL),
+('Applied Physics', NULL),
+('Industrial Management', NULL),
+('Electrical Engineering', NULL);
+INSERT INTO job_title (job_title) VALUES
+('Professor'),
+('Associate Professor'),
+('Lecturer'),
+('PhD Student'),
+('Course Admin'),
+('Teaching Assistant');
+INSERT INTO skill_set (skill_set) VALUES
+('Python'),
+('Java'),
+('C++'),
+('Matlab'),
+('Statistics'),
+('Machine Learning'),
+('Pedagogy'),
+('Academic Writing');
+INSERT INTO interest (interest) VALUES
+('AI'),
+('Robotics'),
+('Game Design'),
+('Network Security'),
+('Bioinformatics'),
+('Sustainable Tech');
+INSERT INTO teaching_activity (activity_name, factor) VALUES
+('Lecture', 1.8),
+('Lab', 1.5),
+('Seminar', 1.3),
+('Tutorial', 1.25),
+('Other', 1.0),
+('Exam', 1.0),
+('Admin', 1.0);
+INSERT INTO person (personal_number, first_name, last_name, street, zip, city) VALUES
+('7602078706', 'Test', 'Person', 'Strandgränd 5', '79350', 'Kalmar'),
+('3812167488', 'Nina', 'Johansson', 'Järnvägsstigen 32', '62391', 'Nyköping'),
+('8011221812', 'Hans', 'Karlsson', 'Skogsvägen 314', '97561', 'Lund'),
+('7912146029', 'Elisabet', 'Johansson', 'Backtorget 9', '80393', 'Stockholm'),
+('9008284466', 'Maria', 'Lindgren', 'Genstigen 57', '58909', 'Karlstad'),
+('5607143632', 'Anders', 'Hedberg', 'Storvägen 036', '65040', 'Borlänge'),
+('0310033360', 'Tobias', 'Larsson', 'Gengatan 0', '56807', 'Lund'),
+('7402221936', 'Peter', 'Said', 'Parkvägen 3', '41266', 'Malmö'),
+('3804132565', 'Elisabeth', 'Nilsson', 'Bäckstigen 7', '79671', 'Umeå'),
+('5410019912', 'Olof', 'Johansson', 'Björkvägen 8', '45417', 'Uppsala'),
+('4609232808', 'Håkan', 'Johnson', 'Kyrkstigen 30', '92351', 'Kalmar'),
+('4207084486', 'Karl', 'Håkansson', 'Villastigen 4', '39205', 'Uppsala'),
+('8708172948', 'Oscar', 'Johansson', 'Stationsstigen 0', '25212', 'Örebro'),
+('6405058105', 'Ingegerd', 'Martinsson', 'Åkergatan 4', '84331', 'Piteå'),
+('4105247094', 'Sandra', 'Axelsson', 'Industrigatan 17', '57743', 'Kalmar'),
+('9003083814', 'Magnus', 'Svärd', 'Järnvägsvägen 674', '70761', 'Trollhättan'),
+('4809088778', 'Kristina', 'Larsson', 'Idrottsgatan 994', '85658', 'Gävle'),
+('7307110929', 'Torbjörn', 'Lundgren', 'Nyvägen 27', '64996', 'Lidköping'),
+('8301156058', 'Maria', 'Malmberg', 'Trädgårdsvägen 58', '78683', 'Lund'),
+('6005051286', 'Nova', 'Flink', 'Backgränd 35', '60788', 'Kristianstad'),
+('0303124861', 'Åke', 'Johansson', 'Villastigen 285', '51929', 'Karlskrona'),
+('8912115733', 'Maria', 'Johansson', 'Kvarnstigen 9', '89346', 'Nyköping'),
+('9108019481', 'Birgit', 'Bergdahl', 'Parkstigen 709', '88107', 'Uppsala'),
+('8607265421', 'Christoffer', 'Lindblom', 'Idrottsgatan 02', '81281', 'Motala'),
+('6208086469', 'Bengt', 'Edman', 'Gengatan 643', '25117', 'Växjö'),
+('9312220131', 'Victoria', 'Larsson', 'Grangatan 1', '89828', 'Eskilstuna'),
+('5305193723', 'Alexander', 'Strandberg', 'Backvägen 3', '17035', 'Halmstad'),
+('6912146534', 'Fredrik', 'Westerberg', 'Ängsgatan 951', '39712', 'Alingsås'),
+('5702227934', 'Maria', 'Bodin', 'Gengränd 0', '85073', 'Motala'),
+('5610261512', 'Kristina', 'Olsson', 'Villatorget 6', '34938', 'Jönköping'),
+('9903200559', 'Thea', 'Larsson', 'Gengränd 034', '74143', 'Lidingö'),
+('9201016061', 'Siv', 'Nyström', 'Strandgatan 502', '76012', 'Trollhättan'),
+('7110022584', 'Benjamin', 'Eriksson', 'Skolgränd 575', '32504', 'Sundsvall'),
+('7307258173', 'Arne', 'Pettersson', 'Trädgårdsstigen 31', '33060', 'Lidköping'),
+('5707210349', 'Annie', 'Karlsson', 'Villagränd 250', '65779', 'Malmö'),
+('0310193537', 'Einar', 'Mohammed', 'Industrivägen 4', '45440', 'Kristianstad'),
+('6812077789', 'Maria', 'Jansson', 'Kyrkotorget 3', '68494', 'Lidingö'),
+('5008151481', 'Fredrik', 'Svensson', 'Idrottsvägen 185', '45770', 'Växjö'),
+('4504148943', 'Alexander', 'Danielsson', 'Järnvägsgränd 574', '52497', 'Luleå'),
+('4809083027', 'Laura', 'Karlsson', 'Strandgatan 95', '13012', 'Lidingö'),
+('6012194046', 'Lovisa', 'Andersson', 'Åkertorget 95', '72103', 'Uddevalla'),
+('9305097231', 'Per-Erik', 'Mustafa', 'Industrivägen 655', '56384', 'Västerås'),
+('6210237084', 'Tore', 'Forsman', 'Stationsvägen 2', '38763', 'Alingsås'),
+('8409293639', 'Pär', 'Andersson', 'Ekgatan 4', '91473', 'Motala'),
+('8904135434', 'Jonna', 'Wallin', 'Kyrkovägen 98', '99212', 'Alingsås'),
+('5102062618', 'Klara', 'Dahlberg', 'Idrottsgatan 84', '40511', 'Mölndal'),
+('5512113852', 'Eva', 'Karlsson', 'Furugränd 2', '34830', 'Uppsala'),
+('9704077735', 'Elvin', 'Andersson', 'Granstigen 4', '28572', 'Kalmar'),
+('5607042214', 'Magnus', 'Blomqvist', 'Kvarngatan 026', '40061', 'Eskilstuna'),
+('0003191459', 'Olof', 'Hansen', 'Backstigen 61', '18982', 'Mölndal'),
+('3907307999', 'Sigvard', 'Håkansson', 'Ängsvägen 22', '26174', 'Nyköping'),
+('7204046820', 'Anders', 'Nilsson', 'Trädgårdsvägen 5', '55056', 'Piteå'),
+('4406118754', 'Peter', 'Sjöström', 'Parktorget 36', '65443', 'Örebro'),
+('6802190857', 'Maryam', 'Svensson', 'Strandvägen 09', '16945', 'Umeå'),
+('8904186726', 'Lovisa', 'Nilsson', 'Nytorget 1', '39305', 'Trollhättan'),
+('4007084462', 'Idun', 'Gustafsson', 'Villagränd 832', '36642', 'Trollhättan'),
+('9902038653', 'Dagny', 'Jonsson', 'Gentorget 4', '60209', 'Västerås'),
+('3711154207', 'Nicklas', 'Mohammadi', 'Ringgränd 3', '43378', 'Lund'),
+('7708266858', 'Carin', 'Sundberg', 'Järnvägsstigen 407', '79482', 'Umeå'),
+('5601032203', 'Rune', 'Haglund', 'Stationsgränd 391', '75157', 'Östersund'),
+('0509129177', 'Ida', 'Larsson', 'Stortorget 907', '36502', 'Göteborg'),
+('6609136657', 'Melvin', 'Jansson', 'Storvägen 28', '39402', 'Eskilstuna'),
+('5010233566', 'Veronica', 'Andersson', 'Parkgränd 495', '50397', 'Västerås'),
+('8610014188', 'Linda', 'Söderström', 'Nygränd 07', '91502', 'Piteå'),
+('6710273381', 'Ulf', 'Nordström', 'Ringgatan 8', '44612', 'Södertälje'),
+('4708313426', 'Paulina', 'Lindström', 'Villagatan 4', '30131', 'Skellefteå'),
+('0308297043', 'Maria', 'Sjöholm', 'Strandgatan 5', '60645', 'Karlskoga'),
+('3802117766', 'Anton', 'Edvardsson', 'Järnvägsstigen 84', '84130', 'Växjö'),
+('9205246920', 'Eric', 'Ottosson', 'Ängsgatan 8', '63682', 'Uddevalla'),
+('6612066313', 'Filip', 'Jansson', 'Kvarnvägen 6', '36756', 'Alingsås'),
+('8312218715', 'Kristian', 'Hjalmarsson', 'Aspstigen 878', '96922', 'Uppsala'),
+('6501107350', 'Åsa', 'Olsson', 'Ekstigen 90', '57778', 'Umeå'),
+('6110314728', 'Jens', 'Rasmussen', 'Ekvägen 98', '44729', 'Landskrona'),
+('9506160234', 'Martin', 'Norén', 'Ektorget 491', '78545', 'Lidköping'),
+('6504043461', 'Margareta', 'Carlsson', 'Fabriksstigen 3', '54213', 'Borås'),
+('5603315796', 'Torbjörn', 'Magnusson', 'Björkgränd 117', '80445', 'Linköping'),
+('4812146019', 'Joakim', 'Andersson', 'Kyrkstigen 857', '82029', 'Umeå'),
+('5412311598', 'Laura', 'Sjölund', 'Industristigen 3', '76212', 'Kalmar'),
+('6111162639', 'Anna', 'Karlberg', 'Industrivägen 633', '90371', 'Falun'),
+('4808043758', 'Per', 'Karlsson', 'Strandgatan 058', '67161', 'Trollhättan'),
+('9810243445', 'Sophie', 'Sandin', 'Skolstigen 94', '51502', 'Halmstad'),
+('0309085496', 'Eva', 'Olofsson', 'Storvägen 16', '56051', 'Varberg'),
+('4405142201', 'Linnéa', 'Carlsson', 'Furugatan 1', '53287', 'Ängelholm'),
+('4309267591', 'Tommy', 'Steen', 'Gengatan 90', '35396', 'Karlstad'),
+('8503223334', 'Matilda', 'Pettersson', 'Backgränd 239', '50214', 'Lidingö'),
+('5704212769', 'Ines', 'Nilsson', 'Gengatan 55', '69600', 'Växjö'),
+('7909110020', 'Marie', 'Hussein', 'Åkerstigen 41', '32762', 'Varberg'),
+('7010246846', 'Isabel', 'Eriksson', 'Aspgatan 93', '51130', 'Östersund'),
+('4505212318', 'Olof', 'Hansson', 'Idrottsstigen 678', '38083', 'Trelleborg'),
+('4506197450', 'Eva', 'Ekström', 'Björkvägen 26', '85208', 'Falun'),
+('5503286550', 'Maria', 'Ivarsson', 'Skolgränd 942', '41954', 'Uppsala'),
+('6502188896', 'Malin', 'Strömberg', 'Skogsgatan 16', '31057', 'Varberg'),
+('7210189333', 'Jan', 'Berggren', 'Kyrkogränd 1', '75978', 'Jönköping'),
+('6310232563', 'Anna', 'Lindmark', 'Trädgårdsstigen 32', '22189', 'Kristianstad'),
+('4507175893', 'Nils', 'Lindqvist', 'Villavägen 67', '99180', 'Motala'),
+('8111023092', 'Hans', 'Karlsson', 'Ängstorget 190', '32522', 'Ängelholm'),
+('5002207016', 'Ines', 'Hedman', 'Kyrkostigen 86', '69498', 'Gävle'),
+('8012253038', 'Björn', 'Blomqvist', 'Parkgatan 485', '42960', 'Skövde'),
+('8408216227', 'Hannes', 'Linder', 'Idrottsgränd 28', '51503', 'Helsingborg'),
+('4512170244', 'Erik', 'Andersson', 'Björkstigen 6', '78294', 'Göteborg');
+INSERT INTO phone (phone) VALUES
+('08-94 59 50'),
+('+46 (0)8 014 20'),
+('+46 (0)8 988 41'),
+('+46 (0)8 473 00'),
+('08-190 726 90'),
+('068-353 08 12'),
+('+46 (0)999 263 '),
+('0194-11 71 87'),
+('08-91 85 31'),
+('0702-594 18'),
+('002-791 85 37'),
+('0755-938 85'),
+('0204-229 10'),
+('039-65 96 03'),
+('0387-930 05'),
+('0031-95 57 00'),
+('096-107 79 65'),
+('08-869 363 29'),
+('+46 (0)66 93 97'),
+('+46 (0)230 157 '),
+('096-982 19 14'),
+('+46 (0)337 592 '),
+('+46 (0)870 621 '),
+('058-697 78 66'),
+('052-31 97 12'),
+('08-85 59 96'),
+('+46 (0)8 525 21'),
+('+46 (0)15 65 40'),
+('08-688 69 82'),
+('+46 (0)932 078 '),
+('+46 (0)174 298 '),
+('+46 (0)658 600 '),
+('+46 (0)399 085 '),
+('0633-64 35 90'),
+('053-75 05 00'),
+('+46 (0)580 087 '),
+('0388-924 39'),
+('+46 (0)8 456 78'),
+('0358-12 95 79'),
+('08-83 09 79'),
+('08-699 76 93'),
+('08-51 61 89'),
+('020-26 69 13'),
+('08-58 30 85'),
+('060-109 45 97'),
+('0351-690 14'),
+('0457-403 71'),
+('08-251 29 10'),
+('014-03 14 93'),
+('08-810 64 54'),
+('+46 (0)30 61 14'),
+('051-44 31 82'),
+('040-28 32 02'),
+('08-054 19 78'),
+('08-407 57 99'),
+('0570-903 25'),
+('0353-960 78'),
+('+46 (0)22 94 96'),
+('+46 (0)999 584 '),
+('08-004 724 38'),
+('084-86 22 69'),
+('0213-16 57 89'),
+('+46 (0)39 76 77'),
+('0633-52 59 69'),
+('0245-893 32'),
+('+46 (0)76 59 90'),
+('006-729 82 42'),
+('0589-70 77 80'),
+('08-749 611 80'),
+('0803-199 89'),
+('0585-88 54 62'),
+('+46 (0)359 878 '),
+('+46 (0)437 035 '),
+('070-09 76 40'),
+('0378-871 40'),
+('011-510 62 40'),
+('048-91 25 70'),
+('0201-557 25'),
+('+46 (0)8 211 11'),
+('08-07 32 44'),
+('+46 (0)8 250 19'),
+('+46 (0)8 710 42'),
+('08-267 74 64'),
+('+46 (0)8 342 83'),
+('08-656 341 10'),
+('027-805 17 81'),
+('0679-86 31 49'),
+('038-926 56 80'),
+('08-508 510 37'),
+('+46 (0)091 906 '),
+('0648-70 44 77'),
+('003-365 17 60'),
+('08-057 490 77'),
+('+46 (0)819 550 '),
+('08-10 21 11'),
+('08-06 61 87'),
+('0801-799 08'),
+('08-99 30 27'),
+('0251-169 80'),
+('+46 (0)530 102 ');
+INSERT INTO email (email) VALUES
+('test.person_1@kth.se'),
+('nina.johansson_2@kth.se'),
+('hans.karlsson_3@kth.se'),
+('elisabet.johansson_4@kth.se'),
+('maria.lindgren_5@kth.se'),
+('anders.hedberg_6@kth.se'),
+('tobias.larsson_7@kth.se'),
+('peter.said_8@kth.se'),
+('elisabeth.nilsson_9@kth.se'),
+('olof.johansson_10@kth.se'),
+('håkan.johnson_11@kth.se'),
+('karl.håkansson_12@kth.se'),
+('oscar.johansson_13@kth.se'),
+('ingegerd.martinsson_14@kth.se'),
+('sandra.axelsson_15@kth.se'),
+('magnus.svärd_16@kth.se'),
+('kristina.larsson_17@kth.se'),
+('torbjörn.lundgren_18@kth.se'),
+('maria.malmberg_19@kth.se'),
+('nova.flink_20@kth.se'),
+('åke.johansson_21@kth.se'),
+('maria.johansson_22@kth.se'),
+('birgit.bergdahl_23@kth.se'),
+('christoffer.lindblom_24@kth.se'),
+('bengt.edman_25@kth.se'),
+('victoria.larsson_26@kth.se'),
+('alexander.strandberg_27@kth.se'),
+('fredrik.westerberg_28@kth.se'),
+('maria.bodin_29@kth.se'),
+('kristina.olsson_30@kth.se'),
+('thea.larsson_31@kth.se'),
+('siv.nyström_32@kth.se'),
+('benjamin.eriksson_33@kth.se'),
+('arne.pettersson_34@kth.se'),
+('annie.karlsson_35@kth.se'),
+('einar.mohammed_36@kth.se'),
+('maria.jansson_37@kth.se'),
+('fredrik.svensson_38@kth.se'),
+('alexander.danielsson_39@kth.se'),
+('laura.karlsson_40@kth.se'),
+('lovisa.andersson_41@kth.se'),
+('per-erik.mustafa_42@kth.se'),
+('tore.forsman_43@kth.se'),
+('pär.andersson_44@kth.se'),
+('jonna.wallin_45@kth.se'),
+('klara.dahlberg_46@kth.se'),
+('eva.karlsson_47@kth.se'),
+('elvin.andersson_48@kth.se'),
+('magnus.blomqvist_49@kth.se'),
+('olof.hansen_50@kth.se'),
+('sigvard.håkansson_51@kth.se'),
+('anders.nilsson_52@kth.se'),
+('peter.sjöström_53@kth.se'),
+('maryam.svensson_54@kth.se'),
+('lovisa.nilsson_55@kth.se'),
+('idun.gustafsson_56@kth.se'),
+('dagny.jonsson_57@kth.se'),
+('nicklas.mohammadi_58@kth.se'),
+('carin.sundberg_59@kth.se'),
+('rune.haglund_60@kth.se'),
+('ida.larsson_61@kth.se'),
+('melvin.jansson_62@kth.se'),
+('veronica.andersson_63@kth.se'),
+('linda.söderström_64@kth.se'),
+('ulf.nordström_65@kth.se'),
+('paulina.lindström_66@kth.se'),
+('maria.sjöholm_67@kth.se'),
+('anton.edvardsson_68@kth.se'),
+('eric.ottosson_69@kth.se'),
+('filip.jansson_70@kth.se'),
+('kristian.hjalmarsson_71@kth.se'),
+('åsa.olsson_72@kth.se'),
+('jens.rasmussen_73@kth.se'),
+('martin.norén_74@kth.se'),
+('margareta.carlsson_75@kth.se'),
+('torbjörn.magnusson_76@kth.se'),
+('joakim.andersson_77@kth.se'),
+('laura.sjölund_78@kth.se'),
+('anna.karlberg_79@kth.se'),
+('per.karlsson_80@kth.se'),
+('sophie.sandin_81@kth.se'),
+('eva.olofsson_82@kth.se'),
+('linnéa.carlsson_83@kth.se'),
+('tommy.steen_84@kth.se'),
+('matilda.pettersson_85@kth.se'),
+('ines.nilsson_86@kth.se'),
+('marie.hussein_87@kth.se'),
+('isabel.eriksson_88@kth.se'),
+('olof.hansson_89@kth.se'),
+('eva.ekström_90@kth.se'),
+('maria.ivarsson_91@kth.se'),
+('malin.strömberg_92@kth.se'),
+('jan.berggren_93@kth.se'),
+('anna.lindmark_94@kth.se'),
+('nils.lindqvist_95@kth.se'),
+('hans.karlsson_96@kth.se'),
+('ines.hedman_97@kth.se'),
+('björn.blomqvist_98@kth.se'),
+('hannes.linder_99@kth.se'),
+('erik.andersson_100@kth.se');
+INSERT INTO person_phone (person_id, phone_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10),
+(11, 11),
+(12, 12),
+(13, 13),
+(14, 14),
+(15, 15),
+(16, 16),
+(17, 17),
+(18, 18),
+(19, 19),
+(20, 20),
+(21, 21),
+(22, 22),
+(23, 23),
+(24, 24),
+(25, 25),
+(26, 26),
+(27, 27),
+(28, 28),
+(29, 29),
+(30, 30),
+(31, 31),
+(32, 32),
+(33, 33),
+(34, 34),
+(35, 35),
+(36, 36),
+(37, 37),
+(38, 38),
+(39, 39),
+(40, 40),
+(41, 41),
+(42, 42),
+(43, 43),
+(44, 44),
+(45, 45),
+(46, 46),
+(47, 47),
+(48, 48),
+(49, 49),
+(50, 50),
+(51, 51),
+(52, 52),
+(53, 53),
+(54, 54),
+(55, 55),
+(56, 56),
+(57, 57),
+(58, 58),
+(59, 59),
+(60, 60),
+(61, 61),
+(62, 62),
+(63, 63),
+(64, 64),
+(65, 65),
+(66, 66),
+(67, 67),
+(68, 68),
+(69, 69),
+(70, 70),
+(71, 71),
+(72, 72),
+(73, 73),
+(74, 74),
+(75, 75),
+(76, 76),
+(77, 77),
+(78, 78),
+(79, 79),
+(80, 80),
+(81, 81),
+(82, 82),
+(83, 83),
+(84, 84),
+(85, 85),
+(86, 86),
+(87, 87),
+(88, 88),
+(89, 89),
+(90, 90),
+(91, 91),
+(92, 92),
+(93, 93),
+(94, 94),
+(95, 95),
+(96, 96),
+(97, 97),
+(98, 98),
+(99, 99),
+(100, 100);
+INSERT INTO person_email (person_id, email_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10),
+(11, 11),
+(12, 12),
+(13, 13),
+(14, 14),
+(15, 15),
+(16, 16),
+(17, 17),
+(18, 18),
+(19, 19),
+(20, 20),
+(21, 21),
+(22, 22),
+(23, 23),
+(24, 24),
+(25, 25),
+(26, 26),
+(27, 27),
+(28, 28),
+(29, 29),
+(30, 30),
+(31, 31),
+(32, 32),
+(33, 33),
+(34, 34),
+(35, 35),
+(36, 36),
+(37, 37),
+(38, 38),
+(39, 39),
+(40, 40),
+(41, 41),
+(42, 42),
+(43, 43),
+(44, 44),
+(45, 45),
+(46, 46),
+(47, 47),
+(48, 48),
+(49, 49),
+(50, 50),
+(51, 51),
+(52, 52),
+(53, 53),
+(54, 54),
+(55, 55),
+(56, 56),
+(57, 57),
+(58, 58),
+(59, 59),
+(60, 60),
+(61, 61),
+(62, 62),
+(63, 63),
+(64, 64),
+(65, 65),
+(66, 66),
+(67, 67),
+(68, 68),
+(69, 69),
+(70, 70),
+(71, 71),
+(72, 72),
+(73, 73),
+(74, 74),
+(75, 75),
+(76, 76),
+(77, 77),
+(78, 78),
+(79, 79),
+(80, 80),
+(81, 81),
+(82, 82),
+(83, 83),
+(84, 84),
+(85, 85),
+(86, 86),
+(87, 87),
+(88, 88),
+(89, 89),
+(90, 90),
+(91, 91),
+(92, 92),
+(93, 93),
+(94, 94),
+(95, 95),
+(96, 96),
+(97, 97),
+(98, 98),
+(99, 99),
+(100, 100);
+INSERT INTO employee (person_id, job_title_id, supervisor_id, employment_id, department_id) VALUES
+(1, 5, NULL, 'kth-0001', 3),
+(2, 4, 1, 'kth-0002', 1),
+(3, 5, 1, 'kth-0003', 4),
+(4, 2, 3, 'kth-0004', 2),
+(5, 5, 4, 'kth-0005', 1),
+(6, 5, 1, 'kth-0006', 4),
+(7, 2, 4, 'kth-0007', 3),
+(8, 6, 6, 'kth-0008', 2),
+(9, 2, 3, 'kth-0009', 4),
+(10, 4, 1, 'kth-0010', 4),
+(11, 2, 10, 'kth-0011', 5),
+(12, 5, 5, 'kth-0012', 5),
+(13, 2, 8, 'kth-0013', 3),
+(14, 2, 2, 'kth-0014', 4),
+(15, 5, 13, 'kth-0015', 2),
+(16, 2, 3, 'kth-0016', 1),
+(17, 3, 8, 'kth-0017', 2),
+(18, 1, 12, 'kth-0018', 2),
+(19, 5, 4, 'kth-0019', 1),
+(20, 4, 18, 'kth-0020', 5),
+(21, 6, 18, 'kth-0021', 1),
+(22, 4, 18, 'kth-0022', 4),
+(23, 4, 10, 'kth-0023', 2),
+(24, 4, 16, 'kth-0024', 1),
+(25, 2, 6, 'kth-0025', 5),
+(26, 1, 19, 'kth-0026', 3),
+(27, 6, 19, 'kth-0027', 2),
+(28, 6, 8, 'kth-0028', 4),
+(29, 6, 24, 'kth-0029', 3),
+(30, 1, 18, 'kth-0030', 2),
+(31, 2, 23, 'kth-0031', 2),
+(32, 2, 11, 'kth-0032', 2),
+(33, 5, 8, 'kth-0033', 4),
+(34, 5, 12, 'kth-0034', 1),
+(35, 3, 30, 'kth-0035', 4),
+(36, 5, 34, 'kth-0036', 5),
+(37, 3, 33, 'kth-0037', 1),
+(38, 1, 13, 'kth-0038', 1),
+(39, 4, 12, 'kth-0039', 4),
+(40, 3, 3, 'kth-0040', 3),
+(41, 3, 38, 'kth-0041', 5),
+(42, 3, 38, 'kth-0042', 3),
+(43, 4, 40, 'kth-0043', 2),
+(44, 3, 13, 'kth-0044', 5),
+(45, 3, 26, 'kth-0045', 3),
+(46, 3, 22, 'kth-0046', 5),
+(47, 2, 11, 'kth-0047', 5),
+(48, 2, 22, 'kth-0048', 4),
+(49, 3, 19, 'kth-0049', 4),
+(50, 2, 17, 'kth-0050', 4),
+(51, 6, 44, 'kth-0051', 4),
+(52, 6, 40, 'kth-0052', 5),
+(53, 5, 6, 'kth-0053', 4),
+(54, 6, 2, 'kth-0054', 2),
+(55, 3, 1, 'kth-0055', 2),
+(56, 1, 8, 'kth-0056', 5),
+(57, 4, 55, 'kth-0057', 4),
+(58, 4, 9, 'kth-0058', 1),
+(59, 3, 54, 'kth-0059', 2),
+(60, 6, 26, 'kth-0060', 1),
+(61, 1, 34, 'kth-0061', 3),
+(62, 6, 1, 'kth-0062', 5),
+(63, 1, 41, 'kth-0063', 3),
+(64, 1, 50, 'kth-0064', 4),
+(65, 6, 42, 'kth-0065', 3),
+(66, 3, 40, 'kth-0066', 5),
+(67, 4, 53, 'kth-0067', 3),
+(68, 2, 1, 'kth-0068', 5),
+(69, 1, 13, 'kth-0069', 1),
+(70, 5, 34, 'kth-0070', 3),
+(71, 5, 38, 'kth-0071', 5),
+(72, 2, 33, 'kth-0072', 4),
+(73, 6, 13, 'kth-0073', 3),
+(74, 6, 35, 'kth-0074', 2),
+(75, 2, 34, 'kth-0075', 4),
+(76, 6, 67, 'kth-0076', 3),
+(77, 6, 67, 'kth-0077', 4),
+(78, 2, 6, 'kth-0078', 1),
+(79, 5, 46, 'kth-0079', 4),
+(80, 6, 35, 'kth-0080', 1),
+(81, 3, 45, 'kth-0081', 3),
+(82, 5, 4, 'kth-0082', 4),
+(83, 5, 24, 'kth-0083', 2),
+(84, 5, 36, 'kth-0084', 1),
+(85, 2, 83, 'kth-0085', 1),
+(86, 2, 80, 'kth-0086', 3),
+(87, 2, 80, 'kth-0087', 1),
+(88, 5, 14, 'kth-0088', 4),
+(89, 5, 75, 'kth-0089', 3),
+(90, 2, 24, 'kth-0090', 5),
+(91, 6, 21, 'kth-0091', 4),
+(92, 5, 60, 'kth-0092', 3),
+(93, 2, 14, 'kth-0093', 1),
+(94, 2, 8, 'kth-0094', 5),
+(95, 3, 52, 'kth-0095', 5),
+(96, 5, 56, 'kth-0096', 5),
+(97, 2, 31, 'kth-0097', 4),
+(98, 1, 31, 'kth-0098', 3),
+(99, 2, 57, 'kth-0099', 2),
+(100, 2, 2, 'kth-0100', 2);
+INSERT INTO salary_history (employee_id, amount, valid_from) VALUES
+(1, 38323, '2020-01-01'),
+(2, 83421, '2020-01-01'),
+(3, 56095, '2020-01-01'),
+(4, 70737, '2020-01-01'),
+(5, 44274, '2020-01-01'),
+(6, 60407, '2020-01-01'),
+(7, 54148, '2020-01-01'),
+(8, 81021, '2020-01-01'),
+(9, 51418, '2020-01-01'),
+(10, 84851, '2020-01-01'),
+(11, 58627, '2020-01-01'),
+(12, 64536, '2020-01-01'),
+(13, 54176, '2020-01-01'),
+(14, 36620, '2020-01-01'),
+(15, 39403, '2020-01-01'),
+(16, 75111, '2020-01-01'),
+(17, 84376, '2020-01-01'),
+(18, 56372, '2020-01-01'),
+(19, 44492, '2020-01-01'),
+(20, 52946, '2020-01-01'),
+(21, 40176, '2020-01-01'),
+(22, 43131, '2020-01-01'),
+(23, 35465, '2020-01-01'),
+(24, 80676, '2020-01-01'),
+(25, 66070, '2020-01-01'),
+(26, 73321, '2020-01-01'),
+(27, 37215, '2020-01-01'),
+(28, 43924, '2020-01-01'),
+(29, 48166, '2020-01-01'),
+(30, 70014, '2020-01-01'),
+(31, 35961, '2020-01-01'),
+(32, 68709, '2020-01-01'),
+(33, 40253, '2020-01-01'),
+(34, 80585, '2020-01-01'),
+(35, 84720, '2020-01-01'),
+(36, 48101, '2020-01-01'),
+(37, 48602, '2020-01-01'),
+(38, 65396, '2020-01-01'),
+(39, 44783, '2020-01-01'),
+(40, 74777, '2020-01-01'),
+(41, 37256, '2020-01-01'),
+(42, 57715, '2020-01-01'),
+(43, 36048, '2020-01-01'),
+(44, 76986, '2020-01-01'),
+(45, 79725, '2020-01-01'),
+(46, 50763, '2020-01-01'),
+(47, 55925, '2020-01-01'),
+(48, 77434, '2020-01-01'),
+(49, 81962, '2020-01-01'),
+(50, 81433, '2020-01-01'),
+(51, 56488, '2020-01-01'),
+(52, 38423, '2020-01-01'),
+(53, 53568, '2020-01-01'),
+(54, 69214, '2020-01-01'),
+(55, 37535, '2020-01-01'),
+(56, 41433, '2020-01-01'),
+(57, 40557, '2020-01-01'),
+(58, 47687, '2020-01-01'),
+(59, 64735, '2020-01-01'),
+(60, 47599, '2020-01-01'),
+(61, 43147, '2020-01-01'),
+(62, 67558, '2020-01-01'),
+(63, 36887, '2020-01-01'),
+(64, 45689, '2020-01-01'),
+(65, 52986, '2020-01-01'),
+(66, 51453, '2020-01-01'),
+(67, 76415, '2020-01-01'),
+(68, 54851, '2020-01-01'),
+(69, 56022, '2020-01-01'),
+(70, 69718, '2020-01-01'),
+(71, 42733, '2020-01-01'),
+(72, 36283, '2020-01-01'),
+(73, 84002, '2020-01-01'),
+(74, 37221, '2020-01-01'),
+(75, 83309, '2020-01-01'),
+(76, 74113, '2020-01-01'),
+(77, 40868, '2020-01-01'),
+(78, 75297, '2020-01-01'),
+(79, 73805, '2020-01-01'),
+(80, 60868, '2020-01-01'),
+(81, 73844, '2020-01-01'),
+(82, 38771, '2020-01-01'),
+(83, 71964, '2020-01-01'),
+(84, 40896, '2020-01-01'),
+(85, 57794, '2020-01-01'),
+(86, 51511, '2020-01-01'),
+(87, 83118, '2020-01-01'),
+(88, 76216, '2020-01-01'),
+(89, 53738, '2020-01-01'),
+(90, 74900, '2020-01-01'),
+(91, 46468, '2020-01-01'),
+(92, 45840, '2020-01-01'),
+(93, 54473, '2020-01-01'),
+(94, 52364, '2020-01-01'),
+(95, 52059, '2020-01-01'),
+(96, 55093, '2020-01-01'),
+(97, 36455, '2020-01-01'),
+(98, 56123, '2020-01-01'),
+(99, 74690, '2020-01-01'),
+(100, 76781, '2020-01-01');
+INSERT INTO employee_skill_set (employee_id, skill_set_id) VALUES
+(1, 7),
+(2, 6),
+(3, 6),
+(4, 3),
+(5, 8),
+(6, 7),
+(7, 3),
+(8, 2),
+(9, 1),
+(10, 8),
+(11, 6),
+(12, 7),
+(13, 3),
+(14, 8),
+(15, 3),
+(16, 2),
+(17, 1),
+(18, 7),
+(19, 1),
+(20, 6),
+(21, 7),
+(22, 6),
+(23, 2),
+(24, 3),
+(25, 5),
+(26, 8),
+(27, 4),
+(28, 2),
+(29, 8),
+(30, 5),
+(31, 1),
+(32, 7),
+(33, 3),
+(34, 3),
+(35, 3),
+(36, 3),
+(37, 2),
+(38, 5),
+(39, 3),
+(40, 8),
+(41, 6),
+(42, 3),
+(43, 3),
+(44, 8),
+(45, 8),
+(46, 8),
+(47, 1),
+(48, 4),
+(49, 2),
+(50, 3),
+(51, 6),
+(52, 4),
+(53, 6),
+(54, 2),
+(55, 8),
+(56, 2),
+(57, 6),
+(58, 4),
+(59, 7),
+(60, 4),
+(61, 3),
+(62, 5),
+(63, 2),
+(64, 5),
+(65, 1),
+(66, 4),
+(67, 2),
+(68, 1),
+(69, 4),
+(70, 4),
+(71, 6),
+(72, 6),
+(73, 2),
+(74, 1),
+(75, 1),
+(76, 5),
+(77, 7),
+(78, 5),
+(79, 6),
+(80, 3),
+(81, 5),
+(82, 2),
+(83, 4),
+(84, 1),
+(85, 4),
+(86, 1),
+(87, 8),
+(88, 7),
+(89, 4),
+(90, 5),
+(91, 7),
+(92, 6),
+(93, 7),
+(94, 3),
+(95, 6),
+(96, 7),
+(97, 8),
+(98, 7),
+(99, 4),
+(100, 8);
+INSERT INTO employee_interest (employee_id, interest_id) VALUES
+(1, 3),
+(2, 5),
+(3, 5),
+(4, 5),
+(5, 6),
+(6, 3),
+(7, 5),
+(8, 4),
+(9, 6),
+(10, 5),
+(11, 1),
+(12, 2),
+(13, 4),
+(14, 2),
+(15, 6),
+(16, 1),
+(17, 2),
+(18, 5),
+(19, 6),
+(20, 2),
+(21, 1),
+(22, 1),
+(23, 3),
+(24, 2),
+(25, 1),
+(26, 6),
+(27, 3),
+(28, 2),
+(29, 5),
+(30, 3),
+(31, 4),
+(32, 4),
+(33, 4),
+(34, 1),
+(35, 4),
+(36, 2),
+(37, 5),
+(38, 5),
+(39, 4),
+(40, 4),
+(41, 4),
+(42, 1),
+(43, 6),
+(44, 3),
+(45, 4),
+(46, 1),
+(47, 6),
+(48, 2),
+(49, 5),
+(50, 2),
+(51, 3),
+(52, 3),
+(53, 6),
+(54, 4),
+(55, 1),
+(56, 3),
+(57, 6),
+(58, 4),
+(59, 2),
+(60, 5),
+(61, 5),
+(62, 4),
+(63, 6),
+(64, 5),
+(65, 4),
+(66, 6),
+(67, 3),
+(68, 4),
+(69, 5),
+(70, 4),
+(71, 4),
+(72, 6),
+(73, 2),
+(74, 3),
+(75, 1),
+(76, 3),
+(77, 5),
+(78, 4),
+(79, 5),
+(80, 4),
+(81, 3),
+(82, 3),
+(83, 5),
+(84, 6),
+(85, 5),
+(86, 2),
+(87, 3),
+(88, 6),
+(89, 4),
+(90, 4),
+(91, 3),
+(92, 2),
+(93, 5),
+(94, 4),
+(95, 6),
+(96, 4),
+(97, 2),
+(98, 6),
+(99, 1),
+(100, 3);
 UPDATE department SET manager_id = 1 WHERE id = 1;
 UPDATE department SET manager_id = 2 WHERE id = 2;
 UPDATE department SET manager_id = 3 WHERE id = 3;
 UPDATE department SET manager_id = 4 WHERE id = 4;
 UPDATE department SET manager_id = 5 WHERE id = 5;
-INSERT INTO course (course_code, course_name) VALUES ('DD1337', 'Programming');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (1, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('ID1018', 'Programming I');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (2, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('IV1350', 'Object Oriented Design');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (3, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('DD2420', 'Probabilistic Graphical Models');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (4, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('DD1420', 'Foundations of Machine Learning');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (5, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('SF1624', 'Algebra and Geometry');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (6, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('SF1625', 'Calculus in One Variable');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (7, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('DH2642', 'Interaction Programming and the Dynamic Web');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (8, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('DD2350', 'Algorithms, Data Structures and Complexity');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (9, 10, 200, 9.0, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('II1305', 'Project Management in IT');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (10, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('DD2434', 'Machine Learning, Advanced Course');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (11, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('ID1217', 'Concurrent Programming');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (12, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('IV1013', 'Introduction to Computer Security');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (13, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('IK1203', 'Networks and Communication');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (14, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('SF1901', 'Probability Theory and Statistics');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (15, 10, 200, 6.0, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('ME1003', 'Industrial Management, Basic Course');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (16, 10, 200, 6.0, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('DA1600', 'Writing in the Engineering Profession');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (17, 10, 200, 3.0, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('DD2380', 'Artificial Intelligence');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (18, 10, 200, 6.0, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('IV1351', 'Data Storage Paradigms');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (19, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('DH1620', 'Human-Computer Interaction, Introductory Course');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (20, 10, 200, 6.0, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('SD2125', 'Signals and Mechanical Structures');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (21, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('SG1102', 'Mechanics I');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (22, 10, 200, 6.0, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('SK1120', 'Physics, General Course');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (23, 10, 200, 9.0, '2020-01-01');
-INSERT INTO course (course_code, course_name) VALUES ('BB1050', 'Biotechnology');
-INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES (24, 10, 200, 7.5, '2020-01-01');
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (1, 145, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (1, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 1, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (16, 1, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 1, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (7, 2, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 1, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (16, 3, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 1, 32);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (16, 4, 32);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (2, 132, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (2, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 2, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 5, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 2, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (98, 6, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 2, 54);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 7, 54);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 2, 39);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 8, 39);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (4, 161, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (3, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 3, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (4, 9, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 3, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (58, 10, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 3, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 11, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 3, 32);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (4, 12, 32);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 3, 65);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (4, 13, 65);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (6, 80, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (4, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 4, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (65, 14, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 4, 52);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (72, 15, 52);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 4, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (80, 16, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 4, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (65, 17, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 4, 75);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (65, 18, 75);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (7, 100, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (5, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 5, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (43, 19, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 5, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (74, 20, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 5, 58);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (43, 21, 58);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 5, 76);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (43, 22, 76);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (9, 40, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (6, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 6, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (84, 23, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 6, 40);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (63, 24, 40);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 6, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (86, 25, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 6, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (4, 26, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 6, 55);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (84, 27, 55);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 6, 47);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (84, 28, 47);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (13, 64, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (7, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 7, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (39, 29, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 7, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (1, 30, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 7, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (67, 31, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 7, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (13, 32, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 7, 32);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (39, 33, 32);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 7, 60);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (39, 34, 60);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (17, 37, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (8, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 8, 22);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (6, 35, 22);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 8, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (8, 36, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 8, 58);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (6, 37, 58);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 8, 43);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (6, 38, 43);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (19, 115, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (9, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 9, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (20, 39, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 9, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (91, 40, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 9, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (12, 41, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 9, 51);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (20, 42, 51);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 9, 72);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (20, 43, 72);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (21, 168, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (10, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 10, 21);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (6, 44, 21);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 10, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (2, 45, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 10, 28);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (6, 46, 28);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 10, 70);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (6, 47, 70);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (22, 156, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (11, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 11, 28);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (2, 48, 28);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 11, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (90, 49, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 11, 43);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (2, 50, 43);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 11, 53);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (15, 51, 53);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (1, 70, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (12, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 12, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (28, 52, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 12, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (98, 53, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 12, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (78, 54, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 12, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (16, 55, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 12, 40);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (28, 56, 40);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 12, 59);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (28, 57, 59);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (2, 30, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (13, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 13, 22);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (94, 58, 22);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 13, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (52, 59, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 13, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (19, 60, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 13, 59);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (94, 61, 59);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 13, 59);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (94, 62, 59);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (3, 158, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (14, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 14, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 63, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 14, 35);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (65, 64, 35);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 14, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (16, 65, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 14, 35);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (1, 66, 35);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 14, 80);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (98, 67, 80);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (4, 120, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (15, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 15, 21);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (95, 68, 21);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 15, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (60, 69, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 15, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (95, 70, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 15, 53);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (95, 71, 53);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (7, 162, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (16, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 16, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (95, 72, 30);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 16, 53);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (40, 73, 53);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 16, 52);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (95, 74, 52);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 16, 64);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (95, 75, 64);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (9, 156, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (17, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 17, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (67, 76, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 17, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (45, 77, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 17, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (67, 78, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 17, 38);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (67, 79, 38);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (10, 169, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (18, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 18, 25);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (46, 80, 25);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 18, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (60, 81, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 18, 34);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (46, 82, 34);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 18, 44);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (46, 83, 44);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (13, 164, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (19, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 19, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (77, 84, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 19, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (41, 85, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 19, 55);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (77, 86, 55);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 19, 43);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (61, 87, 43);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (14, 135, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (20, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 20, 26);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (57, 88, 26);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 20, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (75, 89, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 20, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (28, 90, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 20, 37);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (57, 91, 37);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 20, 74);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (57, 92, 74);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (15, 172, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (21, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 21, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (44, 93, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 21, 27);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (22, 94, 27);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 21, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (35, 95, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 21, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (49, 96, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 21, 59);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (44, 97, 59);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 21, 62);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (44, 98, 62);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (16, 90, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (22, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 22, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (29, 99, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 22, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (83, 100, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 22, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (8, 101, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 22, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (29, 102, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 22, 51);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (29, 103, 51);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (17, 119, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (23, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 23, 28);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (20, 104, 28);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 23, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (45, 105, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 23, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (59, 106, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 23, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (15, 107, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 23, 78);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (20, 108, 78);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (18, 113, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (24, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 24, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (31, 109, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 24, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (38, 110, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 24, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (35, 111, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 24, 49);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (88, 112, 49);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 24, 78);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (88, 113, 78);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (21, 34, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (25, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 25, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 114, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 25, 44);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (9, 115, 44);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 25, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (94, 116, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 25, 46);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 117, 46);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 25, 40);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (62, 118, 40);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (24, 58, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (26, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 26, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (6, 119, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 26, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (34, 120, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 26, 35);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (6, 121, 35);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 26, 34);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (6, 122, 34);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (1, 50, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (27, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 27, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (34, 123, 30);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 27, 45);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (75, 124, 45);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 27, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (22, 125, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 27, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (34, 126, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 27, 63);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (34, 127, 63);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (2, 77, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (28, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 28, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (98, 128, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 28, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (77, 129, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 28, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (13, 130, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 28, 42);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (98, 131, 42);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 28, 72);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (98, 132, 72);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (3, 48, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (29, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 29, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 133, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 29, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (46, 134, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 29, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 135, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 29, 71);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 136, 71);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (5, 144, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (30, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 30, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (62, 137, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 30, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (49, 138, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 30, 32);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (62, 139, 32);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 30, 79);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (83, 140, 79);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (6, 50, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (31, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 31, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (14, 141, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 31, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (48, 142, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 31, 52);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (14, 143, 52);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 31, 35);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (14, 144, 35);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (7, 146, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (32, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 32, 26);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (50, 145, 26);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 32, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (17, 146, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 32, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (28, 147, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 32, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (79, 148, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 32, 28);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (50, 149, 28);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 32, 32);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (50, 150, 32);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (8, 170, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (33, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 33, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (41, 151, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 33, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (25, 152, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 33, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (47, 153, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 33, 39);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (41, 154, 39);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 33, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (41, 155, 36);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (9, 104, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (34, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 34, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (30, 156, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 34, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (30, 157, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 34, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (49, 158, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 34, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (30, 159, 36);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 34, 75);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (30, 160, 75);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (11, 130, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (35, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 35, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (86, 161, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 35, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 162, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 35, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (7, 163, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 35, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (86, 164, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 35, 44);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (86, 165, 44);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (18, 171, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (36, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 36, 25);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (21, 166, 25);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 36, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 167, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 36, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (2, 168, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 36, 22);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (61, 169, 22);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 36, 53);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (98, 170, 53);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (20, 124, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (37, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 37, 22);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (90, 171, 22);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 37, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (3, 172, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 37, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (98, 173, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 37, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (90, 174, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 37, 46);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (90, 175, 46);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (21, 49, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (38, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 38, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (19, 176, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 38, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (94, 177, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 38, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (39, 178, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 38, 37);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (19, 179, 37);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 38, 44);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (19, 180, 44);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (22, 121, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (39, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 39, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (27, 181, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 39, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (61, 182, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 39, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (53, 183, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 39, 46);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (27, 184, 46);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 39, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (27, 185, 36);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (4, 31, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (40, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 40, 21);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (66, 186, 21);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 40, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (75, 187, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 40, 44);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (66, 188, 44);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 40, 44);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (94, 189, 44);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (5, 100, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (41, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 41, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (79, 190, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 41, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (40, 191, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 41, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (33, 192, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 41, 45);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (39, 193, 45);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 41, 72);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (39, 194, 72);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (6, 149, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (42, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 42, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (80, 195, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 42, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (78, 196, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 42, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (29, 197, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 42, 54);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (80, 198, 54);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 42, 69);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (80, 199, 69);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (9, 41, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (43, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 43, 27);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (10, 200, 27);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 43, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (66, 201, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 43, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (8, 202, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 43, 46);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (2, 203, 46);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 43, 62);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (2, 204, 62);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (10, 104, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (44, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 44, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (53, 205, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 44, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (40, 206, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 44, 47);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (53, 207, 47);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 44, 67);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (53, 208, 67);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (12, 65, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (45, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 45, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 209, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 45, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (71, 210, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 45, 49);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 211, 49);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 45, 67);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 212, 67);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (14, 74, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (46, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 46, 22);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (43, 213, 22);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 46, 35);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (92, 214, 35);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 46, 42);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (43, 215, 42);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 46, 65);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (43, 216, 65);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (17, 65, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (47, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 47, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (95, 217, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 47, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (8, 218, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 47, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (81, 219, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 47, 41);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (95, 220, 41);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 47, 65);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (95, 221, 65);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (18, 123, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (48, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 48, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (70, 222, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 48, 55);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (50, 223, 55);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 48, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 224, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 48, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 225, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 48, 57);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (70, 226, 57);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 48, 47);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (70, 227, 47);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (19, 77, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (49, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 49, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (11, 228, 30);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 49, 41);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (69, 229, 41);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 49, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (34, 230, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 49, 40);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (11, 231, 40);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 49, 70);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (11, 232, 70);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (20, 126, '2023');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (50, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 50, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (41, 233, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 50, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (2, 234, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 50, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (41, 235, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 50, 76);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (41, 236, 76);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (2, 142, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (51, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 51, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (41, 237, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 51, 60);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (59, 238, 60);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 51, 34);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (41, 239, 34);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 51, 38);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (40, 240, 38);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (3, 114, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (52, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 52, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (90, 241, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 52, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 242, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 52, 47);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (90, 243, 47);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 52, 55);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (70, 244, 55);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (5, 149, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (53, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 53, 27);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (31, 245, 27);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 53, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (15, 246, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 53, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (75, 247, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 53, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (31, 248, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 53, 58);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (31, 249, 58);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (8, 177, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (54, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 54, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (22, 250, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 54, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (36, 251, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 54, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (3, 252, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 54, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (100, 253, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 54, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (22, 254, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 54, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (22, 255, 36);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (9, 81, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (55, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 55, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (31, 256, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 55, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (44, 257, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 55, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (27, 258, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 55, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (39, 259, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 55, 37);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (64, 260, 37);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 55, 45);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (17, 261, 45);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (12, 162, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (56, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 56, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (84, 262, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 56, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (85, 263, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 56, 31);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (84, 264, 31);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 56, 52);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (84, 265, 52);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (14, 33, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (57, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 57, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (63, 266, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 57, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (55, 267, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 57, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (66, 268, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 57, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (56, 269, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 57, 43);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 270, 43);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (15, 47, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (58, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 58, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (67, 271, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 58, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (71, 272, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 58, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (96, 273, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 58, 34);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (67, 274, 34);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 58, 74);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (67, 275, 74);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (16, 44, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (59, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 59, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (71, 276, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 59, 47);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (90, 277, 47);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 59, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (75, 278, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 59, 42);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (71, 279, 42);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 59, 31);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (71, 280, 31);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (17, 37, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (60, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 60, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 281, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 60, 50);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (65, 282, 50);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 60, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (94, 283, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 60, 42);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 284, 42);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 60, 69);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 285, 69);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (18, 136, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (61, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 61, 22);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (72, 286, 22);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 61, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (85, 287, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 61, 53);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (72, 288, 53);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 61, 61);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (72, 289, 61);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (19, 127, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (62, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 62, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (43, 290, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 62, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (57, 291, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 62, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (86, 292, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 62, 31);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (62, 293, 31);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 62, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (62, 294, 36);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (20, 88, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (63, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 63, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (96, 295, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 63, 21);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (29, 296, 21);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 63, 40);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (96, 297, 40);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 63, 40);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (96, 298, 40);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (22, 47, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (64, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 64, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (67, 299, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 64, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (75, 300, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 64, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (67, 301, 36);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 64, 34);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (98, 302, 34);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (23, 35, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (65, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 65, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (92, 303, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 65, 31);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (28, 304, 31);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 65, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (96, 305, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 65, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (52, 306, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 65, 31);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (92, 307, 31);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 65, 56);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (92, 308, 56);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (24, 33, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (66, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 66, 28);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (92, 309, 28);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 66, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (13, 310, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 66, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (84, 311, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 66, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (92, 312, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 66, 70);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (92, 313, 70);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (1, 100, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (67, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 67, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (59, 314, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 67, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (16, 315, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 67, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (27, 316, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 67, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (59, 317, 36);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 67, 54);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (59, 318, 54);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (2, 131, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (68, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 68, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 319, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 68, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (74, 320, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 68, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (30, 321, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 68, 45);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 322, 45);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 68, 48);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 323, 48);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (3, 161, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (69, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 69, 25);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (87, 324, 25);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 69, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (19, 325, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 69, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (63, 326, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 69, 22);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (87, 327, 22);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 69, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (87, 328, 36);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (4, 71, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (70, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 70, 28);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (9, 329, 28);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 70, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (66, 330, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 70, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (7, 331, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 70, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (9, 332, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 70, 49);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (9, 333, 49);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (5, 86, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (71, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 71, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (39, 334, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 71, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (19, 335, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 71, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (55, 336, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 71, 37);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (39, 337, 37);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 71, 37);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (39, 338, 37);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (6, 30, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (72, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 72, 21);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (8, 339, 21);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 72, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (35, 340, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 72, 43);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (8, 341, 43);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 72, 46);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (8, 342, 46);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (7, 52, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (73, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 73, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (45, 343, 30);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 73, 32);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (53, 344, 32);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 73, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (45, 345, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 73, 63);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (45, 346, 63);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (8, 89, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (74, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 74, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (71, 347, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 74, 51);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 348, 51);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 74, 40);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (71, 349, 40);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 74, 42);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (71, 350, 42);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (10, 114, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (75, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 75, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (21, 351, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 75, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (20, 352, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 75, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (85, 353, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 75, 58);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (44, 354, 58);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 75, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (44, 355, 36);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (12, 139, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (76, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 76, 25);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (79, 356, 25);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 76, 39);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (65, 357, 39);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 76, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (15, 358, 36);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 76, 55);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (79, 359, 55);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (13, 34, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (77, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 77, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (93, 360, 30);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 77, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (35, 361, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 77, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (69, 362, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 77, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (70, 363, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 77, 49);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (93, 364, 49);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 77, 32);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (93, 365, 32);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (15, 130, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (78, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 78, 21);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (93, 366, 21);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 78, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (2, 367, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 78, 37);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (40, 368, 37);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 78, 62);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (93, 369, 62);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (16, 63, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (79, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 79, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 370, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 79, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (40, 371, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 79, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (76, 372, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 79, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (6, 373, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 79, 34);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 374, 34);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 79, 40);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 375, 40);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (17, 140, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (80, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 80, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (1, 376, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 80, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (31, 377, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 80, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (66, 378, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 80, 45);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (1, 379, 45);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 80, 77);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (1, 380, 77);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (18, 66, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (81, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 81, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (32, 381, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 81, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (87, 382, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 81, 41);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (32, 383, 41);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 81, 43);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (22, 384, 43);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (19, 31, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (82, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 82, 26);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (37, 385, 26);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 82, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (84, 386, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 82, 31);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (37, 387, 31);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 82, 38);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (37, 388, 38);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (21, 135, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (83, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 83, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (50, 389, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 83, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (78, 390, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 83, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (95, 391, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 83, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (96, 392, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 83, 59);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (50, 393, 59);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 83, 49);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (50, 394, 49);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (24, 102, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (84, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 84, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (69, 395, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 84, 59);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (69, 396, 59);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 84, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (68, 397, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 84, 69);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (34, 398, 69);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (1, 92, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (85, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 85, 21);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (94, 399, 21);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 85, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (6, 400, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 85, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (87, 401, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 85, 37);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (94, 402, 37);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 85, 57);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (94, 403, 57);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (2, 133, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (86, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 86, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (66, 404, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 86, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (75, 405, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 86, 49);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (66, 406, 49);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 86, 37);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (66, 407, 37);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (4, 37, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (87, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 87, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 408, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 87, 48);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (15, 409, 48);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 87, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (31, 410, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 87, 35);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 411, 35);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 87, 74);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 412, 74);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (5, 33, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (88, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 88, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 413, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 88, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (79, 414, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 88, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (47, 415, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 88, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 416, 30);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 88, 60);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 417, 60);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (6, 118, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (89, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 89, 28);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (68, 418, 28);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 89, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (75, 419, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 89, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (73, 420, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 89, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (35, 421, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 89, 49);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (33, 422, 49);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 89, 44);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (33, 423, 44);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (8, 42, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (90, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 90, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 424, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 90, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (49, 425, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 90, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (69, 426, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 90, 38);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (11, 427, 38);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 90, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (11, 428, 36);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (9, 104, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (91, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 91, 25);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (68, 429, 25);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 91, 40);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (27, 430, 40);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 91, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (85, 431, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 91, 57);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (68, 432, 57);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 91, 33);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (68, 433, 33);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (10, 99, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (92, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 92, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (98, 434, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 92, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (71, 435, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 92, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (93, 436, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 92, 33);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (98, 437, 33);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 92, 68);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (98, 438, 68);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (13, 91, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (93, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 93, 26);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 439, 26);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 93, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (100, 440, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 93, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (25, 441, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 93, 44);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 442, 44);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 93, 40);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 443, 40);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (15, 130, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (94, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 94, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (45, 444, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 94, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (47, 445, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 94, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (18, 446, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 94, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (6, 447, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 94, 31);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (45, 448, 31);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 94, 39);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (45, 449, 39);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (17, 127, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (95, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 95, 26);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (7, 450, 26);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 95, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (34, 451, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 95, 55);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (7, 452, 55);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 95, 79);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (7, 453, 79);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (19, 68, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (96, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 96, 26);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (78, 454, 26);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 96, 42);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (22, 455, 42);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 96, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (29, 456, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 96, 49);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (78, 457, 49);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 96, 52);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (78, 458, 52);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (20, 163, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (97, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 97, 25);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (62, 459, 25);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 97, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (81, 460, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 97, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (15, 461, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 97, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (76, 462, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 97, 39);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (62, 463, 39);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 97, 45);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (82, 464, 45);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (21, 37, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (98, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 98, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (58, 465, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 98, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (22, 466, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 98, 47);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (58, 467, 47);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 98, 74);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (58, 468, 74);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (23, 166, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (99, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 99, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (22, 469, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 99, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (86, 470, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 99, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (57, 471, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 99, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (45, 472, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 99, 56);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 473, 56);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 99, 73);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 474, 73);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (24, 71, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (100, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 100, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (38, 475, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 100, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (83, 476, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 100, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (21, 477, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 100, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (38, 478, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 100, 32);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (38, 479, 32);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (4, 118, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (101, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 101, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (48, 480, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 101, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (82, 481, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 101, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (64, 482, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 101, 56);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (48, 483, 56);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 101, 68);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (48, 484, 68);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (5, 62, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (102, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 102, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (37, 485, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 102, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (92, 486, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 102, 56);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (37, 487, 56);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 102, 45);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (37, 488, 45);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (6, 40, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (103, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 103, 28);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (4, 489, 28);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 103, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (67, 490, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 103, 43);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (4, 491, 43);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 103, 59);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (4, 492, 59);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (9, 179, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (104, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 104, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (64, 493, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 104, 47);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 494, 47);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 104, 37);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (44, 495, 37);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 104, 58);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (44, 496, 58);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (10, 54, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (105, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 105, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (60, 497, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 105, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (50, 498, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 105, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 499, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 105, 38);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (60, 500, 38);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 105, 75);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (63, 501, 75);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (11, 97, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (106, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 106, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (49, 502, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 106, 26);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (82, 503, 26);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 106, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (83, 504, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 106, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (49, 505, 36);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 106, 62);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (49, 506, 62);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (12, 45, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (107, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 107, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (38, 507, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 107, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (6, 508, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 107, 56);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (38, 509, 56);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 107, 71);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (38, 510, 71);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (13, 145, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (108, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 108, 22);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (89, 511, 22);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 108, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (33, 512, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 108, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (89, 513, 30);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 108, 73);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (89, 514, 73);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (14, 164, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (109, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 109, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (93, 515, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 109, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (38, 516, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 109, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (21, 517, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 109, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (81, 518, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 109, 56);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (93, 519, 56);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 109, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (93, 520, 30);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (15, 35, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (110, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 110, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (85, 521, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 110, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (62, 522, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 110, 57);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (85, 523, 57);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 110, 52);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (85, 524, 52);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (17, 54, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (111, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 111, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (62, 525, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 111, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (75, 526, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 111, 60);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (62, 527, 60);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 111, 61);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (62, 528, 61);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (18, 127, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (112, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 112, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 529, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 112, 47);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (78, 530, 47);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 112, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (31, 531, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 112, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (41, 532, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 112, 60);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (1, 533, 60);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 112, 68);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 534, 68);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (21, 176, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (113, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 113, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (55, 535, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 113, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (87, 536, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 113, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (89, 537, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 113, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (16, 538, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 113, 32);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (55, 539, 32);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 113, 71);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (55, 540, 71);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (23, 169, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (114, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 114, 28);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (56, 541, 28);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 114, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (58, 542, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 114, 55);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (56, 543, 55);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 114, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (56, 544, 36);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (24, 120, '2024');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (115, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 115, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 545, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 115, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (34, 546, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 115, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (16, 547, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 115, 55);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 548, 55);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 115, 44);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 549, 44);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (1, 178, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (116, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 116, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (48, 550, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 116, 41);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (73, 551, 41);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 116, 43);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 552, 43);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 116, 65);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 553, 65);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (2, 112, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (117, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 117, 26);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (52, 554, 26);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 117, 47);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (77, 555, 47);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 117, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (52, 556, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 117, 44);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (52, 557, 44);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (5, 131, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (118, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 118, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (7, 558, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 118, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (48, 559, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 118, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (83, 560, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 118, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (7, 561, 36);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 118, 59);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (7, 562, 59);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (6, 122, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (119, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 119, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (71, 563, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 119, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (16, 564, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 119, 22);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (71, 565, 22);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 119, 76);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (71, 566, 76);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (7, 77, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (120, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 120, 26);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (42, 567, 26);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 120, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (38, 568, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 120, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (93, 569, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 120, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (42, 570, 36);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 120, 45);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (42, 571, 45);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (8, 77, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (121, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 121, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (16, 572, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 121, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (53, 573, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 121, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (26, 574, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 121, 50);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (16, 575, 50);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 121, 77);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (16, 576, 77);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (11, 45, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (122, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 122, 27);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (15, 577, 27);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 122, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (37, 578, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 122, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (94, 579, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 122, 21);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (15, 580, 21);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 122, 48);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (15, 581, 48);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (13, 43, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (123, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 123, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (45, 582, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 123, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (18, 583, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 123, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (70, 584, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 123, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (19, 585, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 123, 59);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (45, 586, 59);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 123, 35);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (86, 587, 35);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (14, 131, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (124, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 124, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (80, 588, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 124, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (99, 589, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 124, 59);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (80, 590, 59);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 124, 63);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (80, 591, 63);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (15, 165, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (125, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 125, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (22, 592, 30);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 125, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (44, 593, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 125, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (63, 594, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 125, 28);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (22, 595, 28);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 125, 68);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (22, 596, 68);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (16, 139, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (126, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 126, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (66, 597, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 126, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 598, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 126, 58);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (80, 599, 58);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 126, 32);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (66, 600, 32);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (18, 114, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (127, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 127, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (9, 601, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 127, 54);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (75, 602, 54);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 127, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (12, 603, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 127, 41);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (9, 604, 41);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 127, 64);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (9, 605, 64);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (20, 57, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (128, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 128, 22);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (100, 606, 22);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 128, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (81, 607, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 128, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (72, 608, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 128, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (100, 609, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 128, 76);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (53, 610, 76);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (22, 170, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (129, 'P1');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 129, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (100, 611, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 129, 35);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (89, 612, 35);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 129, 54);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (100, 613, 54);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 129, 51);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (100, 614, 51);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (4, 123, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (130, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 130, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (62, 615, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 130, 35);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (37, 616, 35);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 130, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (72, 617, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 130, 55);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (62, 618, 55);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 130, 63);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (62, 619, 63);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (7, 141, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (131, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 131, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (43, 620, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 131, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (49, 621, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 131, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (16, 622, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 131, 35);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (43, 623, 35);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 131, 62);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (43, 624, 62);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (8, 151, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (132, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 132, 21);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (48, 625, 21);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 132, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (14, 626, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 132, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (52, 627, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 132, 41);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (48, 628, 41);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 132, 71);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (48, 629, 71);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (9, 51, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (133, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 133, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (94, 630, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 133, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (19, 631, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 133, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (94, 632, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 133, 45);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (55, 633, 45);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (10, 37, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (134, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 134, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (39, 634, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 134, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (25, 635, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 134, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (25, 636, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 134, 53);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (39, 637, 53);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 134, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (30, 638, 36);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (12, 101, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (135, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 135, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (51, 639, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 135, 34);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (39, 640, 34);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 135, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 641, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 135, 26);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (51, 642, 26);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 135, 48);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (51, 643, 48);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (16, 38, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (136, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 136, 22);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 644, 22);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 136, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (32, 645, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 136, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (94, 646, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 136, 39);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 647, 39);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 136, 74);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (17, 648, 74);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (17, 175, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (137, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 137, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (89, 649, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 137, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (7, 650, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 137, 21);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (89, 651, 21);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 137, 66);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (89, 652, 66);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (18, 57, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (138, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 138, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (72, 653, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 138, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (6, 654, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 138, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (100, 655, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 138, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (72, 656, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 138, 56);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (72, 657, 56);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (19, 132, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (139, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 139, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (77, 658, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 139, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (93, 659, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 139, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (75, 660, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 139, 37);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (77, 661, 37);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 139, 78);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (77, 662, 78);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (20, 104, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (140, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 140, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 663, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 140, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (96, 664, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 140, 32);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 665, 32);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 140, 42);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 666, 42);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (21, 161, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (141, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 141, 28);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (80, 667, 28);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 141, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (7, 668, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 141, 27);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (80, 669, 27);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 141, 44);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (80, 670, 44);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (22, 104, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (142, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 142, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (13, 671, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 142, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (70, 672, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 142, 14);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (29, 673, 14);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 142, 39);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (13, 674, 39);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 142, 69);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (13, 675, 69);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (23, 122, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (143, 'P2');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 143, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (20, 676, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 143, 46);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (44, 677, 46);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 143, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (11, 678, 30);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 143, 62);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (11, 679, 62);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (1, 58, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (144, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 144, 26);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (30, 680, 26);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 144, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (59, 681, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 144, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (41, 682, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 144, 56);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (30, 683, 56);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 144, 35);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (30, 684, 35);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (2, 102, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (145, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 145, 28);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (65, 685, 28);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 145, 58);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (26, 686, 58);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 145, 39);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (18, 687, 39);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 145, 47);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (18, 688, 47);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (7, 96, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (146, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 146, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (87, 689, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 146, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (43, 690, 30);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 146, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (69, 691, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 146, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (80, 692, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 146, 52);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (81, 693, 52);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 146, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (87, 694, 30);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (8, 81, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (147, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 147, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (85, 695, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 147, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (57, 696, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 147, 46);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (85, 697, 46);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 147, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (85, 698, 36);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (10, 72, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (148, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 148, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (35, 699, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 148, 32);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (17, 700, 32);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 148, 47);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (95, 701, 47);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 148, 35);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (95, 702, 35);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (11, 125, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (149, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 149, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (8, 703, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 149, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (14, 704, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 149, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (35, 705, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 149, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (41, 706, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 149, 67);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (40, 707, 67);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (12, 174, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (150, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 150, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (32, 708, 30);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 150, 56);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (86, 709, 56);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 150, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (18, 710, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 150, 46);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (32, 711, 46);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 150, 52);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (32, 712, 52);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (13, 40, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (151, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 151, 28);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (65, 713, 28);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 151, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (71, 714, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 151, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (89, 715, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 151, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (65, 716, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 151, 47);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (65, 717, 47);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (14, 76, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (152, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 152, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (93, 718, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 152, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (36, 719, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 152, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (28, 720, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 152, 26);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (93, 721, 26);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 152, 35);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (93, 722, 35);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (15, 113, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (153, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 153, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (82, 723, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 153, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (91, 724, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 153, 36);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (82, 725, 36);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 153, 41);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (82, 726, 41);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (16, 107, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (154, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 154, 25);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (25, 727, 25);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 154, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (45, 728, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 154, 40);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (25, 729, 40);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 154, 45);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (25, 730, 45);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (17, 129, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (155, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 155, 21);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (40, 731, 21);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 155, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (56, 732, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 155, 55);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (40, 733, 55);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 155, 31);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (40, 734, 31);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (19, 92, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (156, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 156, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (89, 735, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 156, 15);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (5, 736, 15);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 156, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (99, 737, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 156, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (42, 738, 30);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 156, 47);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (42, 739, 47);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (21, 156, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (157, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 157, 27);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (18, 740, 27);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 157, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (54, 741, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 157, 48);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (18, 742, 48);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 157, 54);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (18, 743, 54);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (22, 74, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (158, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 158, 10);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (13, 744, 10);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 158, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (13, 745, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 158, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 746, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 158, 48);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (13, 747, 48);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 158, 66);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (13, 748, 66);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (23, 77, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (159, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 159, 23);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (37, 749, 23);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 159, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (79, 750, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 159, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (63, 751, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 159, 34);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (37, 752, 34);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 159, 48);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (37, 753, 48);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (24, 96, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (160, 'P3');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 160, 26);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (100, 754, 26);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 160, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (42, 755, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 160, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (97, 756, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 160, 32);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (100, 757, 32);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 160, 34);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (100, 758, 34);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (5, 81, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (161, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 161, 22);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (8, 759, 22);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 161, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (89, 760, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 161, 41);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (8, 761, 41);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 161, 61);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (8, 762, 61);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (9, 167, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (162, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 162, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (12, 763, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 162, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (9, 764, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 162, 59);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (12, 765, 59);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 162, 54);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (12, 766, 54);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (10, 172, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (163, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 163, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (53, 767, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 163, 38);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (2, 768, 38);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 163, 50);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (53, 769, 50);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 163, 80);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (53, 770, 80);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (15, 146, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (164, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 164, 29);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (7, 771, 29);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 164, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (88, 772, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 164, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (43, 773, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 164, 37);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (7, 774, 37);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 164, 52);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (7, 775, 52);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (17, 172, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (165, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 165, 25);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (2, 776, 25);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 165, 19);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (68, 777, 19);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 165, 18);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (24, 778, 18);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 165, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 779, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 165, 30);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (8, 780, 30);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 165, 64);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (8, 781, 64);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (19, 62, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (166, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 166, 13);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (42, 782, 13);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 166, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (69, 783, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 166, 20);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (2, 784, 20);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 166, 38);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (9, 785, 38);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 166, 34);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (17, 786, 34);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (20, 157, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (167, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 167, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (67, 787, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (2, 167, 24);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (23, 788, 24);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (4, 167, 11);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (80, 789, 11);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 167, 39);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (67, 790, 39);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 167, 56);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (67, 791, 56);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (21, 43, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (168, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 168, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (25, 792, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 168, 16);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (100, 793, 16);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (5, 168, 17);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (27, 794, 17);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 168, 52);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (25, 795, 52);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 168, 65);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (25, 796, 65);
-INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES (22, 69, '2025');
-INSERT INTO course_instance_period (course_instance_id, study_period) VALUES (169, 'P4');
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (1, 169, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (61, 797, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (3, 169, 12);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (29, 798, 12);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (7, 169, 34);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (61, 799, 34);
-INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES (6, 169, 74);
-INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES (61, 800, 74);
+INSERT INTO course (course_code, course_name) VALUES
+('DD1337', 'Programming'),
+('ID1018', 'Programming I'),
+('IV1350', 'Object Oriented Design'),
+('DD2420', 'Probabilistic Graphical Models'),
+('DD1420', 'Foundations of Machine Learning'),
+('SF1624', 'Algebra and Geometry'),
+('SF1625', 'Calculus in One Variable'),
+('DH2642', 'Interaction Programming and the Dynamic Web'),
+('DD2350', 'Algorithms, Data Structures and Complexity'),
+('II1305', 'Project Management in IT'),
+('DD2434', 'Machine Learning, Advanced Course'),
+('ID1217', 'Concurrent Programming'),
+('IV1013', 'Introduction to Computer Security'),
+('IK1203', 'Networks and Communication'),
+('SF1901', 'Probability Theory and Statistics'),
+('ME1003', 'Industrial Management, Basic Course'),
+('DA1600', 'Writing in the Engineering Profession'),
+('DD2380', 'Artificial Intelligence'),
+('IV1351', 'Data Storage Paradigms'),
+('DH1620', 'Human-Computer Interaction, Introductory Course'),
+('SD2125', 'Signals and Mechanical Structures'),
+('SG1102', 'Mechanics I'),
+('SK1120', 'Physics, General Course'),
+('BB1050', 'Biotechnology');
+INSERT INTO course_layout (course_id, min_students, max_students, hp, valid_from) VALUES
+(1, 10, 200, 7.5, '2020-01-01'),
+(2, 10, 200, 7.5, '2020-01-01'),
+(3, 10, 200, 7.5, '2020-01-01'),
+(4, 10, 200, 7.5, '2020-01-01'),
+(5, 10, 200, 7.5, '2020-01-01'),
+(6, 10, 200, 7.5, '2020-01-01'),
+(7, 10, 200, 7.5, '2020-01-01'),
+(8, 10, 200, 7.5, '2020-01-01'),
+(9, 10, 200, 9.0, '2020-01-01'),
+(10, 10, 200, 7.5, '2020-01-01'),
+(11, 10, 200, 7.5, '2020-01-01'),
+(12, 10, 200, 7.5, '2020-01-01'),
+(13, 10, 200, 7.5, '2020-01-01'),
+(14, 10, 200, 7.5, '2020-01-01'),
+(15, 10, 200, 6.0, '2020-01-01'),
+(16, 10, 200, 6.0, '2020-01-01'),
+(17, 10, 200, 3.0, '2020-01-01'),
+(18, 10, 200, 6.0, '2020-01-01'),
+(19, 10, 200, 7.5, '2020-01-01'),
+(20, 10, 200, 6.0, '2020-01-01'),
+(21, 10, 200, 7.5, '2020-01-01'),
+(22, 10, 200, 6.0, '2020-01-01'),
+(23, 10, 200, 9.0, '2020-01-01'),
+(24, 10, 200, 7.5, '2020-01-01');
+INSERT INTO course_instance (course_layout_id, num_students, study_year) VALUES
+(14, 92, '2023'),
+(17, 106, '2023'),
+(19, 177, '2023'),
+(7, 83, '2023'),
+(15, 157, '2023'),
+(24, 95, '2023'),
+(9, 172, '2023'),
+(6, 148, '2023'),
+(4, 48, '2023'),
+(22, 126, '2023'),
+(1, 125, '2023'),
+(8, 132, '2023'),
+(18, 121, '2023'),
+(13, 86, '2023'),
+(20, 35, '2023'),
+(1, 108, '2023'),
+(22, 87, '2023'),
+(24, 160, '2023'),
+(23, 53, '2023'),
+(15, 143, '2023'),
+(3, 167, '2023'),
+(13, 84, '2023'),
+(21, 64, '2023'),
+(14, 57, '2023'),
+(18, 109, '2023'),
+(17, 171, '2023'),
+(6, 159, '2023'),
+(11, 56, '2023'),
+(14, 110, '2023'),
+(13, 126, '2023'),
+(20, 84, '2023'),
+(24, 180, '2023'),
+(1, 129, '2023'),
+(4, 129, '2023'),
+(23, 43, '2023'),
+(10, 103, '2023'),
+(19, 110, '2023'),
+(2, 67, '2023'),
+(21, 144, '2023'),
+(1, 78, '2023'),
+(8, 160, '2023'),
+(23, 110, '2023'),
+(3, 111, '2023'),
+(4, 68, '2023'),
+(19, 149, '2023'),
+(15, 164, '2023'),
+(6, 93, '2023'),
+(16, 50, '2023'),
+(10, 82, '2023'),
+(14, 125, '2023'),
+(5, 44, '2024'),
+(14, 54, '2024'),
+(20, 30, '2024'),
+(23, 37, '2024'),
+(2, 166, '2024'),
+(21, 81, '2024'),
+(12, 53, '2024'),
+(13, 163, '2024'),
+(18, 113, '2024'),
+(9, 123, '2024'),
+(3, 86, '2024'),
+(6, 161, '2024'),
+(10, 89, '2024'),
+(15, 154, '2024'),
+(8, 127, '2024'),
+(6, 144, '2024'),
+(7, 158, '2024'),
+(15, 180, '2024'),
+(24, 84, '2024'),
+(9, 152, '2024'),
+(21, 142, '2024'),
+(17, 120, '2024'),
+(14, 141, '2024'),
+(1, 110, '2024'),
+(19, 48, '2024'),
+(22, 69, '2024'),
+(16, 88, '2024'),
+(13, 133, '2024'),
+(20, 32, '2024'),
+(11, 91, '2024'),
+(4, 137, '2024'),
+(21, 81, '2024'),
+(5, 137, '2024'),
+(7, 64, '2024'),
+(16, 33, '2024'),
+(9, 140, '2024'),
+(13, 75, '2024'),
+(4, 153, '2024'),
+(6, 55, '2024'),
+(12, 74, '2024'),
+(17, 69, '2024'),
+(8, 132, '2024'),
+(10, 126, '2024'),
+(24, 77, '2024'),
+(4, 101, '2024'),
+(19, 69, '2024'),
+(18, 78, '2024'),
+(7, 31, '2024'),
+(1, 155, '2024'),
+(2, 101, '2024'),
+(10, 180, '2024'),
+(8, 147, '2024'),
+(22, 175, '2024'),
+(3, 162, '2024'),
+(5, 179, '2024'),
+(14, 180, '2024'),
+(15, 136, '2024'),
+(9, 119, '2024'),
+(20, 37, '2024'),
+(6, 179, '2024'),
+(13, 169, '2024'),
+(17, 124, '2024'),
+(21, 98, '2024'),
+(12, 139, '2025'),
+(24, 79, '2025'),
+(7, 32, '2025'),
+(3, 32, '2025'),
+(18, 82, '2025'),
+(14, 138, '2025'),
+(15, 59, '2025'),
+(17, 58, '2025'),
+(4, 128, '2025'),
+(19, 65, '2025'),
+(5, 159, '2025'),
+(1, 137, '2025'),
+(23, 103, '2025'),
+(6, 38, '2025'),
+(16, 57, '2025'),
+(22, 145, '2025'),
+(9, 144, '2025'),
+(1, 168, '2025'),
+(12, 167, '2025'),
+(10, 152, '2025'),
+(23, 49, '2025'),
+(15, 112, '2025'),
+(17, 99, '2025'),
+(16, 45, '2025'),
+(11, 120, '2025'),
+(19, 145, '2025'),
+(7, 132, '2025'),
+(4, 155, '2025'),
+(20, 53, '2025'),
+(13, 106, '2025'),
+(21, 36, '2025'),
+(23, 86, '2025'),
+(9, 127, '2025'),
+(5, 168, '2025'),
+(18, 104, '2025'),
+(11, 76, '2025'),
+(6, 125, '2025'),
+(10, 157, '2025'),
+(14, 171, '2025'),
+(17, 114, '2025'),
+(19, 155, '2025'),
+(24, 96, '2025'),
+(1, 70, '2025'),
+(3, 105, '2025'),
+(22, 130, '2025'),
+(2, 98, '2025'),
+(12, 36, '2025'),
+(16, 153, '2025'),
+(18, 55, '2025'),
+(6, 161, '2025'),
+(5, 59, '2025'),
+(4, 138, '2025'),
+(8, 146, '2025'),
+(7, 93, '2025'),
+(19, 143, '2025'),
+(14, 39, '2025'),
+(23, 148, '2025'),
+(22, 150, '2025'),
+(9, 99, '2025'),
+(11, 129, '2025');
+INSERT INTO course_instance_period (course_instance_id, study_period) VALUES
+(1, 'P1'),
+(2, 'P1'),
+(3, 'P1'),
+(4, 'P1'),
+(5, 'P1'),
+(6, 'P1'),
+(7, 'P1'),
+(8, 'P1'),
+(9, 'P1'),
+(10, 'P1'),
+(11, 'P1'),
+(12, 'P1'),
+(13, 'P1'),
+(14, 'P1'),
+(15, 'P2'),
+(16, 'P2'),
+(17, 'P2'),
+(18, 'P2'),
+(19, 'P2'),
+(20, 'P2'),
+(21, 'P2'),
+(22, 'P2'),
+(23, 'P2'),
+(24, 'P2'),
+(25, 'P2'),
+(26, 'P2'),
+(27, 'P2'),
+(28, 'P3'),
+(29, 'P3'),
+(30, 'P3'),
+(31, 'P3'),
+(32, 'P3'),
+(33, 'P3'),
+(34, 'P3'),
+(35, 'P3'),
+(36, 'P3'),
+(37, 'P3'),
+(38, 'P3'),
+(39, 'P4'),
+(40, 'P4'),
+(41, 'P4'),
+(42, 'P4'),
+(43, 'P4'),
+(44, 'P4'),
+(45, 'P4'),
+(46, 'P4'),
+(47, 'P4'),
+(48, 'P4'),
+(49, 'P4'),
+(50, 'P4'),
+(51, 'P1'),
+(52, 'P1'),
+(53, 'P1'),
+(54, 'P1'),
+(55, 'P1'),
+(56, 'P1'),
+(57, 'P1'),
+(58, 'P1'),
+(59, 'P1'),
+(60, 'P1'),
+(61, 'P1'),
+(62, 'P1'),
+(63, 'P1'),
+(64, 'P1'),
+(65, 'P2'),
+(66, 'P2'),
+(67, 'P2'),
+(68, 'P2'),
+(69, 'P2'),
+(70, 'P2'),
+(71, 'P2'),
+(72, 'P2'),
+(73, 'P2'),
+(74, 'P2'),
+(75, 'P2'),
+(76, 'P2'),
+(77, 'P2'),
+(78, 'P2'),
+(79, 'P2'),
+(80, 'P2'),
+(81, 'P2'),
+(82, 'P3'),
+(83, 'P3'),
+(84, 'P3'),
+(85, 'P3'),
+(86, 'P3'),
+(87, 'P3'),
+(88, 'P3'),
+(89, 'P3'),
+(90, 'P3'),
+(91, 'P3'),
+(92, 'P3'),
+(93, 'P3'),
+(94, 'P4'),
+(95, 'P4'),
+(96, 'P4'),
+(97, 'P4'),
+(98, 'P4'),
+(99, 'P4'),
+(100, 'P4'),
+(101, 'P4'),
+(102, 'P4'),
+(103, 'P4'),
+(104, 'P4'),
+(105, 'P4'),
+(106, 'P4'),
+(107, 'P4'),
+(108, 'P4'),
+(109, 'P4'),
+(110, 'P4'),
+(111, 'P4'),
+(112, 'P4'),
+(113, 'P4'),
+(114, 'P1'),
+(115, 'P1'),
+(116, 'P1'),
+(117, 'P1'),
+(118, 'P1'),
+(119, 'P1'),
+(120, 'P1'),
+(121, 'P1'),
+(122, 'P1'),
+(123, 'P1'),
+(124, 'P1'),
+(125, 'P1'),
+(126, 'P1'),
+(127, 'P1'),
+(128, 'P1'),
+(129, 'P1'),
+(130, 'P2'),
+(131, 'P2'),
+(132, 'P2'),
+(133, 'P2'),
+(134, 'P2'),
+(135, 'P2'),
+(136, 'P2'),
+(137, 'P2'),
+(138, 'P2'),
+(139, 'P2'),
+(140, 'P2'),
+(141, 'P2'),
+(142, 'P2'),
+(143, 'P2'),
+(144, 'P2'),
+(145, 'P3'),
+(146, 'P3'),
+(147, 'P3'),
+(148, 'P3'),
+(149, 'P3'),
+(150, 'P3'),
+(151, 'P3'),
+(152, 'P3'),
+(153, 'P3'),
+(154, 'P3'),
+(155, 'P3'),
+(156, 'P3'),
+(157, 'P3'),
+(158, 'P3'),
+(159, 'P3'),
+(160, 'P3'),
+(161, 'P4'),
+(162, 'P4'),
+(163, 'P4'),
+(164, 'P4'),
+(165, 'P4'),
+(166, 'P4'),
+(167, 'P4'),
+(168, 'P4'),
+(169, 'P4'),
+(170, 'P4'),
+(171, 'P4'),
+(172, 'P4'),
+(173, 'P4');
+INSERT INTO planned_activity (teaching_activity_id, course_instance_id, planned_hours) VALUES
+(1, 1, 11),
+(3, 1, 10),
+(4, 1, 17),
+(7, 1, 46),
+(6, 1, 69),
+(1, 2, 20),
+(3, 2, 19),
+(4, 2, 14),
+(7, 2, 40),
+(6, 2, 41),
+(1, 3, 24),
+(2, 3, 42),
+(7, 3, 23),
+(6, 3, 63),
+(1, 4, 14),
+(3, 4, 11),
+(4, 4, 20),
+(7, 4, 26),
+(6, 4, 51),
+(1, 5, 22),
+(3, 5, 19),
+(7, 5, 33),
+(6, 5, 68),
+(1, 6, 26),
+(3, 6, 10),
+(4, 6, 17),
+(7, 6, 51),
+(6, 6, 30),
+(1, 7, 15),
+(2, 7, 29),
+(5, 7, 20),
+(7, 7, 56),
+(6, 7, 75),
+(1, 8, 24),
+(3, 8, 10),
+(4, 8, 17),
+(7, 8, 31),
+(6, 8, 50),
+(1, 9, 25),
+(3, 9, 10),
+(7, 9, 52),
+(6, 9, 66),
+(1, 10, 12),
+(3, 10, 20),
+(4, 10, 11),
+(7, 10, 35),
+(6, 10, 75),
+(1, 11, 20),
+(2, 11, 24),
+(4, 11, 16),
+(7, 11, 55),
+(6, 11, 75),
+(1, 12, 25),
+(2, 12, 60),
+(7, 12, 48),
+(6, 12, 34),
+(1, 13, 13),
+(3, 13, 18),
+(4, 13, 18),
+(7, 13, 50),
+(6, 13, 67),
+(1, 14, 27),
+(3, 14, 17),
+(4, 14, 16),
+(7, 14, 60),
+(6, 14, 54),
+(1, 15, 24),
+(3, 15, 19),
+(4, 15, 17),
+(7, 15, 31),
+(6, 15, 64),
+(1, 16, 29),
+(2, 16, 47),
+(4, 16, 15),
+(7, 16, 47),
+(6, 16, 71),
+(1, 17, 28),
+(3, 17, 20),
+(4, 17, 18),
+(7, 17, 26),
+(6, 17, 56),
+(1, 18, 22),
+(3, 18, 10),
+(7, 18, 41),
+(6, 18, 60),
+(1, 19, 11),
+(3, 19, 14),
+(7, 19, 23),
+(6, 19, 65),
+(1, 20, 20),
+(3, 20, 13),
+(4, 20, 17),
+(7, 20, 34),
+(6, 20, 78),
+(1, 21, 13),
+(3, 21, 20),
+(4, 21, 19),
+(7, 21, 34),
+(6, 21, 55),
+(1, 22, 21),
+(3, 22, 14),
+(4, 22, 14),
+(5, 22, 18),
+(7, 22, 28),
+(6, 22, 37),
+(1, 23, 12),
+(3, 23, 11),
+(7, 23, 22),
+(6, 23, 45),
+(1, 24, 21),
+(3, 24, 19),
+(4, 24, 16),
+(7, 24, 20),
+(6, 24, 35),
+(1, 25, 16),
+(3, 25, 17),
+(4, 25, 16),
+(7, 25, 38),
+(6, 25, 57),
+(1, 26, 26),
+(3, 26, 12),
+(4, 26, 15),
+(7, 26, 59),
+(6, 26, 46),
+(1, 27, 18),
+(3, 27, 18),
+(7, 27, 29),
+(6, 27, 56),
+(1, 28, 24),
+(3, 28, 19),
+(4, 28, 14),
+(7, 28, 33),
+(6, 28, 74),
+(1, 29, 15),
+(3, 29, 16),
+(4, 29, 16),
+(7, 29, 35),
+(6, 29, 73),
+(1, 30, 24),
+(3, 30, 15),
+(5, 30, 16),
+(7, 30, 48),
+(6, 30, 55),
+(1, 31, 13),
+(3, 31, 17),
+(4, 31, 18),
+(7, 31, 36),
+(6, 31, 70),
+(1, 32, 29),
+(3, 32, 14),
+(4, 32, 18),
+(7, 32, 32),
+(6, 32, 35),
+(1, 33, 29),
+(2, 33, 55),
+(4, 33, 18),
+(7, 33, 23),
+(6, 33, 71),
+(1, 34, 19),
+(3, 34, 17),
+(4, 34, 14),
+(5, 34, 20),
+(7, 34, 46),
+(6, 34, 55),
+(1, 35, 20),
+(3, 35, 11),
+(4, 35, 12),
+(7, 35, 48),
+(6, 35, 53),
+(1, 36, 11),
+(3, 36, 16),
+(4, 36, 12),
+(7, 36, 35),
+(6, 36, 54),
+(1, 37, 16),
+(2, 37, 53),
+(4, 37, 10),
+(7, 37, 56),
+(6, 37, 63),
+(1, 38, 17),
+(2, 38, 31),
+(4, 38, 18),
+(7, 38, 38),
+(6, 38, 56),
+(1, 39, 16),
+(3, 39, 12),
+(4, 39, 12),
+(5, 39, 11),
+(7, 39, 29),
+(6, 39, 35),
+(1, 40, 29),
+(2, 40, 37),
+(7, 40, 27),
+(6, 40, 66),
+(1, 41, 26),
+(2, 41, 56),
+(7, 41, 51),
+(6, 41, 61),
+(1, 42, 20),
+(3, 42, 19),
+(7, 42, 47),
+(6, 42, 70),
+(1, 43, 22),
+(3, 43, 12),
+(7, 43, 43),
+(6, 43, 54),
+(1, 44, 16),
+(3, 44, 14),
+(4, 44, 12),
+(5, 44, 14),
+(7, 44, 32),
+(6, 44, 36),
+(1, 45, 15),
+(2, 45, 24),
+(5, 45, 11),
+(7, 45, 58),
+(6, 45, 61),
+(1, 46, 11),
+(3, 46, 11),
+(5, 46, 13),
+(7, 46, 20),
+(6, 46, 66),
+(1, 47, 10),
+(3, 47, 16),
+(7, 47, 45),
+(6, 47, 38),
+(1, 48, 16),
+(3, 48, 17),
+(5, 48, 14),
+(7, 48, 20),
+(6, 48, 49),
+(1, 49, 20),
+(3, 49, 13),
+(7, 49, 30),
+(6, 49, 54),
+(1, 50, 21),
+(3, 50, 17),
+(4, 50, 17),
+(7, 50, 29),
+(6, 50, 77),
+(1, 51, 20),
+(3, 51, 14),
+(7, 51, 39),
+(6, 51, 71),
+(1, 52, 16),
+(3, 52, 16),
+(5, 52, 11),
+(7, 52, 34),
+(6, 52, 44),
+(1, 53, 11),
+(3, 53, 13),
+(4, 53, 16),
+(5, 53, 20),
+(7, 53, 48),
+(6, 53, 80),
+(1, 54, 20),
+(3, 54, 18),
+(4, 54, 10),
+(7, 54, 34),
+(6, 54, 38),
+(1, 55, 14),
+(2, 55, 29),
+(7, 55, 48),
+(6, 55, 45),
+(1, 56, 30),
+(3, 56, 18),
+(7, 56, 46),
+(6, 56, 53),
+(1, 57, 25),
+(2, 57, 47),
+(4, 57, 17),
+(7, 57, 52),
+(6, 57, 45),
+(1, 58, 16),
+(3, 58, 20),
+(4, 58, 17),
+(7, 58, 42),
+(6, 58, 79),
+(1, 59, 10),
+(3, 59, 18),
+(5, 59, 20),
+(7, 59, 27),
+(6, 59, 52),
+(1, 60, 10),
+(2, 60, 46),
+(7, 60, 24),
+(6, 60, 60),
+(1, 61, 12),
+(3, 61, 11),
+(7, 61, 50),
+(6, 61, 69),
+(1, 62, 20),
+(3, 62, 13),
+(4, 62, 19),
+(7, 62, 57),
+(6, 62, 64),
+(1, 63, 14),
+(3, 63, 14),
+(7, 63, 39),
+(6, 63, 68),
+(1, 64, 13),
+(3, 64, 18),
+(4, 64, 17),
+(7, 64, 36),
+(6, 64, 79),
+(1, 65, 19),
+(2, 65, 57),
+(7, 65, 43),
+(6, 65, 30),
+(1, 66, 19),
+(3, 66, 19),
+(4, 66, 17),
+(7, 66, 45),
+(6, 66, 40),
+(1, 67, 16),
+(3, 67, 19),
+(5, 67, 12),
+(7, 67, 56),
+(6, 67, 73),
+(1, 68, 27),
+(3, 68, 19),
+(4, 68, 13),
+(7, 68, 41),
+(6, 68, 41),
+(1, 69, 15),
+(3, 69, 11),
+(7, 69, 34),
+(6, 69, 55),
+(1, 70, 14),
+(2, 70, 35),
+(4, 70, 14),
+(7, 70, 41),
+(6, 70, 67),
+(1, 71, 20),
+(3, 71, 10),
+(4, 71, 17),
+(7, 71, 50),
+(6, 71, 43),
+(1, 72, 30),
+(3, 72, 13),
+(4, 72, 16),
+(5, 72, 10),
+(7, 72, 49),
+(6, 72, 54),
+(1, 73, 14),
+(3, 73, 18),
+(4, 73, 10),
+(7, 73, 45),
+(6, 73, 51),
+(1, 74, 29),
+(2, 74, 37),
+(7, 74, 45),
+(6, 74, 73),
+(1, 75, 23),
+(2, 75, 39),
+(4, 75, 13),
+(7, 75, 37),
+(6, 75, 63),
+(1, 76, 16),
+(3, 76, 15),
+(4, 76, 19),
+(5, 76, 12),
+(7, 76, 44),
+(6, 76, 74),
+(1, 77, 20),
+(3, 77, 13),
+(7, 77, 24),
+(6, 77, 58),
+(1, 78, 16),
+(3, 78, 17),
+(5, 78, 15),
+(7, 78, 47),
+(6, 78, 76),
+(1, 79, 17),
+(3, 79, 14),
+(7, 79, 47),
+(6, 79, 80),
+(1, 80, 10),
+(3, 80, 10),
+(5, 80, 11),
+(7, 80, 51),
+(6, 80, 70),
+(1, 81, 15),
+(3, 81, 16),
+(7, 81, 56),
+(6, 81, 67),
+(1, 82, 26),
+(3, 82, 16),
+(7, 82, 53),
+(6, 82, 61),
+(1, 83, 19),
+(3, 83, 11),
+(7, 83, 20),
+(6, 83, 40),
+(1, 84, 27),
+(3, 84, 17),
+(4, 84, 12),
+(7, 84, 27),
+(6, 84, 44),
+(1, 85, 15),
+(3, 85, 19),
+(7, 85, 34),
+(6, 85, 53),
+(1, 86, 17),
+(2, 86, 58),
+(7, 86, 25),
+(6, 86, 60),
+(1, 87, 11),
+(3, 87, 16),
+(7, 87, 26),
+(6, 87, 47),
+(1, 88, 12),
+(3, 88, 18),
+(7, 88, 35),
+(6, 88, 59),
+(1, 89, 29),
+(3, 89, 20),
+(5, 89, 18),
+(7, 89, 37),
+(6, 89, 33),
+(1, 90, 27),
+(2, 90, 46),
+(7, 90, 45),
+(6, 90, 35),
+(1, 91, 11),
+(3, 91, 14),
+(4, 91, 20),
+(7, 91, 44),
+(6, 91, 63),
+(1, 92, 17),
+(2, 92, 60),
+(4, 92, 14),
+(7, 92, 30),
+(6, 92, 48),
+(1, 93, 22),
+(3, 93, 13),
+(7, 93, 42),
+(6, 93, 50),
+(1, 94, 22),
+(3, 94, 11),
+(4, 94, 12),
+(7, 94, 21),
+(6, 94, 42),
+(1, 95, 30),
+(3, 95, 17),
+(4, 95, 19),
+(5, 95, 14),
+(7, 95, 30),
+(6, 95, 60),
+(1, 96, 27),
+(2, 96, 36),
+(4, 96, 13),
+(7, 96, 44),
+(6, 96, 40),
+(1, 97, 30),
+(3, 97, 20),
+(4, 97, 18),
+(7, 97, 39),
+(6, 97, 76),
+(1, 98, 20),
+(3, 98, 18),
+(4, 98, 16),
+(7, 98, 48),
+(6, 98, 30),
+(1, 99, 15),
+(2, 99, 26),
+(7, 99, 51),
+(6, 99, 78),
+(1, 100, 14),
+(2, 100, 25),
+(7, 100, 57),
+(6, 100, 36),
+(1, 101, 29),
+(3, 101, 16),
+(4, 101, 12),
+(7, 101, 30),
+(6, 101, 36),
+(1, 102, 24),
+(2, 102, 22),
+(4, 102, 11),
+(7, 102, 50),
+(6, 102, 41),
+(1, 103, 17),
+(3, 103, 17),
+(7, 103, 24),
+(6, 103, 45),
+(1, 104, 15),
+(3, 104, 17),
+(4, 104, 16),
+(7, 104, 21),
+(6, 104, 57),
+(1, 105, 24),
+(3, 105, 13),
+(4, 105, 17),
+(7, 105, 48),
+(6, 105, 65),
+(1, 106, 20),
+(3, 106, 19),
+(4, 106, 14),
+(7, 106, 43),
+(6, 106, 69),
+(1, 107, 29),
+(3, 107, 14),
+(7, 107, 36),
+(6, 107, 74),
+(1, 108, 25),
+(2, 108, 45),
+(4, 108, 11),
+(7, 108, 28),
+(6, 108, 49),
+(1, 109, 28),
+(3, 109, 17),
+(5, 109, 15),
+(7, 109, 40),
+(6, 109, 52),
+(1, 110, 19),
+(3, 110, 16),
+(4, 110, 16),
+(5, 110, 19),
+(7, 110, 35),
+(6, 110, 37),
+(1, 111, 12),
+(3, 111, 13),
+(4, 111, 20),
+(7, 111, 56),
+(6, 111, 41),
+(1, 112, 22),
+(3, 112, 16),
+(4, 112, 18),
+(7, 112, 34),
+(6, 112, 58),
+(1, 113, 11),
+(3, 113, 10),
+(4, 113, 10),
+(5, 113, 15),
+(7, 113, 30),
+(6, 113, 42),
+(1, 114, 15),
+(2, 114, 49),
+(4, 114, 13),
+(7, 114, 52),
+(6, 114, 69),
+(1, 115, 19),
+(3, 115, 13),
+(4, 115, 20),
+(5, 115, 20),
+(7, 115, 31),
+(6, 115, 32),
+(1, 116, 14),
+(3, 116, 18),
+(4, 116, 17),
+(7, 116, 32),
+(6, 116, 67),
+(1, 117, 13),
+(3, 117, 14),
+(4, 117, 15),
+(7, 117, 42),
+(6, 117, 38),
+(1, 118, 29),
+(3, 118, 14),
+(7, 118, 60),
+(6, 118, 38),
+(1, 119, 18),
+(3, 119, 11),
+(4, 119, 12),
+(7, 119, 47),
+(6, 119, 69),
+(1, 120, 17),
+(3, 120, 10),
+(4, 120, 14),
+(5, 120, 11),
+(7, 120, 42),
+(6, 120, 65),
+(1, 121, 22),
+(3, 121, 16),
+(4, 121, 15),
+(7, 121, 56),
+(6, 121, 44),
+(1, 122, 12),
+(3, 122, 12),
+(5, 122, 19),
+(7, 122, 33),
+(6, 122, 33),
+(1, 123, 20),
+(2, 123, 60),
+(4, 123, 19),
+(7, 123, 46),
+(6, 123, 44),
+(1, 124, 19),
+(3, 124, 14),
+(7, 124, 23),
+(6, 124, 47),
+(1, 125, 20),
+(2, 125, 37),
+(7, 125, 23),
+(6, 125, 33),
+(1, 126, 14),
+(3, 126, 18),
+(4, 126, 15),
+(7, 126, 33),
+(6, 126, 45),
+(1, 127, 13),
+(3, 127, 10),
+(7, 127, 31),
+(6, 127, 60),
+(1, 128, 10),
+(3, 128, 14),
+(7, 128, 57),
+(6, 128, 61),
+(1, 129, 29),
+(3, 129, 10),
+(7, 129, 47),
+(6, 129, 53),
+(1, 130, 24),
+(2, 130, 37),
+(7, 130, 37),
+(6, 130, 71),
+(1, 131, 28),
+(2, 131, 47),
+(5, 131, 11),
+(7, 131, 60),
+(6, 131, 43),
+(1, 132, 12),
+(2, 132, 33),
+(5, 132, 12),
+(7, 132, 50),
+(6, 132, 59),
+(1, 133, 25),
+(3, 133, 10),
+(4, 133, 14),
+(7, 133, 54),
+(6, 133, 64),
+(1, 134, 16),
+(3, 134, 15),
+(4, 134, 20),
+(7, 134, 20),
+(6, 134, 41),
+(1, 135, 22),
+(3, 135, 16),
+(4, 135, 14),
+(5, 135, 16),
+(7, 135, 46),
+(6, 135, 62),
+(1, 136, 25),
+(3, 136, 19),
+(5, 136, 18),
+(7, 136, 35),
+(6, 136, 46),
+(1, 137, 12),
+(3, 137, 17),
+(7, 137, 52),
+(6, 137, 33),
+(1, 138, 13),
+(3, 138, 17),
+(7, 138, 33),
+(6, 138, 75),
+(1, 139, 17),
+(2, 139, 27),
+(4, 139, 13),
+(7, 139, 55),
+(6, 139, 45),
+(1, 140, 24),
+(3, 140, 10),
+(7, 140, 48),
+(6, 140, 57),
+(1, 141, 18),
+(3, 141, 16),
+(4, 141, 14),
+(7, 141, 36),
+(6, 141, 73),
+(1, 142, 20),
+(3, 142, 15),
+(7, 142, 43),
+(6, 142, 49),
+(1, 143, 12),
+(3, 143, 10),
+(4, 143, 12),
+(7, 143, 38),
+(6, 143, 57),
+(1, 144, 30),
+(3, 144, 10),
+(7, 144, 59),
+(6, 144, 57),
+(1, 145, 14),
+(3, 145, 20),
+(7, 145, 24),
+(6, 145, 50),
+(1, 146, 20),
+(2, 146, 56),
+(4, 146, 19),
+(7, 146, 52),
+(6, 146, 38),
+(1, 147, 17),
+(3, 147, 15),
+(4, 147, 12),
+(7, 147, 26),
+(6, 147, 59),
+(1, 148, 13),
+(3, 148, 12),
+(7, 148, 36),
+(6, 148, 31),
+(1, 149, 20),
+(3, 149, 10),
+(7, 149, 43),
+(6, 149, 34),
+(1, 150, 11),
+(3, 150, 13),
+(4, 150, 15),
+(5, 150, 15),
+(7, 150, 41),
+(6, 150, 70),
+(1, 151, 11),
+(3, 151, 17),
+(4, 151, 14),
+(7, 151, 46),
+(6, 151, 78),
+(1, 152, 17),
+(3, 152, 11),
+(4, 152, 20),
+(7, 152, 23),
+(6, 152, 34),
+(1, 153, 20),
+(3, 153, 18),
+(4, 153, 10),
+(5, 153, 14),
+(7, 153, 27),
+(6, 153, 71),
+(1, 154, 18),
+(2, 154, 38),
+(4, 154, 19),
+(7, 154, 29),
+(6, 154, 50),
+(1, 155, 17),
+(3, 155, 11),
+(5, 155, 16),
+(7, 155, 57),
+(6, 155, 77),
+(1, 156, 14),
+(2, 156, 46),
+(4, 156, 16),
+(7, 156, 44),
+(6, 156, 39),
+(1, 157, 13),
+(3, 157, 18),
+(4, 157, 17),
+(7, 157, 56),
+(6, 157, 75),
+(1, 158, 29),
+(3, 158, 20),
+(4, 158, 12),
+(7, 158, 53),
+(6, 158, 74),
+(1, 159, 20),
+(2, 159, 23),
+(4, 159, 15),
+(7, 159, 48),
+(6, 159, 77),
+(1, 160, 29),
+(2, 160, 43),
+(4, 160, 10),
+(7, 160, 59),
+(6, 160, 78),
+(1, 161, 18),
+(3, 161, 15),
+(4, 161, 16),
+(7, 161, 25),
+(6, 161, 68),
+(1, 162, 18),
+(3, 162, 17),
+(4, 162, 11),
+(7, 162, 43),
+(6, 162, 66),
+(1, 163, 10),
+(3, 163, 14),
+(7, 163, 33),
+(6, 163, 37),
+(1, 164, 19),
+(3, 164, 18),
+(7, 164, 27),
+(6, 164, 40),
+(1, 165, 25),
+(3, 165, 16),
+(7, 165, 59),
+(6, 165, 69),
+(1, 166, 10),
+(2, 166, 57),
+(7, 166, 46),
+(6, 166, 43),
+(1, 167, 23),
+(3, 167, 19),
+(4, 167, 17),
+(5, 167, 15),
+(7, 167, 37),
+(6, 167, 73),
+(1, 168, 24),
+(2, 168, 40),
+(4, 168, 10),
+(7, 168, 56),
+(6, 168, 56),
+(1, 169, 12),
+(3, 169, 12),
+(4, 169, 18),
+(7, 169, 24),
+(6, 169, 42),
+(1, 170, 11),
+(3, 170, 16),
+(7, 170, 39),
+(6, 170, 68),
+(1, 171, 19),
+(3, 171, 10),
+(4, 171, 13),
+(7, 171, 23),
+(6, 171, 74),
+(1, 172, 16),
+(2, 172, 49),
+(4, 172, 16),
+(5, 172, 17),
+(7, 172, 40),
+(6, 172, 65),
+(1, 173, 21),
+(3, 173, 18),
+(7, 173, 57),
+(6, 173, 64);
+INSERT INTO allocated_activity (employee_id, planned_activity_id, allocated_hours) VALUES
+(1, 1, 11),
+(99, 2, 10),
+(30, 3, 17),
+(1, 4, 46),
+(1, 5, 69),
+(1, 6, 20),
+(43, 7, 19),
+(46, 8, 14),
+(1, 9, 40),
+(1, 10, 41),
+(1, 11, 24),
+(84, 12, 42),
+(1, 13, 23),
+(1, 14, 63),
+(1, 15, 14),
+(88, 16, 11),
+(9, 17, 20),
+(1, 18, 26),
+(29, 19, 51),
+(3, 20, 22),
+(66, 21, 19),
+(3, 22, 33),
+(3, 23, 68),
+(8, 24, 26),
+(86, 25, 10),
+(18, 26, 17),
+(8, 27, 51),
+(8, 28, 30),
+(59, 29, 15),
+(13, 30, 29),
+(98, 31, 20),
+(8, 32, 56),
+(59, 33, 75),
+(46, 34, 24),
+(61, 35, 10),
+(92, 36, 17),
+(46, 37, 31),
+(46, 38, 50),
+(42, 39, 25),
+(96, 40, 10),
+(42, 41, 52),
+(42, 42, 66),
+(42, 43, 12),
+(23, 44, 20),
+(93, 45, 11),
+(42, 46, 35),
+(42, 47, 75),
+(69, 48, 20),
+(54, 49, 24),
+(28, 50, 16),
+(69, 51, 55),
+(69, 52, 75),
+(40, 53, 25),
+(95, 54, 60),
+(40, 55, 48),
+(40, 56, 34),
+(80, 57, 13),
+(50, 58, 18),
+(18, 59, 18),
+(80, 60, 50),
+(80, 61, 67),
+(44, 62, 27),
+(14, 63, 17),
+(95, 64, 16),
+(34, 65, 60),
+(34, 66, 54),
+(77, 67, 24),
+(34, 68, 19),
+(38, 69, 17),
+(78, 70, 31),
+(77, 71, 64),
+(10, 72, 29),
+(61, 73, 47),
+(12, 74, 15),
+(10, 75, 47),
+(36, 76, 71),
+(79, 77, 28),
+(51, 78, 20),
+(29, 79, 18),
+(79, 80, 26),
+(79, 81, 56),
+(24, 82, 22),
+(56, 83, 10),
+(24, 84, 41),
+(88, 85, 60),
+(5, 86, 11),
+(99, 87, 14),
+(5, 88, 23),
+(8, 89, 65),
+(28, 90, 20),
+(74, 91, 13),
+(7, 92, 17),
+(28, 93, 34),
+(28, 94, 78),
+(81, 95, 13),
+(11, 96, 20),
+(3, 97, 19),
+(81, 98, 34),
+(81, 99, 55),
+(54, 100, 21),
+(43, 101, 14),
+(59, 102, 14),
+(87, 103, 18),
+(54, 104, 28),
+(54, 105, 37),
+(42, 106, 12),
+(62, 107, 11),
+(42, 108, 22),
+(42, 109, 45),
+(38, 110, 21),
+(72, 111, 19),
+(89, 112, 16),
+(38, 113, 20),
+(38, 114, 35),
+(51, 115, 16),
+(19, 116, 17),
+(75, 117, 16),
+(51, 118, 38),
+(51, 119, 57),
+(73, 120, 26),
+(42, 121, 12),
+(43, 122, 15),
+(37, 123, 59),
+(73, 124, 46),
+(57, 125, 18),
+(66, 126, 18),
+(57, 127, 29),
+(57, 128, 56),
+(92, 129, 24),
+(85, 130, 19),
+(97, 131, 14),
+(61, 132, 33),
+(61, 133, 74),
+(16, 134, 15),
+(1, 135, 16),
+(51, 136, 16),
+(16, 137, 35),
+(16, 138, 73),
+(38, 139, 24),
+(37, 140, 15),
+(98, 141, 16),
+(38, 142, 48),
+(38, 143, 55),
+(14, 144, 13),
+(46, 145, 17),
+(40, 146, 18),
+(14, 147, 36),
+(14, 148, 70),
+(84, 149, 29),
+(58, 150, 14),
+(64, 151, 18),
+(84, 152, 32),
+(84, 153, 35),
+(20, 154, 29),
+(35, 155, 55),
+(5, 156, 18),
+(20, 157, 23),
+(20, 158, 71),
+(51, 159, 19),
+(24, 160, 17),
+(18, 161, 14),
+(97, 162, 20),
+(51, 163, 46),
+(51, 164, 55),
+(1, 165, 20),
+(38, 166, 11),
+(45, 167, 12),
+(1, 168, 48),
+(1, 169, 53),
+(56, 170, 11),
+(2, 171, 16),
+(16, 172, 12),
+(56, 173, 35),
+(56, 174, 54),
+(8, 175, 16),
+(64, 176, 53),
+(24, 177, 10),
+(68, 178, 56),
+(64, 179, 63),
+(28, 180, 17),
+(95, 181, 31),
+(63, 182, 18),
+(28, 183, 38),
+(28, 184, 56),
+(18, 185, 16),
+(18, 186, 12),
+(67, 187, 12),
+(81, 188, 11),
+(58, 189, 29),
+(18, 190, 35),
+(53, 191, 29),
+(22, 192, 37),
+(53, 193, 27),
+(53, 194, 66),
+(46, 195, 26),
+(88, 196, 56),
+(46, 197, 51),
+(46, 198, 61),
+(13, 199, 20),
+(29, 200, 19),
+(13, 201, 47),
+(13, 202, 70),
+(18, 203, 22),
+(93, 204, 12),
+(18, 205, 43),
+(18, 206, 54),
+(77, 207, 16),
+(79, 208, 14),
+(25, 209, 12),
+(51, 210, 14),
+(77, 211, 32),
+(77, 212, 36),
+(5, 213, 15),
+(30, 214, 24),
+(57, 215, 11),
+(5, 216, 58),
+(47, 217, 61),
+(84, 218, 11),
+(32, 219, 11),
+(33, 220, 13),
+(84, 221, 20),
+(84, 222, 66),
+(39, 223, 10),
+(18, 224, 16),
+(39, 225, 45),
+(39, 226, 38),
+(38, 227, 16),
+(82, 228, 17),
+(2, 229, 14),
+(38, 230, 20),
+(74, 231, 49),
+(98, 232, 20),
+(86, 233, 13),
+(98, 234, 30),
+(98, 235, 54),
+(14, 236, 21),
+(75, 237, 17),
+(59, 238, 17),
+(14, 239, 29),
+(14, 240, 77),
+(46, 241, 20),
+(98, 242, 14),
+(21, 243, 39),
+(21, 244, 71),
+(30, 245, 16),
+(9, 246, 16),
+(52, 247, 11),
+(30, 248, 34),
+(84, 249, 44),
+(3, 250, 11),
+(46, 251, 13),
+(48, 252, 16),
+(26, 253, 20),
+(3, 254, 48),
+(31, 255, 80),
+(99, 256, 20),
+(87, 257, 18),
+(97, 258, 10),
+(99, 259, 34),
+(99, 260, 38),
+(69, 261, 14),
+(83, 262, 29),
+(39, 263, 48),
+(69, 264, 45),
+(15, 265, 30),
+(72, 266, 18),
+(15, 267, 46),
+(15, 268, 53),
+(60, 269, 25),
+(93, 270, 47),
+(46, 271, 17),
+(60, 272, 52),
+(60, 273, 45),
+(86, 274, 16),
+(42, 275, 20),
+(99, 276, 17),
+(36, 277, 42),
+(36, 278, 79),
+(44, 279, 10),
+(9, 280, 18),
+(65, 281, 20),
+(44, 282, 27),
+(44, 283, 52),
+(11, 284, 10),
+(62, 285, 46),
+(11, 286, 24),
+(11, 287, 60),
+(30, 288, 12),
+(6, 289, 11),
+(30, 290, 50),
+(30, 291, 69),
+(9, 292, 20),
+(32, 293, 13),
+(45, 294, 19),
+(9, 295, 57),
+(9, 296, 64),
+(46, 297, 14),
+(38, 298, 14),
+(46, 299, 39),
+(46, 300, 68),
+(44, 301, 13),
+(40, 302, 18),
+(66, 303, 17),
+(44, 304, 36),
+(44, 305, 79),
+(32, 306, 19),
+(28, 307, 57),
+(60, 308, 43),
+(32, 309, 30),
+(51, 310, 19),
+(39, 311, 19),
+(88, 312, 17),
+(51, 313, 45),
+(51, 314, 40),
+(58, 315, 16),
+(75, 316, 19),
+(23, 317, 12),
+(58, 318, 56),
+(58, 319, 73),
+(70, 320, 27),
+(71, 321, 19),
+(25, 322, 13),
+(70, 323, 41),
+(70, 324, 41),
+(89, 325, 15),
+(88, 326, 11),
+(100, 327, 34),
+(89, 328, 55),
+(13, 329, 14),
+(35, 330, 35),
+(51, 331, 14),
+(35, 332, 41),
+(13, 333, 67),
+(13, 334, 20),
+(18, 335, 10),
+(32, 336, 17),
+(13, 337, 50),
+(13, 338, 43),
+(59, 339, 30),
+(7, 340, 13),
+(53, 341, 16),
+(63, 342, 10),
+(59, 343, 49),
+(59, 344, 54),
+(46, 345, 14),
+(45, 346, 18),
+(24, 347, 10),
+(46, 348, 45),
+(46, 349, 51),
+(40, 350, 29),
+(35, 351, 37),
+(40, 352, 45),
+(40, 353, 73),
+(16, 354, 23),
+(11, 355, 39),
+(23, 356, 13),
+(16, 357, 37),
+(16, 358, 63),
+(40, 359, 16),
+(11, 360, 15),
+(47, 361, 19),
+(28, 362, 12),
+(40, 363, 44),
+(17, 364, 74),
+(14, 365, 20),
+(44, 366, 13),
+(14, 367, 24),
+(14, 368, 58),
+(47, 369, 16),
+(53, 370, 17),
+(75, 371, 15),
+(47, 372, 47),
+(55, 373, 76),
+(74, 374, 17),
+(29, 375, 14),
+(74, 376, 47),
+(74, 377, 80),
+(26, 378, 10),
+(10, 379, 10),
+(16, 380, 11),
+(26, 381, 51),
+(26, 382, 70),
+(51, 383, 15),
+(95, 384, 16),
+(51, 385, 56),
+(51, 386, 67),
+(71, 387, 26),
+(45, 388, 16),
+(71, 389, 53),
+(71, 390, 61),
+(100, 391, 19),
+(67, 392, 11),
+(100, 393, 20),
+(100, 394, 40),
+(20, 395, 27),
+(75, 396, 17),
+(70, 397, 12),
+(20, 398, 27),
+(20, 399, 44),
+(33, 400, 15),
+(40, 401, 19),
+(33, 402, 34),
+(33, 403, 53),
+(76, 404, 17),
+(71, 405, 58),
+(76, 406, 25),
+(76, 407, 60),
+(14, 408, 11),
+(41, 409, 16),
+(14, 410, 26),
+(14, 411, 47),
+(11, 412, 12),
+(32, 413, 18),
+(11, 414, 35),
+(11, 415, 59),
+(70, 416, 29),
+(88, 417, 20),
+(52, 418, 18),
+(70, 419, 37),
+(70, 420, 33),
+(8, 421, 27),
+(51, 422, 46),
+(8, 423, 45),
+(8, 424, 35),
+(68, 425, 11),
+(40, 426, 14),
+(68, 427, 20),
+(68, 428, 44),
+(68, 429, 63),
+(11, 430, 17),
+(22, 431, 60),
+(82, 432, 14),
+(11, 433, 30),
+(11, 434, 48),
+(59, 435, 22),
+(51, 436, 13),
+(59, 437, 42),
+(59, 438, 50),
+(60, 439, 22),
+(48, 440, 11),
+(4, 441, 12),
+(60, 442, 21),
+(60, 443, 42),
+(8, 444, 30),
+(20, 445, 17),
+(29, 446, 19),
+(7, 447, 14),
+(8, 448, 30),
+(8, 449, 60),
+(70, 450, 27),
+(25, 451, 36),
+(27, 452, 13),
+(70, 453, 44),
+(70, 454, 40),
+(43, 455, 30),
+(12, 456, 20),
+(29, 457, 18),
+(32, 458, 39),
+(88, 459, 76),
+(10, 460, 20),
+(76, 461, 18),
+(61, 462, 16),
+(10, 463, 48),
+(10, 464, 30),
+(65, 465, 15),
+(43, 466, 26),
+(65, 467, 51),
+(65, 468, 78),
+(86, 469, 14),
+(30, 470, 25),
+(86, 471, 57),
+(86, 472, 36),
+(42, 473, 29),
+(62, 474, 16),
+(91, 475, 12),
+(42, 476, 30),
+(70, 477, 36),
+(63, 478, 24),
+(62, 479, 22),
+(88, 480, 11),
+(63, 481, 50),
+(63, 482, 41),
+(76, 483, 17),
+(66, 484, 17),
+(76, 485, 24),
+(76, 486, 45),
+(76, 487, 15),
+(69, 488, 17),
+(18, 489, 16),
+(76, 490, 21),
+(56, 491, 57),
+(13, 492, 24),
+(56, 493, 13),
+(100, 494, 17),
+(13, 495, 48),
+(32, 496, 65),
+(93, 497, 20),
+(78, 498, 19),
+(41, 499, 14),
+(93, 500, 43),
+(93, 501, 69),
+(63, 502, 29),
+(30, 503, 14),
+(63, 504, 36),
+(63, 505, 74),
+(52, 506, 25),
+(52, 507, 45),
+(65, 508, 11),
+(75, 509, 28),
+(75, 510, 49),
+(25, 511, 28),
+(49, 512, 17),
+(57, 513, 15),
+(25, 514, 40),
+(25, 515, 52),
+(63, 516, 19),
+(7, 517, 16),
+(99, 518, 16),
+(66, 519, 19),
+(63, 520, 35),
+(63, 521, 37),
+(85, 522, 12),
+(81, 523, 13),
+(27, 524, 20),
+(85, 525, 56),
+(85, 526, 41),
+(65, 527, 22),
+(12, 528, 16),
+(8, 529, 18),
+(65, 530, 34),
+(65, 531, 58),
+(47, 532, 11),
+(90, 533, 10),
+(11, 534, 10),
+(63, 535, 15),
+(88, 536, 30),
+(88, 537, 42),
+(30, 538, 15),
+(50, 539, 49),
+(22, 540, 13),
+(30, 541, 52),
+(30, 542, 69),
+(38, 543, 19),
+(59, 544, 13),
+(75, 545, 20),
+(38, 546, 20),
+(38, 547, 31),
+(38, 548, 32),
+(22, 549, 14),
+(69, 550, 18),
+(97, 551, 17),
+(22, 552, 32),
+(22, 553, 67),
+(39, 554, 13),
+(62, 555, 14),
+(59, 556, 15),
+(39, 557, 42),
+(39, 558, 38),
+(96, 559, 29),
+(30, 560, 14),
+(96, 561, 60),
+(6, 562, 38),
+(58, 563, 18),
+(18, 564, 11),
+(67, 565, 12),
+(66, 566, 47),
+(58, 567, 69),
+(67, 568, 17),
+(57, 569, 10),
+(68, 570, 14),
+(85, 571, 11),
+(67, 572, 42),
+(67, 573, 65),
+(59, 574, 22),
+(64, 575, 16),
+(7, 576, 15),
+(59, 577, 56),
+(59, 578, 44),
+(78, 579, 12),
+(70, 580, 12),
+(66, 581, 19),
+(78, 582, 33),
+(78, 583, 33),
+(40, 584, 20),
+(50, 585, 60),
+(6, 586, 19),
+(40, 587, 46),
+(40, 588, 44),
+(55, 589, 19),
+(54, 590, 14),
+(55, 591, 23),
+(36, 592, 47),
+(4, 593, 20),
+(16, 594, 37),
+(88, 595, 23),
+(4, 596, 33),
+(32, 597, 14),
+(70, 598, 18),
+(84, 599, 15),
+(32, 600, 33),
+(77, 601, 45),
+(48, 602, 13),
+(38, 603, 10),
+(48, 604, 31),
+(48, 605, 60),
+(4, 606, 10),
+(12, 607, 14),
+(4, 608, 57),
+(4, 609, 61),
+(61, 610, 29),
+(70, 611, 10),
+(61, 612, 47),
+(61, 613, 53),
+(13, 614, 24),
+(79, 615, 37),
+(13, 616, 37),
+(13, 617, 71),
+(15, 618, 28),
+(71, 619, 47),
+(26, 620, 11),
+(15, 621, 60),
+(15, 622, 43),
+(10, 623, 12),
+(75, 624, 33),
+(29, 625, 12),
+(10, 626, 50),
+(10, 627, 59),
+(79, 628, 25),
+(71, 629, 10),
+(33, 630, 14),
+(79, 631, 54),
+(79, 632, 64),
+(46, 633, 16),
+(93, 634, 15),
+(27, 635, 20),
+(46, 636, 20),
+(46, 637, 41),
+(30, 638, 22),
+(16, 639, 16),
+(56, 640, 14),
+(32, 641, 16),
+(21, 642, 46),
+(30, 643, 62),
+(44, 644, 25),
+(70, 645, 19),
+(9, 646, 18),
+(44, 647, 35),
+(44, 648, 46),
+(25, 649, 12),
+(27, 650, 17),
+(25, 651, 52),
+(25, 652, 33),
+(93, 653, 13),
+(92, 654, 17),
+(95, 655, 33),
+(95, 656, 75),
+(42, 657, 17),
+(78, 658, 27),
+(98, 659, 13),
+(42, 660, 55),
+(42, 661, 45),
+(8, 662, 24),
+(74, 663, 10),
+(30, 664, 48),
+(8, 665, 57),
+(14, 666, 18),
+(35, 667, 16),
+(13, 668, 14),
+(14, 669, 36),
+(14, 670, 73),
+(11, 671, 20),
+(73, 672, 15),
+(11, 673, 43),
+(11, 674, 49),
+(63, 675, 12),
+(99, 676, 10),
+(89, 677, 12),
+(63, 678, 38),
+(74, 679, 57),
+(96, 680, 30),
+(93, 681, 10),
+(96, 682, 59),
+(96, 683, 57),
+(81, 684, 14),
+(13, 685, 20),
+(81, 686, 24),
+(81, 687, 50),
+(74, 688, 20),
+(78, 689, 56),
+(60, 690, 19),
+(74, 691, 52),
+(22, 692, 38),
+(7, 693, 17),
+(7, 694, 15),
+(66, 695, 12),
+(7, 696, 26),
+(7, 697, 59),
+(45, 698, 13),
+(35, 699, 12),
+(58, 700, 36),
+(58, 701, 31),
+(78, 702, 20),
+(39, 703, 10),
+(78, 704, 43),
+(78, 705, 34),
+(5, 706, 11),
+(82, 707, 13),
+(41, 708, 15),
+(47, 709, 15),
+(5, 710, 41),
+(5, 711, 70),
+(16, 712, 11),
+(24, 713, 17),
+(97, 714, 14),
+(16, 715, 46),
+(16, 716, 78),
+(15, 717, 17),
+(14, 718, 11),
+(44, 719, 20),
+(15, 720, 23),
+(15, 721, 34),
+(14, 722, 20),
+(89, 723, 18),
+(44, 724, 10),
+(49, 725, 14),
+(7, 726, 27),
+(75, 727, 71),
+(41, 728, 18),
+(63, 729, 38),
+(51, 730, 19),
+(41, 731, 29),
+(41, 732, 50),
+(26, 733, 17),
+(21, 734, 11),
+(37, 735, 16),
+(26, 736, 57),
+(26, 737, 77),
+(74, 738, 14),
+(90, 739, 46),
+(95, 740, 16),
+(5, 741, 44),
+(5, 742, 39),
+(87, 743, 13),
+(63, 744, 18),
+(92, 745, 17),
+(9, 746, 56),
+(87, 747, 75),
+(98, 748, 29),
+(68, 749, 20),
+(33, 750, 12),
+(98, 751, 53),
+(98, 752, 74),
+(66, 753, 20),
+(85, 754, 23),
+(95, 755, 15),
+(66, 756, 48),
+(66, 757, 77),
+(87, 758, 29),
+(41, 759, 43),
+(50, 760, 10),
+(87, 761, 59),
+(87, 762, 78),
+(100, 763, 18),
+(8, 764, 15),
+(100, 765, 16),
+(100, 766, 25),
+(100, 767, 68),
+(43, 768, 18),
+(12, 769, 17),
+(17, 770, 11),
+(72, 771, 43),
+(72, 772, 66),
+(88, 773, 10),
+(83, 774, 14),
+(88, 775, 33),
+(88, 776, 37),
+(92, 777, 19),
+(60, 778, 18),
+(92, 779, 27),
+(92, 780, 40),
+(6, 781, 25),
+(34, 782, 16),
+(7, 783, 59),
+(7, 784, 69),
+(79, 785, 10),
+(81, 786, 57),
+(79, 787, 46),
+(79, 788, 43),
+(99, 789, 23),
+(91, 790, 19),
+(38, 791, 17),
+(64, 792, 15),
+(99, 793, 37),
+(99, 794, 73),
+(92, 795, 24),
+(22, 796, 40),
+(82, 797, 10),
+(92, 798, 56),
+(92, 799, 56),
+(20, 800, 12),
+(80, 801, 12),
+(80, 802, 18),
+(10, 803, 24),
+(10, 804, 42),
+(70, 805, 11),
+(72, 806, 16),
+(70, 807, 39),
+(87, 808, 68),
+(76, 809, 19),
+(6, 810, 10),
+(33, 811, 13),
+(76, 812, 23),
+(76, 813, 74),
+(17, 814, 16),
+(81, 815, 49),
+(25, 816, 16),
+(68, 817, 17),
+(17, 818, 40),
+(73, 819, 65),
+(48, 820, 21),
+(15, 821, 18),
+(48, 822, 57),
+(88, 823, 64);
