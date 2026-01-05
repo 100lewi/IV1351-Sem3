@@ -1,5 +1,6 @@
-import sys
 import os
+import sys
+
 from tabulate import tabulate
 
 
@@ -11,7 +12,6 @@ class ConsoleUI:
         os.system("cls" if os.name == "nt" else "clear")
 
     def start(self):
-
         menu = [
             ["1", "View Course Costs"],
             ["2", "Modify a Course Instance"],
@@ -66,7 +66,7 @@ class ConsoleUI:
 
     def add_new_teaching_activity(self):
         print("--- Add New Teaching Activity ---")
-        name = input("Enter activity name: ")
+        name = input("Enter activity name (default: Exercise): ") or "Exercise"
         factor = input("Enter activity factor: ")
 
         try:
