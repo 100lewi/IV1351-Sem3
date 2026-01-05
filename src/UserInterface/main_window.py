@@ -29,7 +29,6 @@ class MainWindow:
         title.pack(pady=(20, 30))
 
         self._menu_button("View Course Costs", self.open_course_costs)
-        #self._menu_button("Modify Course Instance", self.modify_course_instance)
         #self._menu_button("Modify Activity Allocation", self.modify_activity_allocation)
         #self._menu_button("Add Teaching Activity", self.add_teaching_activity)
         #self._menu_button("Add Planned Activity", self.add_planned_activity)

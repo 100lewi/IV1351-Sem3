@@ -20,14 +20,14 @@ class CourseCostView(tk.Toplevel):
         self.configure(bg="black")
         self.geometry("700x500")
 
-        self._build_inputs()
-        self._build_table()
+        self.build_inputs()
+        self.build_table()
 
     # User selects a year and we fetch the courses for that year,
     # load_courses is defined later. We use a frame which is a container for widgets
     # that looks really cool
 
-    def _build_inputs(self):
+    def build_inputs(self):
         frame = tk.Frame(self, bg="black")
         frame.pack(pady=10)
 
@@ -49,7 +49,7 @@ class CourseCostView(tk.Toplevel):
     # ttk.treeview is a table widget which looks really nice and presents the user
     # with relevant information, columns are set to course id, code and period
 
-    def _build_table(self):
+    def build_table(self):
         self.table = ttk.Treeview(self, columns=("id", "code", "period"), show="headings")
         self.table.heading("id", text="Instance ID")
         self.table.heading("code", text="Course Code")

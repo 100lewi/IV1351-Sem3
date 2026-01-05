@@ -11,9 +11,9 @@ class EditStudentsView(tk.Toplevel):
         self.geometry("300x150")
         self.configure(bg="black")
 
-        self._build_ui()
+        self.build_ui()
 
-    def _build_ui(self):
+    def build_ui(self):
         tk.Label(self, text="Number of students to add:", bg="black", fg="red").pack(pady=10)
 
         # Empty entry box for user input
