@@ -18,6 +18,10 @@ GET_ALLOCATION_DETAILS = """
     WHERE aa.planned_activity_id = %s AND aa.employee_id = %s
 """
 
+GET_ALLOCATED_ACTIVITY = """
+	SELECT * FROM allocated_activity aa WHERE aa.planned_activity = %s
+"""
+
 GET_COURSE_COST = """
 	SELECT
 		course_code,

@@ -1,41 +1,70 @@
 import tkinter as tk
-from tkinter import messagebox, ttk
-from src.UserInterface.GUIutils import utilsGuI
-
+from tkinter import messagebox
+from src.UserInterface.GUIutils.utilsGuI import build_allocation, build_deallocation
 
 class AllocationView(tk.Toplevel):
-	def __init__(self, controller, parent, editable=False):
-		super().__init__(parent)
+    def __init__(self, controller, parent, editable=False):
+        super().__init__(parent)
 
-		self.controller = controller
-		self.editable = editable
+        self.controller = controller
+        self.editable = editable
 
-		self.title("Allocate/Deallocate teachers")
-		self.configure(bg="black")
-		self.geometry("700x500")
-		#build inputs
-		
-	def build_table(self):
-		self.table = ttk.Treeview(self, columns=("pa_id", "emp_id", "alloc_hours"), show="headings")
-		self.table.heading("pa_id", text="PA ID")
-		self.table.heading("emp_id", text="Employee Id")
-		self.table.heading("alloc_hours", text="Allocated Hours")
-		self.table.pack(fill="x", padx=20, pady=10)
+        self.title("Modify Activity Allocations")
+        self.configure(bg="black")
+        self.geometry("600x600")  
 
-		tk.Button(
-			self,
-			text="Allocate Teacher",
-			#command=self.allocate_teacher,
-			bg="black",
-			fg="red",
-			highlightbackground="red",
-		).pack(pady=10)
+        # Title label
+        tk.Label(
+            self,
+            text="Modify Activity Allocations",
+            bg="black",
+            fg="red",
+            font=("Helvetica", 16, "bold")
+        ).pack(pady=(20, 20))
 
-		tk.Button(
-			self,
-			text="Deallocate Teacher",
-			#command=self.deallocate_teacher,
-			bg="black",
-			fg="red",
-			highlightbackground="red",
-		).pack(pady=5)
+        # Frame for buttons
+        button_frame = tk.Frame(self, bg="black")
+        button_frame.pack(pady=10)
+
+        tk.Button(
+            button_frame,
+            text="Add Teacher",
+            width=20,
+            command=self.show_allocate_frame,
+            bg="black",
+            fg="red",
+            highlightbackground="red",
+            font=("Helvetica", 12)
+        ).pack(pady=(0, 10))
+
+        tk.Button(
+            button_frame,
+            text="Remove Teacher",
+            width=20,
+            command=self.show_deallocate_frame,
+            bg="black",
+            fg="red",
+            highlightbackground="red",
+            font=("Helvetica", 12)
+        ).pack()
+
+        self.allocate_frame = None
+        self.deallocate_frame = None
+
+    def show_allocate_frame(self):
+        if self.allocate_frame is None:
+            from src.UserInterface.GUIutils.utilsGuI import build_allocation
+            self.allocate_frame = tk.Frame(self, bg="black")
+            self.allocate_frame.pack(pady=20, padx=20, fill="x")
+            build_allocation(self.allocate_frame) 
+        else:
+            self.allocate_frame.lift()  
+
+    def show_deallocate_frame(self):
+        if self.deallocate_frame is None:
+            from src.UserInterface.GUIutils.utilsGuI import build_deallocation
+            self.deallocate_frame = tk.Frame(self, bg="black")
+            self.deallocate_frame.pack(pady=20, padx=20, fill="x")
+            build_deallocation(self.deallocate_frame) 
+        else:
+            self.deallocate_frame.lift()

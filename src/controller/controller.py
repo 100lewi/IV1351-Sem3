@@ -32,7 +32,7 @@ class Controller:
 
     def deallocate_employee(self, planned_activity_id, employee_id):
         return self.model.deallocate_employee(planned_activity_id, employee_id)
-
+    
     def allocate_employee_to_activity(self, employee_id, planned_activity_id, hours):
         return self.model.allocate_employee_to_activity(
             employee_id, planned_activity_id, hours

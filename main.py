@@ -17,6 +17,7 @@ def main(mode):
     connection = None
 
     try:
+        mode = "gui"
         connection = connect_with_bootstrap(DB_CONFIG)  # type: ignore
 
         connection.autocommit = False  # type: ignore
