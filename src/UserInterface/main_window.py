@@ -60,7 +60,7 @@ class MainWindow:
     def run(self):
         self.root.mainloop()
 
-    # ---- Navigation callbacks ----
+    # ===============Navigation====================
 
     def open_course_costs(self):
        CourseCostView(self.controller, self.root)
