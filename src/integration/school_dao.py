@@ -14,9 +14,9 @@ class SchoolDAO:
     def __init__(self, connection):
         self.connection = connection
 
-    def execute_operation(self, operation_funciton):
+    def execute_operation(self, operation_function):
         try:
-            result = operation_funciton()
+            result = operation_function()
             self.connection.commit()
 
             return result

@@ -17,7 +17,6 @@ def main(mode):
     connection = None
 
     try:
-        mode = "gui"
         connection = connect_with_bootstrap(DB_CONFIG)  # type: ignore
 
         connection.autocommit = False  # type: ignore
@@ -43,8 +42,10 @@ def main(mode):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run Group 35 Application")
-    parser.add_argument("--gui", action="store_true", help="Launch the GUI version")
-    parser.add_argument("--cli", action="store_true", help="Launch the Console version")
+
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--gui", action="store_true", help="Launch the GUI version")
+    group.add_argument("--cli", action="store_true", help="Launch the Console version")
 
     args = parser.parse_args()
 
@@ -52,3 +53,4 @@ if __name__ == "__main__":
         main(mode="cli")
     else:
         main(mode="gui")
+

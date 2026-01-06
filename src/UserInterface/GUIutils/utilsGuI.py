@@ -227,7 +227,6 @@ def load_courses(window):
         
 #-----------------------TEACHING ACTIVITY---------------------------
 def add_activity(window):
-    """Send the input data to the controller and show success/error messages."""
     try:
         # Get values from entries
         activity_name = window.activity_name_entry.get().strip()
@@ -237,10 +236,8 @@ def add_activity(window):
         if not activity_name:
             activity_name = "Excercise"
 
-        # Make sure factor is a number
         activity_factor = float(activity_factor_text) if activity_factor_text else 1.0
 
-        # Call controller
         window.controller.create_teaching_activity(
             activity_name,
             activity_factor
