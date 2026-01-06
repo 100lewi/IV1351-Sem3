@@ -120,9 +120,39 @@ def build_activity(parent_frame, window):
         width=15,
         font=("Helvetica", 11, "bold")
     ).grid(row=0, column=2, rowspan=2, padx=15, pady=5)
-
-
     
+#-----------------------PLANNED ACTIVITY---------------------------
+def build_planned_activity(parent_frame, window):
+    frame = tk.Frame(window, bg="black", width=500, height=500)
+    frame.pack(pady=20, padx=20, fill="x")
+    frame.pack_propagate(False)  
+
+    tk.Label(frame, text="Teaching Activity ID:", bg="black", fg="red")\
+        .grid(row=0, column=0, padx=10, pady=5, sticky="w")
+    window.teaching_activity_entry = tk.Entry(frame, width=15)
+    window.teaching_activity_entry.grid(row=0, column=1, padx=10, pady=5)
+
+    tk.Label(parent_frame, text="Course Instance ID:", bg="black", fg="red")\
+        .grid(row=0, column=0, padx=10, pady=5, sticky="w")
+    window.course_instance_id = tk.Entry(parent_frame, width=20)
+    window.course_instance_id.grid(row=0, column=1, padx=10, pady=5)
+
+    tk.Label(parent_frame, text="Hours:", bg="black", fg="red")\
+        .grid(row=1, column=0, padx=10, pady=5, sticky="w")
+    window.activity_hours_planned = tk.Entry(parent_frame, width=20)
+    window.activity_hours_planned.grid(row=1, column=1, padx=10, pady=5)
+
+    tk.Button(
+        parent_frame,
+        text="Add Planned Activity",
+        command=lambda: add_planned_activity(window),
+        bg="black",
+        fg="red",
+        highlightbackground="red",
+        width=25,
+        font=("Helvetica", 11, "bold")
+    ).grid(row=0, column=2, rowspan=2, padx=15, pady=5)
+
 #============FUNCTIONALITY==========================
 #-----------------------------ALLOCATIONS-----------------------------
 
@@ -228,3 +258,15 @@ def add_activity(window):
         )
     except Exception as e:
         messagebox.showerror("Error", str(e))
+        
+#-----------------------PLANNED ACTIVITY---------------------------
+def add_planned_activity(window):
+    teaching_activity_id = window.teaching_activity_entry.get()
+    course_instance_id = window.course_instance_id.get()
+    hours = window.activity_hours_planned.get()
+    
+    window.controller.create_planned_activity(
+        teaching_activity_id,
+        course_instance_id, 
+        hours
+    )

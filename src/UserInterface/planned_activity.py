@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
-from src.UserInterface.GUIutils.utilsGuI import build_activity
-class TeachingActivityView(tk.Toplevel):
+from src.UserInterface.GUIutils.utilsGuI import build_planned_activity
+
+class PlannedActivityView(tk.Toplevel):
     def __init__(self, controller, parent, editable=False):
         super().__init__(parent)
 
@@ -14,7 +15,7 @@ class TeachingActivityView(tk.Toplevel):
 
         tk.Label(
             self,
-            text="Add New Teaching Activity",
+            text="Add New Planned Activity",
             bg="black",
             fg="red",
             font=("Helvetica", 16, "bold")
@@ -26,7 +27,7 @@ class TeachingActivityView(tk.Toplevel):
         tk.Button(
             button_frame,
             text="Add Activity",
-            width=20,
+            width=35,
             command=self.show_activity_frame,
             bg="black",
             fg="red",
@@ -42,6 +43,6 @@ class TeachingActivityView(tk.Toplevel):
         if self.activity_frame is None:
             self.activity_frame = tk.Frame(self, bg="black")
             self.activity_frame.pack(pady=20, padx=20, fill="x")
-            build_activity(self.activity_frame, self)
+            build_planned_activity(self.activity_frame, self)
         else:
             self.activity_frame.lift() 
