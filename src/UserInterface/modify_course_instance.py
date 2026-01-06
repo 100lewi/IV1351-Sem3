@@ -31,9 +31,7 @@ class EditStudentsView(tk.Toplevel):
     def save_students(self):
         try:
             add_value = int(self.students_entry.get())
-            if add_value < 0:
-                raise ValueError("Number must be positive")
-
+            
             # Call controller to add students
             self.controller.update_student_count(self.instance_id, add_value)
             messagebox.showinfo("Success", f"Added {add_value} students!")

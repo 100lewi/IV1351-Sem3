@@ -95,9 +95,36 @@ def build_deallocation(window):
         width=15,
         font=("Helvetica", 11, "bold")
     ).grid(row=0, column=2, rowspan=3, padx=15, pady=5)
-    
 
+#-----------------------TEACHING ACTIVITY---------------------------
+def build_activity(parent_frame, window):
+    """Builds activity input widgets inside the given parent frame."""
+
+    tk.Label(parent_frame, text="Activity Name (Default 'Excercise'):", bg="black", fg="red")\
+        .grid(row=0, column=0, padx=10, pady=5, sticky="w")
+    window.activity_name_entry = tk.Entry(parent_frame, width=20)
+    window.activity_name_entry.grid(row=0, column=1, padx=10, pady=5)
+
+    tk.Label(parent_frame, text="Activity Factor:", bg="black", fg="red")\
+        .grid(row=1, column=0, padx=10, pady=5, sticky="w")
+    window.activity_factor_entry = tk.Entry(parent_frame, width=20)
+    window.activity_factor_entry.grid(row=1, column=1, padx=10, pady=5)
+
+    tk.Button(
+        parent_frame,
+        text="Add Activity",
+        command=lambda: add_activity(window),
+        bg="black",
+        fg="red",
+        highlightbackground="red",
+        width=15,
+        font=("Helvetica", 11, "bold")
+    ).grid(row=0, column=2, rowspan=2, padx=15, pady=5)
+
+
+    
 #============FUNCTIONALITY==========================
+#-----------------------------ALLOCATIONS-----------------------------
 
 def deallocate_activity(window):
     try:
@@ -149,6 +176,7 @@ def allocate_activity(window):
     except Exception as e:
         messagebox.showerror("Error", str(e))
 
+#--------------------------COURSES-----------------------------
 
 def load_courses(window):
     year = window.year_entry.get()
@@ -164,5 +192,39 @@ def load_courses(window):
 
     except ValueError:
         messagebox.showerror("Invalid Input", "Year or course ID must be a number.")
+    except Exception as e:
+        messagebox.showerror("Error", str(e))
+        
+#-----------------------TEACHING ACTIVITY---------------------------
+def add_activity(window):
+    """Send the input data to the controller and show success/error messages."""
+    try:
+        # Get values from entries
+        activity_name = window.activity_name_entry.get().strip()
+        activity_factor_text = window.activity_factor_entry.get().strip()
+
+        # Default value for name if empty
+        if not activity_name:
+            activity_name = "Excercise"
+
+        # Make sure factor is a number
+        activity_factor = float(activity_factor_text) if activity_factor_text else 1.0
+
+        # Call controller
+        window.controller.create_teaching_activity(
+            activity_name,
+            activity_factor
+        )
+
+        messagebox.showinfo(
+            "Success",
+            f"Created {activity_name} with factor {activity_factor}."
+        )
+
+    except ValueError:
+        messagebox.showerror(
+            "Invalid Input",
+            "Activity factor must be a number."
+        )
     except Exception as e:
         messagebox.showerror("Error", str(e))

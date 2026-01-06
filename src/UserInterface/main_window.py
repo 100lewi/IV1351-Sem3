@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
-#from src.UserInterface.teaching_activity_view import TeachingActivityView
+from src.UserInterface.activity_view import TeachingActivityView
 #from src.UserInterface.planned_activity_view import PlannedActivityView
 from src.UserInterface.course_cost_view import CourseCostView
 from src.UserInterface.allocation_view import AllocationView
@@ -30,7 +30,7 @@ class MainWindow:
 
         self._menu_button("View Course Costs", self.open_course_costs)
         self._menu_button("Modify Activity Allocation", self.modify_activity_allocation)
-        #self._menu_button("Add Teaching Activity", self.add_teaching_activity)
+        self._menu_button("Add Teaching Activity", self.add_teaching_activity)
         #self._menu_button("Add Planned Activity", self.add_planned_activity)
         #self._menu_button("RESET DATABASE", self.reset_database)
 
@@ -68,8 +68,8 @@ class MainWindow:
     def modify_activity_allocation(self):
         AllocationView(self.controller, self.root)
 
-    #def add_teaching_activity(self):
-    #    TeachingActivityView(self.controller, self.root)
+    def add_teaching_activity(self):
+        TeachingActivityView(self.controller, self.root)
 
     #def add_planned_activity(self):
     #   PlannedActivityView(self.controller, self.root)
