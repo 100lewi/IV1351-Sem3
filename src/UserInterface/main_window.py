@@ -65,9 +65,6 @@ class MainWindow:
     def open_course_costs(self):
        CourseCostView(self.controller, self.root)
 
-    #def modify_course_instance(self):
-    #   CourseCostView(self.controller, self.root, editable=True)
-
     def modify_activity_allocation(self):
         AllocationView(self.controller, self.root)
 

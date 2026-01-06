@@ -5,6 +5,7 @@ from time import strftime
 
 #=======================BUILDS==================================
 
+#--------------------------COURSES-----------------------------
 def build_year_inputs(window):
     frame = tk.Frame(window, bg="black")
     frame.pack(pady=10)
@@ -23,7 +24,8 @@ def build_year_inputs(window):
         fg="red",
         highlightbackground="red",
     ).grid(row=0, column=2, padx=10)
-
+    
+#-----------------------------ALLOCATIONS-----------------------------
 def build_allocation(window):
     # Bigger frame
     frame = tk.Frame(window, bg="black", width=500, height=500)
@@ -146,8 +148,6 @@ def allocate_activity(window):
         )
     except Exception as e:
         messagebox.showerror("Error", str(e))
-
-
 
 
 def load_courses(window):

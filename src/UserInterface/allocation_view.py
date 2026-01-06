@@ -53,7 +53,6 @@ class AllocationView(tk.Toplevel):
 
     def show_allocate_frame(self):
         if self.allocate_frame is None:
-            from src.UserInterface.GUIutils.utilsGuI import build_allocation
             self.allocate_frame = tk.Frame(self, bg="black")
             self.allocate_frame.pack(pady=20, padx=20, fill="x")
             build_allocation(self.allocate_frame) 
@@ -62,7 +61,6 @@ class AllocationView(tk.Toplevel):
 
     def show_deallocate_frame(self):
         if self.deallocate_frame is None:
-            from src.UserInterface.GUIutils.utilsGuI import build_deallocation
             self.deallocate_frame = tk.Frame(self, bg="black")
             self.deallocate_frame.pack(pady=20, padx=20, fill="x")
             build_deallocation(self.deallocate_frame) 
